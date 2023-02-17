@@ -1,0 +1,32 @@
+.headerDiv{
+    position: absolute;
+    top:10%;
+    margin-bottom: 0%;
+    margin-left:30px;
+  }
+  .headerDiv.SL{
+    margin-left: 300px;
+  }
+  .btn{
+    background-color: #023047;
+    color: #8ecbe6;
+    width: 250px;
+    height: 50px;
+    border:none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 20px;
+    transition:.3s;
+  }
+  .btn:focus{
+    background-color: #8ecae6;
+    color:#023047;
+  }
+  .btn:hover{
+    background-color:#ffdeb2;
+    color:#023047;
+  }
+  .btn:active{
+    background-color: #012232;
+    color: #219ebc;
+  }
