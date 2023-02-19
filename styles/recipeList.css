@@ -1,0 +1,102 @@
+.recipeListHeader{
+    background-color:#219ebc;
+    display: inline-block;
+    width:300px;
+    height:30px;
+    font-size:20px;
+    text-align:left; 
+    margin-top: 3%;
+    border-radius:15px;
+    border-top-left-radius: 0px;    
+    border-bottom-left-radius: 0px;
+    padding:10px;
+  }
+  
+  /*The box that holds each recipe container*/
+  .listContainer{
+    background-color: transparent;
+    overflow-y: scroll;
+    overflow-x: scroll; /*Hide scroll if scroll isnt needed*/
+    height:600px;
+    max-height: 600px;
+    display: inline-block;
+    margin-top: 3%;
+    width:100%;
+    top:17%;
+  }
+
+  /*Individual container that holed each recipe*/
+  .outerRecipeContainer{
+    padding-left:20px;
+    padding-right:20px;
+    padding-bottom:3px;
+    background-color: transparent;
+  }
+  .recipeContainer {
+    background-color: #b5e3f0;
+    border: solid;
+    border-color: #023047;
+    border-radius: 10px;
+    width: 100%;
+    min-height: 70px;
+    padding: 8px;
+    padding-bottom: 40px;
+    cursor:pointer;
+  }
+  .recipeContainer:hover{
+    background-color: #219ebc;
+    transition:.3s;
+  }
+  .recipeContainer:focus{
+    background-color: #ffdeb2;
+    transform: .3s;
+  }
+  .recipeContainer:active{
+    background-color: #ffac3d;
+    transform: .3s;
+  }
+
+  /*Individual elements that display the recipe*/
+  .recipeListName {
+    text-align: left;
+    background-color: transparent;
+    overflow-x: hidden;
+    width: 80%;
+    font-size: 25px;
+  }
+  
+  .listPlus { /*causing list to be super seperated*/
+    float: right;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    bottom:80px;
+    width: 30px;
+    height: 30px;
+    margin-right: 10%;
+    background-color: transparent;
+    border:none;
+    font-size:50px;
+    font-weight: bolder;
+    cursor:pointer;
+    color:#023047;
+  }
+  .listPlus:hover{
+    color: #ffac3d;
+    transition:.3s;
+  }
+  .listPlus:active{
+    color: #ffdeb2;
+    transform: .3s;
+  }
+
+
+  .recipeListLine {
+    background-color:#023047;
+    width:60%;
+    height:0px;
+    border: solid;
+    border-radius: 50px;
+    border-color: #023047;
+  }
+  

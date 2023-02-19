@@ -3,11 +3,11 @@ import React from "react";
 const Header = () => {
   return (
     <div>
-    <div class="headerDiv">
-      <button class="btn">Dashboard</button>
+    <div className="headerDiv">
+      <button className="btn">Dashboard</button>
       </div>
-    <div class="headerDiv SL">
-      <button class="btn">Shopping List</button>
+    <div className="headerDiv SL">
+      <button className="btn">Shopping List</button>
     </div>
     </div>
   );
