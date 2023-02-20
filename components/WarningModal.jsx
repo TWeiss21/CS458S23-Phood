@@ -21,15 +21,27 @@ return(
     open={open}
     onClose={()=> setOpen(false)}
     aria-labelledby='dialogTitle' aria-describedby='dialogText'>
-        <DialogTitle id='dialogTitle'>Submit the test?</DialogTitle>
-        <DialogContent aria-labelledby='dialogText'>
+        <DialogTitle
+        sx={{bgcolor: '#ff8500', color: 'red', align: 'right'}}
+        id='dialogTitle'>
+            <h1>
+            Warning!
+            </h1>
+        </DialogTitle>
+        <DialogContent 
+        sx={{bgcolor: '#ffdfbf'}}
+        aria-labelledby='dialogText'>
             <DialogContentText>
                 {props.message}
             </DialogContentText>
             <DialogActions>
                 {/* We will need to change these onclick functions later to standardize which button was clicked and respond accordingly */}
-                <Button autoFocus onClick={()=> setOpen(false)}>Cancel</Button>
-                <Button onClick={()=> setOpen(false)}>Submit</Button>
+                <Button 
+                sx={{ bgcolor: '#126782', color: '#8ecae6' }}
+                autoFocus onClick={()=> setOpen(false)}>Cancel</Button>
+                <Button 
+                sx={{ bgcolor: '#126782', color: '#8ecae6' }}
+                onClick={()=> setOpen(false)}>Submit</Button>
             </DialogActions>
         </DialogContent>
     </Dialog>
