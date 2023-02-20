@@ -1,4 +1,7 @@
 import React from 'react'
+import { WarnMode } from './WarningModal'
+
+
 
 const RecipeList = () =>{
   return(
@@ -13,6 +16,7 @@ const RecipeList = () =>{
         <button className="listPlus" id="listPlus">&#43;</button>
       </div>
     </div>
+   <WarnMode name='Delete' message='Play of the Game?'/>
   </div>
   )
 }
