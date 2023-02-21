@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import App from '../pages/App';
 
 test('renders the Changeform button to switch to reg or login', () => {
   render(<App />);
