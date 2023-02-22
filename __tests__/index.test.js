@@ -8,8 +8,8 @@ describe('Home', () => {
     it('renders a heading', () => {
         render(<Dashboard/>)
 
-        const heading = screen.getByRole('heading', {
-            name: /Dashboard\.js!/i,
+        const heading = screen.getByRole('button', {
+            name: /Dashboard/i,
         })
 
         expect(heading).toBeInTheDocument()
