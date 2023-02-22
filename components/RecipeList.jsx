@@ -13,6 +13,9 @@ const RecipeList = () =>{
         <button className="listPlus" id="listPlus">&#43;</button>
       </div>
     </div>
+    <div className="addRecipeBtnContainer" id="addRecipeBtnContainer">
+    <button className="generalBtn addRecipeBtn" id="addRecipeBtn">Add Recipe</button>
+    </div>
   </div>
   )
 }
