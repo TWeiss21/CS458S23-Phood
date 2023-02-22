@@ -1,0 +1,41 @@
+.recipeDetailContainer{
+    overflow-y: scroll;
+    height: 100%;
+    min-height: 0;
+}
+
+/*General layout for fullscreen application*/
+@media only screen and (min-width: 768px){
+    .recipeDetailLayout{
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-rows: minmax(80px, .2fr) minmax(100px, 2fr) minmax(100px, 3fr) auto;
+      grid-template-areas: 
+        'image name name'
+        'image desc desc'
+        'ingred ingred ingred'
+        'step step step';
+    }
+}
+
+.nameGrid{
+    grid-area: name;
+    background-color: red;
+}
+.imageGrid{
+    position: 'relative';
+    grid-area:image;
+    background-color: green;
+}
+.descGrid{
+    grid-area:desc;
+    background-color: aliceblue;
+}
+.ingredGrid{
+    grid-area:ingred;
+    background-color: aqua;
+}
+.stepGrid{
+    grid-area:step;
+    background-color: blueviolet;
+}
