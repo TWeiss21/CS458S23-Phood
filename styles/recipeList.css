@@ -16,7 +16,7 @@
   .listContainer{
     background-color: transparent;
     overflow-y: scroll;
-    overflow-x: scroll; /*Hide scroll if scroll isnt needed*/
+    /*overflow-x: scroll; /*Hide scroll if scroll isnt needed*/
     height:600px;
     max-height: 600px;
     display: inline-block;
@@ -90,7 +90,6 @@
     transform: .3s;
   }
 
-
   .recipeListLine {
     background-color:#023047;
     width:60%;
@@ -98,5 +97,18 @@
     border: solid;
     border-radius: 50px;
     border-color: #023047;
+  }
+
+  /*Add recipe button css*/
+  .addRecipeBtnContainer{
+    display: flex;
+    justify-content: left;
+    margin-left: 5%;
+    margin-top: 8%;
+  }
+
+  .addRecipeBtn{
+    padding-left: 80px;
+    padding-right: 80px;
   }
   
