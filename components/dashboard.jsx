@@ -11,7 +11,7 @@ const dashboard = () => {
         <div className="header">
           <Header />
         </div>
-        <div className="recipeList centered">
+        <div className="recipeList">
           <RecipeList />
         </div>
         <div className="recipeDetail centered">
