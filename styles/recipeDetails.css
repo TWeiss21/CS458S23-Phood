@@ -8,9 +8,9 @@
 @media only screen and (min-width: 768px){
     .recipeDetailLayout{
       display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
-      grid-template-rows: minmax(80px, .2fr) minmax(100px, 2fr) minmax(100px, 3fr) auto;
-      grid-template-areas: 
+      grid-template-columns: minmax(0px, 1.2fr) minmax(0px,1fr) minmax(0px,1fr);
+      grid-template-rows: minmax(80px, .2fr) minmax(0px, 2fr) auto auto;
+      grid-template-areas:
         'image name name'
         'image desc desc'
         'ingred ingred ingred'
@@ -20,21 +20,63 @@
 
 .nameGrid{
     grid-area: name;
-    background-color: red;
+    background-color: transparent;
+    padding-top: 20px;
+}
+.recipeDetailLine{
+    border-color:#fb8500;
 }
 .imageGrid{
-    position: 'relative';
+    padding:20px;
     grid-area:image;
-    background-color: green;
+    background-color: transparent;
+}
+.image{
+    position: relative;
+    background-color:blue;
+    height: 100%;
+    border:solid;
+    border-width: 20px;
+    border-color: #fb8500;
 }
 .descGrid{
     grid-area:desc;
-    background-color: aliceblue;
+    background-color: transparent;
+    display:block;
+    max-height:140px;
+    overflow-y: scroll;
 }
 .ingredGrid{
     grid-area:ingred;
-    background-color: aqua;
+    background-color: #ffffe8;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: solid;
+    border-width:5px;
+    border-color:#fb8500;
 }
+
+@media only screen and (min-width: 768px){
+    .ingredientLayout{
+      display: grid;
+      grid-template-columns: minmax(0px, 1fr) minmax(0px,1fr) minmax(0px,1fr);      grid-template-areas:
+        'sec1 sec2 sec3';
+    }
+}
+.ingredsec{
+    padding:20px;
+    text-align: center;
+}
+.sec1{   
+    grid-area:sec1;
+}
+.sec2{   
+    grid-area:sec2;
+}
+.sec3{   
+    grid-area:sec3;
+}
+
 .stepGrid{
     grid-area:step;
     background-color: blueviolet;
