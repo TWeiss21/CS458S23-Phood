@@ -1,25 +1,26 @@
 import { render, screen } from '@testing-library/react';
+import {userEvent} from "@testing-library/user-event";
 import App from '../pages/App';
 import Login from '../components/Login';
 import { userAgent } from 'next/server';
+import React from "react";
 
-it('should render a button with registering', async () => {
-  user.setup();
-  render(<Login />);
+const onSubmit = jest.fn()
 
-  const regBtn = screen.getByRole('button', {
-    name: 'register'
-  });
+beforeEach(()=>{
+  const {  } = render(<Login />)
+  onSubmit.mockClear()
+})
 
-  expect(regBtn).toBeInTheDocument('register');
-  await user.click(regBtn);
-  
-  // const usernameField = screen.getByLabelText(/username/i);
-  // const passwordField = screen.getByLabelText(/password/i);
-  // const submitButton = screen.getByText(/submit/i);
+test('Login form parameters are properly getting passed', async () => {
+  const eMail = screen.getByTestId('text-input-element')
+  const password = screen.getByTestId('password-input-element')
+  userEvent.type(eMail, "fillWithTestUsername")
+  userEvent.type(password, "fillWithTestPassword")
 
-  // //const changeForm = screen.getByText(/Already have an account? Login here!/, /Don't have an account? Register here!/i);
-  // expect(usernameField).toBeInTheDocument();
-  // expect(passwordField).toBeInTheDocument();
-  // expect(submitButton).toBeInTheDocument();
-});
+  userEvent.click(screen.getByTestId('login-button-element'))
+
+  await waitFor(()=>{
+    expect(onSubmit).toBeCalledTimes(1)
+  })
+})
