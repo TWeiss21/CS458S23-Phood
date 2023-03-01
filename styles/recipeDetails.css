@@ -2,6 +2,30 @@
     overflow-y: scroll;
     height: 100%;
     min-height: 0;
+    padding:1%;
+    margin-left:3%
+}
+.btnHolder{
+    position:sticky;
+    background-color: aqua;
+    z-index: 1;
+}
+.recipeBtn{
+    position: absolute;
+    z-index: 1;
+    font-size: small;
+    padding:5px;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+.recipeDeleteBtn{
+    right:3%;  
+}
+.recipeEditBtn{
+    right:15%;  
+}
+.rightAlign{
+    float:right;
 }
 
 /*General layout for fullscreen application*/
@@ -9,7 +33,7 @@
     .recipeDetailLayout{
       display: grid;
       grid-template-columns: minmax(0px, 1.2fr) minmax(0px,1fr) minmax(0px,1fr);
-      grid-template-rows: minmax(80px, .2fr) minmax(0px, 2fr) auto auto;
+      grid-template-rows: minmax(80px, 20px) minmax(0px, 160px) auto auto;
       grid-template-areas:
         'image name name'
         'image desc desc'
@@ -21,13 +45,15 @@
 .nameGrid{
     grid-area: name;
     background-color: transparent;
-    padding-top: 20px;
+    padding-top: 8px;
+    font-size: 40px;
 }
 .recipeDetailLineHeader{
     border-color:#fb8500;
 }
 .imageGrid{
     padding:20px;
+    padding-left: 0px;
     grid-area:image;
     background-color: transparent;
 }
@@ -35,16 +61,20 @@
     position: relative;
     background-color:blue;
     height: 100%;
+    width:100%;
     border:solid;
-    border-width: 20px;
+    border-width: 15px;
     border-color: #fb8500;
 }
 .descGrid{
     grid-area:desc;
     background-color: transparent;
     display:block;
-    max-height:140px;
+    max-height:130px;
     overflow-y: scroll;
+    font-size: small;
+    margin-top: 10px;
+    margin-right:5%;
 }
 .ingredGrid{
     grid-area:ingred;

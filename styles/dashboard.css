@@ -31,7 +31,7 @@ body{
     background-color: #8ecae6;
     border: solid;
     border-top:0px;
-    border-width: 8px;
+    border-width: 5px;
     border-color:#219ebc;
     overflow-y:hidden;
   }
@@ -39,7 +39,7 @@ body{
     grid-area: recipeDetail;
     background-color: #ffdeb2;
     border:solid;
-    border-color:#fb8500;  
+    border-color:#ffac3d;  
     border-width: 10px;
     overflow-y:hidden;
   }
@@ -47,7 +47,8 @@ body{
     grid-area: pantry;
     background-color: #8ecae6;
     border: solid;
-    border-width: 8px;
+    border-width: 5px;
+    border-left:0px;
     border-color:#219ebc;
     overflow-y:hidden;
   }
@@ -56,7 +57,7 @@ body{
   create additional classes to tweak size of button
   This is the general format that all btns should have*/
   .generalBtn{
-    background-color: #fb8500;
+    background-color: #fd9e02;
     border:solid;
     border-color: #023047;
     border-width: 8px;
