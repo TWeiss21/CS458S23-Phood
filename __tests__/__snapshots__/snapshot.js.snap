@@ -2,92 +2,16 @@
 
 exports[`renders homepage unchanged 1`] = `
 <div>
-  <div>
-    <div
-      class="layout"
-    >
-      <div
-        class="header"
-      >
-        <div>
-          <div
-            class="headerDiv"
-          >
-            <button
-              class="btn"
-            >
-              Dashboard
-            </button>
-          </div>
-          <div
-            class="headerDiv SL"
-          >
-            <button
-              class="btn"
-            >
-              Shopping List
-            </button>
-          </div>
-        </div>
-      </div>
-      <div
-        class="recipeList centered"
-      >
-        <div>
-          <div
-            class="recipeListHeader"
-            id="recipeListHeader"
-          >
-             ‍ Recipe Book
-          </div>
-          <div
-            class="listContainer"
-            id="listContainer"
-          >
-            <div
-              class="outerRecipeContainer"
-              id="outerRecipeContainer"
-            >
-              <button
-                class="recipeContainer"
-                id="recipeContainer"
-              >
-                <div
-                  class="recipeListName"
-                  id="recipeListName"
-                >
-                  Chicken Nuggets
-                </div>
-                <div
-                  class="recipeListLine"
-                  id="recipeListLine"
-                />
-              </button>
-              <button
-                class="listPlus"
-                id="listPlus"
-              >
-                +
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="recipeDetail centered"
-      >
-        <div>
-          RecipeDetail
-        </div>
-      </div>
-      <div
-        class="pantry centered"
-      >
-        <div>
-          Pantry
-        </div>
-      </div>
-    </div>
-  </div>
+  <svg
+    aria-hidden="true"
+    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+    data-testid="DashboardIcon"
+    focusable="false"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"
+    />
+  </svg>
 </div>
 `;
