@@ -1,40 +1,7 @@
 import React, { Component } from 'react'
-import recipies from '../mocks/Recipes.js'
-import GetRecipeLists from './RecipeListContainer'
+import lists from '../mocks/Recipes.js'
+import { GetRecipeNames, GetRecipeDescriptions } from './RecipeListContainer'
 
-// class App extends Component {
-//   // render() {
-//   //   return (
-//   //     <div className="App">
-//   //       <h1 className="header">Local Storage</h1>
-//   //       <GetRecipeLists/>
-//   //     </div>
-//   //   )
-//   // }
-// }
-
-//get the names of recipies from the larger mock obj
-//recipies.forEach(getNames)
-// function getNames(current){
-//   const [data,setData]=
-//   console.log(current['recipe_name'])
-// }
-
-// export const Recipes = () => {
-//   return (
-//     <>
-//       <div className="recipe-container">
-//         {recipies.getNames((id, name) => {
-//           return (
-//             <div id={id}>
-//               {name.recipe_name}
-//             </div>
-//           );
-//           })}
-//       </div>
-//     </>
-//   );
-// };
 
 const RecipeList = () =>{
   return(
@@ -43,9 +10,9 @@ const RecipeList = () =>{
     <div className="listContainer"id="listContainer">
       <div className="outerRecipeContainer"id="outerRecipeContainer">
         <button className="recipeContainer" id="recipeContainer">
-          <div className="recipeListName" id="recipeListName">Chicken Nuggets</div>      
+          <div className="recipeListName" id="recipeListName"><GetRecipeNames/></div>      
           <div className="recipeListLine" id="recipeListLine"></div>
-          <div className="recipeListName" id="recipeListName"><GetRecipeLists/></div>
+          <div className="recipeListName" id="recipeListName"><GetRecipeDescriptions/></div>
         </button>
         <button className="listPlus" id="listPlus">&#43;</button>
       </div>

@@ -1,7 +1,7 @@
 // __tests__/index.test.jsx
 
 import { render, screen } from '@testing-library/react'
-import Dashboard from '../pages/index'
+import Dashboard from '../../pages/index'
 import '@testing-library/jest-dom'
 
 describe('Home', () => {
