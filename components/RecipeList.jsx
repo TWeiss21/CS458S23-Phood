@@ -2,10 +2,10 @@ import React from 'react'
 import recipies from '../mocks/Recipes.json'
 
 //get the names of recipies from the larger mock obj
-recipies.forEach(getNames)
-function getNames(current){
-  console.log(current['recipe_name'])
-}
+// recipies.forEach(getNames)
+// function getNames(current){
+//   console.log(current['recipe_name'])
+// }
 
 const RecipeList = () =>{
   return(
