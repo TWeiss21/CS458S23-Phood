@@ -1,4 +1,4 @@
-const lists = [
+const Recipes = [
     {
         "id":1,
         "recipe_name":"Stuffed peppers",
@@ -283,4 +283,4 @@ const lists = [
     }
 ];
 
-export default lists;
+export default Recipes;
