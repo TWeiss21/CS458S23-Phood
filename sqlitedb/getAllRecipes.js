@@ -11,16 +11,17 @@ const selectAllRecipies = `SELECT * FROM  recipes`
 database.all(selectAllRecipies, [], (err, rows)=>{
     if(err){throw err}
     rows.forEach((row) => {
-        console.log('{ ' + 
-        row.id + ':' + 
-        row.name + ':' + 
-        row.description + ':' + 
-        row.steps + ':' + 
-        row.image + ':' + 
-        row.recipe_ingredient_id + ' }')
+        
+        // console.log('{ ' + 
+        // row.id + ':' + 
+        // row.name + ':' + 
+        // row.description + ':' + 
+        // row.steps + ':' + 
+        // row.image + ':' + 
+        // row.recipe_ingredient_id + ' }')
+
+        console.log(row)
     })
 })
-
-
 
 database.close()
