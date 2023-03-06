@@ -3,6 +3,7 @@ import Header from "./Header"
 import RecipeList from "./RecipeList"
 import RecipeDetail from "./RecipeDetail"
 import Pantry from "./Pantry"
+import Footer from "./Footer"
 
 const dashboard = () => {
   return (

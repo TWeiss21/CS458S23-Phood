@@ -1,28 +1,28 @@
 import Dashboard from '../components/dashboard.jsx'
 
-//const sqlite3 = require('sqlite3')
+export const getStaticProps = async () => {
 
-// const database = new sqlite3.Database('../sqlitedb/phoddb.sqlite')
+    // Todo replace this line with your data endpoint from your database. populate wiht actual data
+    const res = await fetch('https://jsonplaceholder.typicode.com/users')
+    // console.log(res)
+    const data = await res.json()
 
-// export const getStaticProps = async () => {
-//     const res = await fetch('../sqlitedb/phooddb.sqlite')
-//     // console.log(res)
-//     const data = await res.json()
-
-//     return {
-//         props: { recipies: data}
-//     }
-// }
+    return {
+        props: { recipes: data}
+    }
+}
 // { recipies } - put in braces
-const Index = () => (
-    //  <div>
-    //      <Dashboard/>
-    //     {recipies.map(recipe => <div key={recipe.id}>
-
-    //          {recipe.name}
-    //     </div>)}
-    //  </div>
-    <Dashboard/>
-)
+const Index = ({recipes}) => {
+    return ( <div>
+         <Dashboard/>
+        { recipes.map(recipe => (
+        <div key={recipe.id}>
+        {recipe.name}
+        </div>
+        ))}
+     </div>
+    )
+    // <Dashboard/>
+    }
 
 export default Index

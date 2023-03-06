@@ -1,16 +1,18 @@
+//navigation element
+import Link from 'next/link'
 import React from "react";
 
 const Header = () => {
   return (
     <div>
     <div className="headerDiv">
-      <button className="btn">Dashboard</button>
+    <Link href='/'><button className="btn">Dashboard</button></Link>
       </div>
     <div className="headerDiv SL">
-      <button className="btn">Shopping List</button>
+      <Link href='/ShoppingList/list'><button className="btn">Shopping List</button></Link>
     </div>
     </div>
   );
 };
 
-export default Header;
+export default Header
