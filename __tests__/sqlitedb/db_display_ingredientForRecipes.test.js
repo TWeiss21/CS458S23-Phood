@@ -14,6 +14,6 @@ it('console log to display id of first ingredient from the ingredientsForRecipes
         rows.forEach((row) => {
             log(row.name);
         })
-        expect(console.log.mock.calls[0][0]).toBe(1);
+        expect(console.log.mock.calls[0][0]).toBe('1');
     })
 })
