@@ -3,7 +3,7 @@ import Dashboard from '../components/dashboard.jsx'
 export const getStaticProps = async () => {
 
     // Todo replace this line with your data endpoint from your database. populate wiht actual data
-    const res = await fetch('https://jsonplaceholder.typicode.com/users')
+    const res = await fetch('http://localhost:3000/api/getData')
     // console.log(res)
     const data = await res.json()
 
