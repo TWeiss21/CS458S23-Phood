@@ -7,21 +7,36 @@ const database = new sqlite3.Database('./sqlitedb/phooddb.sqlite')
 
 
 const selectAllRecipies = `SELECT * FROM  recipes`
+let data = []
 
-database.all(selectAllRecipies, [], (err, rows)=>{
-    if(err){throw err}
-    rows.forEach((row) => {
-        
-        // console.log('{ ' + 
-        // row.id + ':' + 
-        // row.name + ':' + 
-        // row.description + ':' + 
-        // row.steps + ':' + 
-        // row.image + ':' + 
-        // row.recipe_ingredient_id + ' }')
-
-        console.log(row)
+async function myFunc(database, callback){
+    database.all(selectAllRecipies, [], (err, rows)=>{
+        if(err){throw err}
+        rows.forEach((row) => {
+            
+            // console.log('{ ' + 
+            // row.id + ':' + 
+            // row.name + ':' + 
+            // row.description + ':' + 
+            // row.steps + ':' + 
+            // row.image + ':' + 
+            // row.recipe_ingredient_id + ' }')
+    
+            
+            data.push(row)
+        })
+       // console.log('Data inside the database call: ' + data)
+        return callback(false, data)
     })
+}
+
+
+
+myFunc(database, function(err, content){
+    if(err) throw(err)
+    ExtData = content
+    console.log('the stuff')
+    console.log('stuff', ExtData)
 })
 
 database.close()
