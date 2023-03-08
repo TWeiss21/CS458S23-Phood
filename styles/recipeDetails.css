@@ -1,0 +1,124 @@
+.recipeDetailContainer{
+    overflow-y: scroll;
+    height: 100%;
+    min-height: 0;
+    padding:1%;
+    margin-left:3%
+}
+.btnHolder{
+    position:sticky;
+    background-color: aqua;
+    z-index: 1;
+}
+.recipeBtn{
+    position: absolute;
+    z-index: 1;
+    font-size: small;
+    padding:5px;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+.recipeDeleteBtn{
+    right:3%;  
+}
+.recipeEditBtn{
+    right:15%;  
+}
+.rightAlign{
+    float:right;
+}
+
+/*General layout for fullscreen application*/
+@media only screen and (min-width: 768px){
+    .recipeDetailLayout{
+      display: grid;
+      grid-template-columns: minmax(0px, 1.2fr) minmax(0px,1fr) minmax(0px,1fr);
+      grid-template-rows: minmax(80px, 20px) minmax(0px, 160px) auto auto;
+      grid-template-areas:
+        'image name name'
+        'image desc desc'
+        'ingred ingred ingred'
+        'step step step';
+    }
+}
+
+.nameGrid{
+    grid-area: name;
+    background-color: transparent;
+    padding-top: 8px;
+    font-size: 40px;
+}
+.recipeDetailLineHeader{
+    border-color:#fb8500;
+}
+.imageGrid{
+    padding:20px;
+    padding-left: 0px;
+    grid-area:image;
+    background-color: transparent;
+}
+.image{
+    position: relative;
+    background-color:#ffffe8;
+    height: 100%;
+    width:100%;
+    border:solid;
+    border-width: 15px;
+    border-color: #fb8500;
+}
+.descGrid{
+    grid-area:desc;
+    background-color: transparent;
+    display:block;
+    max-height:130px;
+    overflow-y: scroll;
+    font-size: small;
+    margin-top: 10px;
+    margin-right:5%;
+}
+.ingredGrid{
+    grid-area:ingred;
+    background-color: #ffffe8;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: solid;
+    border-width:5px;
+    border-color:#fb8500;
+}
+
+@media only screen and (min-width: 768px){
+    .ingredientLayout{
+      display: grid;
+      grid-template-columns: minmax(0px, 1fr) minmax(0px,1fr) minmax(0px,1fr);      
+      grid-template-areas:
+        'sec1 sec2 sec3';
+    }
+}
+.ingredsec{
+    padding:20px;
+    text-align: center;
+}
+.sec1{   
+    grid-area:sec1;
+}
+.sec2{   
+    grid-area:sec2;
+}
+.sec3{   
+    grid-area:sec3;
+}
+
+.stepGrid{
+    grid-area:step;
+    padding: 5%;
+    background-color: transparent;
+}
+.recipeDetailLineSteps{
+    width: 100%;
+    border-color:#fb8500;
+}
+.step{
+    padding: 3%;
+    padding-bottom:0;
+    background-color: transparent;
+}

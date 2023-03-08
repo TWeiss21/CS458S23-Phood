@@ -1,4 +1,5 @@
 import Dashboard from '../components/dashboard.jsx'
+import AddRecipeModal from '@/components/AddRecipeModal.jsx'
 
 export const getStaticProps = async () => {
 
@@ -20,9 +21,11 @@ const Index = ({recipes}) => {
         {recipe.name}
         </div>
         ))}
+        <AddRecipeModal/>
      </div>
     )
     // <Dashboard/>
+    
     }
 
 export default Index
