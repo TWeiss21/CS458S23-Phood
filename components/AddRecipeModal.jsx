@@ -6,10 +6,15 @@ import Grid from "@mui/material/Grid"
 const AddRecipeModal = () =>{
 
     const [show, setShow] = React.useState(false);
+    const [quant, setQuant] = useState('');
     const handleOpen = () => setShow(true);
     const handleClose = () => setShow(false);
     const [multiline, setMultiline] = useState('');
     const [multiline2, setMultiline2] = useState('');
+
+    const handleChange = e => {
+        setQuant(e.target.value);
+    }
 
     const plchldr = [
         { label: 'Cow Pie', id: 1},
@@ -46,7 +51,7 @@ const AddRecipeModal = () =>{
                     </Grid>
                 <DialogContent sx={{display: 'flex', justifyContent: 'flex-start', pl: 0}}>
                     <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" />} data-testid="ingr"></Autocomplete>
-                    <Select  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} label="#"><MenuItem>you cant see me!</MenuItem></Select>
+                    <Select  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} label="#" value={quant} onChange={handleChange}><MenuItem>101</MenuItem></Select>
                     <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.25, mr: 2, height: 55}} options={measure} renderInput={(params) => <TextField {...params} label="Measure" />} data-testid="msr" ></Autocomplete>
                     <Card sx={{my: 1, width: 85, px: 0.4, py: 0.5, backgroundColor: '#023047'}}><Button sx={{backgroundColor: '#126782', color: '#8ECAE6', fontSize: 14}} data-testid="add">Add</Button></Card>
                 </DialogContent>
