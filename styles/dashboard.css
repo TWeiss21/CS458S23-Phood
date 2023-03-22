@@ -16,7 +16,7 @@ body{
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: .58fr 2fr 5fr 2fr;
-    grid-template-areas: "header" "recipeList" "recipeDetail" "pantry";
+    grid-template-areas: "header" "recipeList" "recipeDetail" "shopping";
   }
 
   /*Each Grid container for each component*/
@@ -43,8 +43,8 @@ body{
     border-width: 10px;
     overflow-y:hidden;
   }
-  .pantry{
-    grid-area: pantry;
+  .shopping{
+    grid-area: shopping;
     background-color: #8ecae6;
     border: solid;
     border-width: 5px;
@@ -111,7 +111,7 @@ body{
       'recipeList recipeDetail recipeDetail'
       'recipeList recipeDetail recipeDetail'
       'recipeList recipeDetail recipeDetail'
-      'recipeList pantry pantry';
+      'recipeList shopping shopping';
     
   }
 
