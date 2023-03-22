@@ -23,6 +23,8 @@ it('should render the AddRecipeModal button and open it', async () => {
     expect(Description).toBeInTheDocument()
     const Ingredient = screen.getByTestId("ingr");
     expect(Ingredient).toBeInTheDocument()
+    const Quantity = screen.getByTestId("quant");
+    expect(Quantity).toBeInTheDocument()
     const Measure = screen.getByTestId("msr");
     expect(Measure).toBeInTheDocument()
     const Add = screen.getByTestId("add");
