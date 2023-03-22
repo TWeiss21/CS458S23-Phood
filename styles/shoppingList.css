@@ -45,6 +45,7 @@
 /*Holds an individual ingredient*/
 .ingredItem{
     height:50px;
+    padding-bottom: 30px;
     border-bottom:solid;
     border-color: #023047;
     font-size: large;
@@ -52,16 +53,65 @@
 /*Ingredient information*/
 .ingredName{
     padding-left: 10px;
-    width:50%;
+    width:55%;
     float: left;
+    overflow-x: hidden;
 }
 
-.qty{
-    width:30%;
+.qtyContainer{
+    width:25%;
     float: left;
+    background-color: #eaf3f5;
+    border:solid;
+    border-color:#023047;
+    border-radius: 25px;;
+    height: 30px;
+}
+.incDecQty{
+    float: left;
+    width:25%;
+    background-color: transparent;
+    border:none;
+    border-radius: 50px;
+    font-weight: bolder;
+    font-size: 17px;
+    padding-left:5px;
+    padding-right:5px;
+    cursor:pointer;
+    color:#023047;
+}
+.incDecQty:hover{
+    color: #ffac3d;
+    transition:.3s;
+}
+
+.incDecQty:active{
+    color: #ffdeb2;
+    transform: .3s;
+}
+.numQty{
+    float: left;
+    width:50%;
 }
 
 .remove{
-    text-align: right;
-    padding-right: 15px;
+    position:absolute;
+    top:-13px;
+    right:0px;
+    margin-right: 15px;
+    background-color: transparent;
+    border:none;
+    font-size: 30px;
+    font-weight: bolder;
+    cursor:pointer;
+    color:#023047;
+}
+.remove:hover{
+    color: #ffac3d;
+    transition:.3s;
+}
+
+.remove:active{
+    color: #ffdeb2;
+    transform: .3s;
 }

@@ -75,6 +75,7 @@ body{
     border-radius: 50px;
     text-align: center;
     font-size:x-large;
+    cursor:pointer;
   }
   .generalBtn:hover{
     background-color: #ffdeb2;

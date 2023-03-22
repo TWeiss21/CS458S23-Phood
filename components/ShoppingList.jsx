@@ -9,8 +9,12 @@ const ShoppingList = () =>{
         <div className="ingredItem">
           <div className="verticalCentered">
             <div className="ingredName">Chick</div>
-            <div className="qty">qty</div>
-            <div className="remove">x</div>
+            <div className="qtyContainer">
+              <button className="incDecQty">+</button>
+              <p className="numQty centered">10</p>
+              <button className="incDecQty">&minus;</button>
+            </div>
+            <button className="remove">x</button>
           </div>
         </div>
       </div>
