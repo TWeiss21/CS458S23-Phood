@@ -8,6 +8,14 @@ body{
     justify-content: center;
     align-items: center;
   }
+  .verticalCentered{
+    /*outer continer needs to be position: relative*/
+    margin: 0;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
 
   /*General grid layout for mobile*/
   .layout {

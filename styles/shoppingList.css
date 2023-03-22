@@ -9,10 +9,59 @@
 
 .shopList{
     grid-area: shopList;
-    background-color: red;
 }
 
 .shopBtns{
     grid-area: shopBtns;
-    background-color: blue;
+    position:relative;
+}
+
+.btnSpace{
+    padding-bottom:20px;
+}
+.shopInteractiveBtns{
+    background-color: #b5e3f0;
+    border:solid;
+    border-color: #023047;
+    border-width: 8px;
+    padding:10px;
+    width: 50%;
+}
+
+/*Holds a list of ingredients*/
+.shopListContainer{
+    position: relative;
+    background-color: #b5e3f0;
+    border:solid;
+    border-width: 5px;
+    border-color: #023047;
+    margin-left: 50px;
+    margin-top:20px;
+    border-radius: 10px;
+    height:80%;
+    overflow-y: scroll;
+}
+
+/*Holds an individual ingredient*/
+.ingredItem{
+    height:50px;
+    border-bottom:solid;
+    border-color: #023047;
+    font-size: large;
+}
+/*Ingredient information*/
+.ingredName{
+    padding-left: 10px;
+    width:50%;
+    float: left;
+}
+
+.qty{
+    width:30%;
+    float: left;
+}
+
+.remove{
+    text-align: right;
+    padding-right: 15px;
 }
