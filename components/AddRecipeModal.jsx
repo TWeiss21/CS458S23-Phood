@@ -1,8 +1,46 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Dialog, Button, Typography, Card, Autocomplete, Select, DialogTitle, DialogContent, autocompleteClasses, Container } from "@mui/material";
 import TextField from "@mui/material/TextField"
 import MenuItem from "@mui/material/MenuItem"
 import Grid from "@mui/material/Grid"
+import dynamic from 'next/dynamic';
+
+function handleSubmit() {
+    // Handles the submit event on form submit.
+    const handleSubmit = async (event) => {
+        // Stop the form from submitting and refreshing the page.
+        event.preventDefault()
+
+        // Get data from the form.
+        const data = {
+            first: event.target.first.value,
+            last: event.target.last.value,
+        }
+
+        // Send the data to the server in JSON format.
+        const JSONdata = JSON.stringify(data)
+
+        // Form the request for sending data to the server.
+        const options = {
+            // The method is POST because we are sending data.
+            method: 'POST',
+            // Tell the server we're sending JSON.
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            // Body of the request is the JSON data we created above.
+            body: JSONdata,
+        }
+
+        // Send the form data to our forms API on Vercel and get a response.
+        const response = await fetch(endpoint, options)
+
+        // Get the response data from server as JSON.
+        // If server returns the name submitted, that means the form works.
+        const result = await response.json()
+        alert('Is this your full name: ${result.data}')
+    }
+}
 const AddRecipeModal = () =>{
 
     const [show, setShow] = React.useState(false);
@@ -28,11 +66,14 @@ const AddRecipeModal = () =>{
     ]
     
     return (
-        <div><Button data-testid="openModal" onClick={handleOpen}>Add Recipe</Button>
+            <div>
+            <Button data-testid="openModal" onClick={handleOpen}>Add Recipe</Button>
+            <form action="/mocks/Recipes.js" method="post">
+                <div>
              <Dialog open={show}>
                 <DialogTitle sx={{my: 0, py: 0, backgroundColor: '#FD9E02' , display: 'flex', justifyContent: 'flex-end'}}>
                     <Card sx={{my: 0.3, mr: 3, px: 5, backgroundColor: '#126782', color: '#8ECAE6'}} data-testid="title">Add Recipe</Card>
-                    <Card sx={{my: 1, mr: 2, pb: 0, px: 0.5, backgroundColor: '#023047'}}><Button sx={{fontSize: 10, backgroundColor: '#126782', color: '#8ECAE6'}} data-testid="savebtn">SAVE</Button></Card>
+                    <Card sx={{my: 1, mr: 2, pb: 0, px: 0.5, backgroundColor: '#023047'}}><Button sx={{fontSize: 10, backgroundColor: '#126782', color: '#8ECAE6'}} data-testid="savebtn" onClick={handleSubmit}>SAVE</Button></Card>
                     <Card sx={{my: 1, mr: 0, pb: 0.3, px: 0.5, backgroundColor: '#023047'}}><Button onClick={handleClose} sx={{fontSize: 10, backgroundColor: '#126782', color: '#8ECAE6'}} data-testid="closebtn">Close</Button></Card>
                 </DialogTitle>
              
@@ -54,7 +95,9 @@ const AddRecipeModal = () =>{
                     <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 1, marginTop: 3}} data-testid="steps" multiline value={multiline2} onChange={e => setMultiline2(e.target.value)}>Steps...</TextField>
                 </DialogContent> 
             </Dialog>
-        </div>
+            </div>
+            </form>
+            </div>
     );
     
 };
