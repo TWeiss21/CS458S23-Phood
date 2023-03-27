@@ -10,9 +10,86 @@ const ShoppingList = () =>{
           <div className="verticalCentered">
             <div className="ingredName">Chick</div>
             <div className="qtyContainer">
-              <button className="incDecQty">+</button>
-              <p className="numQty centered">10</p>
               <button className="incDecQty">&minus;</button>
+              <p className="numQty centered">10000000000</p>
+              <button className="incDecQty">+</button>
+            </div>
+            <button className="remove">x</button>
+          </div>
+        </div>
+        <div className="ingredItem">
+          <div className="verticalCentered">
+            <div className="ingredName">Chicken</div>
+            <div className="qtyContainer">
+              <button className="incDecQty">&minus;</button>
+              <p className="numQty centered">10</p>
+              <button className="incDecQty">+</button>
+            </div>
+            <button className="remove">x</button>
+          </div>
+        </div>
+        <div className="ingredItem">
+          <div className="verticalCentered">
+            <div className="ingredName">Potatoes</div>
+            <div className="qtyContainer">
+              <button className="incDecQty">&minus;</button>
+              <p className="numQty centered">10</p>
+              <button className="incDecQty">+</button>
+            </div>
+            <button className="remove">x</button>
+          </div>
+        </div>
+        <div className="ingredItem">
+          <div className="verticalCentered">
+            <div className="ingredName">Eggs</div>
+            <div className="qtyContainer">
+              <button className="incDecQty">&minus;</button>
+              <p className="numQty centered">10</p>
+              <button className="incDecQty">+</button>
+            </div>
+            <button className="remove">x</button>
+          </div>
+        </div>
+        <div className="ingredItem">
+          <div className="verticalCentered">
+            <div className="ingredName">Butter</div>
+            <div className="qtyContainer">
+              <button className="incDecQty">&minus;</button>
+              <p className="numQty centered">10</p>
+              <button className="incDecQty">+</button>
+            </div>
+            <button className="remove">x</button>
+          </div>
+        </div>
+        <div className="ingredItem">
+          <div className="verticalCentered">
+            <div className="ingredName">Beef</div>
+            <div className="qtyContainer">
+              <button className="incDecQty">&minus;</button>
+              <p className="numQty centered">10</p>
+              <button className="incDecQty">+</button>
+            </div>
+            <button className="remove">x</button>
+          </div>
+        </div>
+        <div className="ingredItem">
+          <div className="verticalCentered">
+            <div className="ingredName">Pork</div>
+            <div className="qtyContainer">
+              <button className="incDecQty">&minus;</button>
+              <p className="numQty centered">10</p>
+              <button className="incDecQty">+</button>
+            </div>
+            <button className="remove">x</button>
+          </div>
+        </div>
+        <div className="ingredItem">
+          <div className="verticalCentered">
+            <div className="ingredName">Carrots</div>
+            <div className="qtyContainer">
+              <button className="incDecQty">&minus;</button>
+              <p className="numQty centered">10</p>
+              <button className="incDecQty">+</button>
             </div>
             <button className="remove">x</button>
           </div>
