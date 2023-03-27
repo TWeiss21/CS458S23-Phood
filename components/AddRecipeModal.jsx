@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Dialog, Button, Typography, Card, Autocomplete, Select, DialogTitle, DialogContent, autocompleteClasses, Container } from "@mui/material";
 import TextField from "@mui/material/TextField"
-import MenuItem from "@mui/material/MenuItem"
 import Grid from "@mui/material/Grid"
 const AddRecipeModal = () =>{
 
@@ -10,7 +9,32 @@ const AddRecipeModal = () =>{
     const handleClose = () => setShow(false);
     const [multiline, setMultiline] = useState('');
     const [multiline2, setMultiline2] = useState('');
+    const [num, setNum] = React.useState();
+    const [text, setText] = React.useState();
 
+    const handleChange = (e) => {
+      const regex = /^\d*\.?\d{0,2}$/g;
+      if (e.target.value === "" || regex.test(e.target.value)) {
+        setNum(e.target.value);
+      }
+      else
+      {
+        setNum("")
+      }
+      
+    };
+
+    const handleText = (Eve) => {
+        const regex = /^[a-zA-Z0-9]+$/;
+        if (Eve.target.value === "" || regex.test(Eve.target.value)) {
+            setText(Eve.target.value);
+          }
+          else
+          {
+            setText("")
+          }
+          
+    };
     //
     //Validate that no special characters are in textfields: " , - , + , basically all char
     // and change dropdown to inputfield that only allows numbers and decimal and no negatives
@@ -50,10 +74,9 @@ const AddRecipeModal = () =>{
                         </DialogContent>
                     </Grid>
                 <DialogContent sx={{display: 'flex', justifyContent: 'flex-start', pl: 0}}>
-                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" />} data-testid="ingr"></Autocomplete>
-                    <TextField  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} data-testid="quant" label="#">
-                    </TextField>
-                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.25, mr: 2, height: 55}} options={measure} renderInput={(params) => <TextField {...params} label="Measure" />} data-testid="msr" ></Autocomplete>
+                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" type="text" onChange={(Eve) => handleText(Eve)} value={text} />} data-testid="ingr"></Autocomplete>
+                    <TextField  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} data-testid="quant" label="#" type="text" onChange={(e) => handleChange(e)} value={num}></TextField>
+                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.25, mr: 2, height: 55}} options={measure} renderInput={(params) => <TextField {...params} label="Measure" type="text" onChange={(Eve) => handleText(Eve)} value={text} />} data-testid="msr" ></Autocomplete>
                     <Card sx={{my: 1, width: 85, px: 0.4, py: 0.5, backgroundColor: '#023047'}}><Button sx={{backgroundColor: '#126782', color: '#8ECAE6', fontSize: 14}} data-testid="add">Add</Button></Card>
                 </DialogContent>
                     <Typography sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold'}} data-testid="display" >Ingredients displayed here:</Typography>
