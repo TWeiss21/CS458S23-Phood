@@ -1,9 +1,9 @@
 import { fireEvent, render, screen, userEvent } from '@testing-library/react'
-import { onSubmit, AddRecipeModal} from '@/components/AddRecipeModal'
+import { onSubmit, AddRecipeModal, Dialog} from '@/components/AddRecipeModal'
 import '@testing-library/jest-dom'
 
-
-it('should render the AddRecipeModal button and open it', async () => {
+describe('AddRecipeModal', () => {
+    it('should render the AddRecipeModal button and open it', async () => {
         render(<AddRecipeModal />);
         const modal = screen.getByTestId("openModal");
         expect(modal).toBeInTheDocument()
@@ -65,4 +65,4 @@ it('should save user input when form is submitted', async () => {
         expect(nameInput).toHaveValue('Quiche');
         expect(descInput).toHaveValue('This is an explanation');
     });
-
+});

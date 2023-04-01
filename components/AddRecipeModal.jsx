@@ -92,6 +92,7 @@ const AddRecipeModal = () =>{
             <Button data-testid="openModal" onClick={handleOpen}>Add Recipe</Button>
                 <div>
              <Dialog open={show}>
+             <form onSubmit={handleSubmit}>
                 <DialogTitle sx={{my: 0, py: 0, backgroundColor: '#FD9E02' , display: 'flex', justifyContent: 'flex-end'}}>
                     <Card sx={{my: 0.3, mr: 3, px: 5, backgroundColor: '#126782', color: '#8ECAE6'}} data-testid="title">Add Recipe</Card>
                     <Card sx={{my: 1, mr: 2, pb: 0, px: 0.5, backgroundColor: '#023047'}}>
@@ -103,7 +104,6 @@ const AddRecipeModal = () =>{
                 </DialogTitle>
              
              <DialogContent sx={{backgroundColor: '#fbd2a4'}}>
-             <form onSubmit={handleSubmit}>
                     <Grid sx={{pt: 2, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)'}}>
                         <Button sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 150, height: 150}} data-testid="uploadimg">upload image</Button>
                         <DialogContent sx={{py: 0}}>
@@ -119,8 +119,8 @@ const AddRecipeModal = () =>{
                 </DialogContent>
                     <Typography sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold'}} data-testid="display" >Ingredients displayed here:</Typography>
                     <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 1, marginTop: 3}} data-testid="steps" label="Steps" name="steps" value={formData.steps || ''} onChange={handleChange}multiline values={multiline2} onInput={e => setMultiline2(e.target.values)}>Steps...</TextField>
-                    </form>
                 </DialogContent>
+                </form>
             </Dialog>
             </div>
             </div>
