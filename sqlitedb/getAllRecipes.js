@@ -9,57 +9,29 @@ const database = new sqlite3.Database('./sqlitedb/phooddb.sqlite', sqlite3.OPEN_
 
 
 const selectAllRecipies = `SELECT * FROM  recipes`
+
+// add promises.. how?
+
 let data = []
 
 database.all(selectAllRecipies, [], (err, rows)=>{
     if(err){throw err}
     rows.forEach((row) => {
         
-        // console.log('{ ' + 
-        // row.id + ':' + 
-        // row.name + ':' + 
-        // row.description + ':' + 
-        // row.steps + ':' + 
-        // row.image + ':' + 
-        // row.recipe_ingredient_id + ' }')
-
-        
         data.push(row)
     })
-
+    //Prin the data after some amt time for initial testing
+    //printTestData(data,4000)
     
 })
+
+function printTestData(d, waitTime){
+    /*TEST CODE FOR PRINTING OUT EACH ITEM IN ROW*/
+    console.log("----- --- - PRINTING TEST DATA FROM THE DATABASE.ALL FUNCTION - --- ----- \n\n\n\n")
+
+    //Make em wait for it with setTimout, takes a callback function, then a time
+    setTimeout(()=>{console.log(d)}, waitTime)
+}
 export default data
-
-// export default async function myFunc(database, callback){
-//     database.all(selectAllRecipies, [], (err, rows)=>{
-//         if(err){throw err}
-//         rows.forEach((row) => {
-            
-//             // console.log('{ ' + 
-//             // row.id + ':' + 
-//             // row.name + ':' + 
-//             // row.description + ':' + 
-//             // row.steps + ':' + 
-//             // row.image + ':' + 
-//             // row.recipe_ingredient_id + ' }')
-    
-            
-//             data.push(row)
-//         })
-//        // console.log('Data inside the database call: ' + data)
-//         return callback(false, data[0])
-//     })
-// }
-
-
-
-// export default myFunc(database, function(err, content){
-//     if(err) throw(err)
-//     let ExtData = content
-//     return ExtData
-//     console.log('the stuff')
-//     console.log('stuff', ExtData)
-// })
 
 database.close()
