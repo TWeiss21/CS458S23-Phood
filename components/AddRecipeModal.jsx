@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react'
-import { Dialog, Button, Typography, Card, Autocomplete, Select, DialogTitle, DialogContent, autocompleteClasses, Container } from "@mui/material";
+import { Dialog, Button, Typography, Card, Autocomplete, Select, DialogTitle, DialogContent, autocompleteClasses, Container, onSubmit} from "@mui/material";
 import TextField from "@mui/material/TextField"
 import MenuItem from "@mui/material/MenuItem"
 import Grid from "@mui/material/Grid"
@@ -34,7 +34,6 @@ const AddRecipeModal = () =>{
     };
 
     const handleSubmit = async (e) => {
-        try{
             e.preventDefault();
             const res = await fetch('/api/saveFormData', {
                 method: 'POST',
@@ -45,9 +44,6 @@ const AddRecipeModal = () =>{
             });
             const data = await res.json();
             console.log(data);
-        } catch (e) {
-            
-        }
     };
 
     const [initialRenderComplete, setInitialRenderComplete] = React.useState(false);
