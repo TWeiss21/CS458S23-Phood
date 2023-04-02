@@ -26,22 +26,23 @@ function(err) {
 db.close()
 */
 //import json_data from '/components/AddRecipeModal.jsx'
-import sqlite3 from 'sqlite3';
+const sqlite3 = require('sqlite3').verbose();
+import _request from 'components/AddRecipeModal'
 
-const db = new sqlite3.Database('/sqlitedb/phooddb.sqlite');
+const db = new sqlite3.Database('./sqlitedb/phooddb.sqlite');
 
-export default function handler(req, res) {
+export default async function handler(_request, res) {
   //const {name, desc } = req.body;
 
-  if(req.method === 'POST') {
+  if(_request.method === 'POST') {
     //try {
       
       // Parse the JSON data from the request body
-      const json_data = JSON.parse(req.body);
+      const json_data = JSON.parse(_request.body);
 
       db.run(
-        'INSERT INTO recipes (json_data) VALUES (?, ?)',
-        json_data,
+        'INSERT INTO recipes (name, description, steps) VALUES (?, ?, ?)',
+        [json_data.name, json_data.desc, json_data.steps],
         function (err) {
           if (err) {
             console.error(err);

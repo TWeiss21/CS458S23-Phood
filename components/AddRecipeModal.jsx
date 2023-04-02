@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react'
-import { Dialog, Button, Typography, Card, Autocomplete, Select, DialogTitle, DialogContent, autocompleteClasses, Container, onSubmit, onChange} from "@mui/material";
+import { Dialog, Button, Typography, Card, Autocomplete, Select, DialogTitle, DialogContent, autocompleteClasses, Container, onSubmit, onChange, formData} from "@mui/material";
 import TextField from "@mui/material/TextField"
 import Grid from "@mui/material/Grid"
 import dynamic from 'next/dynamic'
 import fetch from 'isomorphic-fetch'
+//const bodyParser = require("body-parser");
 
 // function handleSubmit() {
 //     //const [count, setCount] = useState(0);
@@ -30,27 +31,39 @@ function AddRecipeModal(){
     const [formData, setFormData] = useState({
         name: "",
         desc: "",
+        steps: ""
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((formData) => ({  [name]: value }));
+        var { name, value } = e.target;
+        var { desc, value } = e.target;
+        var { steps, value } = e.target;
+        //const { desc, value2 } = e.target;
+        setFormData((_formData) => (
+            {  [name]: value }
+            // { [desc]: value },
+            // { [steps]: value }
+            ));
+        console.log(name.value);
+        //console.log(value2);
+        //console.log(value3);
     };
 
     const handleSubmit = async (e) => {
             e.preventDefault();
+            //router.use(bodyParser.json());
 
             //Serialize the form data as JSON
             const json_data = JSON.stringify(formData);
 
             //Send AJAX request to server-side
-            const res = await fetch('/pages/api/postToDb.js', {
+            const request = await fetch('/api/postToDb', {
                 method: 'POST',
-                body: json_data,
+                body: json_data
             })
-                .then((res) => res.json())
-                .then((data) => console.log(data))
-                .catch((error) => console.error(error));
+                _request => request.json()
+                data => console.log(data)
+                console.error(err)
     };
 
     const [initialRenderComplete, setInitialRenderComplete] = React.useState(false);
@@ -163,7 +176,7 @@ function AddRecipeModal(){
                         <Button sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 150, height: 150}} data-testid="uploadimg">upload image</Button>
                         <DialogContent sx={{py: 0}}>
                             <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', marginBottom: 2, maxWidth: 200}} data-testid="nameentr" label="Name" name="name" value={formData.name} onChange={handleChange}></TextField>
-                            <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', maxWidth: 200}} multiline Value={multiline} onInput={(event => setMultiline(event.target.Value))} data-testid="descr" label="Description" name="description" onChange={handleChange} value={formData.desc}></TextField>
+                            <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', maxWidth: 200}} multiline Value={multiline} onInput={(event => setMultiline(event.target.Value))} data-testid="descr" label="Description" name="description" onChange={handleChange} value2={formData.desc}></TextField>
                         </DialogContent>
                     </Grid>
                 <DialogContent sx={{display: 'flex', justifyContent: 'flex-start', pl: 0}}>
