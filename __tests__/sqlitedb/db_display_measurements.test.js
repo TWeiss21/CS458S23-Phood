@@ -12,7 +12,7 @@ it('console log to display name of first measurement in database', () => {
         }
         console.log = jest.fn();
         rows.forEach((row) => {
-            log(row.name);
+            log(row.unit);
         })
         expect(console.log.mock.calls[0][0]).toBe('cups')
     })
