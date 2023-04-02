@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import { Dialog, Button, Typography, Card, Autocomplete, Select, DialogTitle, DialogContent, autocompleteClasses, Container, onSubmit} from "@mui/material";
 import TextField from "@mui/material/TextField"
-import MenuItem from "@mui/material/MenuItem"
 import Grid from "@mui/material/Grid"
 import dynamic from 'next/dynamic';
 
@@ -58,6 +57,58 @@ const AddRecipeModal = () =>{
     const handleClose = () => setShow(false);
     const [multiline, setMultiline] = useState('');
     const [multiline2, setMultiline2] = useState('');
+    const [num, setNum] = React.useState();
+    const [text, setText] = React.useState('');
+    const [text2, setText2] = React.useState('');
+    const [err, setErr] = React.useState(false);
+    const [err2, setErr2] = React.useState(false);
+    const [help, setHelp] = React.useState('');
+    const [help2, setHelp2] = React.useState('');
+
+    const handleChange = (e) => {
+      const regex = /^\d*\.?\d{0,2}$/g;
+      if (e.target.value === "" || regex.test(e.target.value)) {
+        setNum(e.target.value);
+      }
+    //   else
+    //   {
+    //     setNum("")
+    //   }
+      
+    };
+
+    const handleText = (Eve) => {
+        const regex = /[^a-zA-Z0-9\s]/g;
+        if (!(regex.test(Eve.target.value))) {
+            setText(Eve.target.value);
+            setErr(false);
+            setHelp("");
+          }
+        else
+        {
+            setErr(true);
+            setHelp("Invalid_Character");
+        }
+          
+    };
+
+    const handletext = (eve) => {
+        const regex = /[^a-zA-Z0-9\s]/g;
+        if (!(regex.test(eve.target.value))) {
+            setText2(eve.target.value);
+            setErr2(false);
+            setHelp2("");
+          }
+        else
+        {
+            setErr2(true);
+            setHelp2("Invalid_Character");
+        }
+          
+    };
+    //
+    //Validate that no special characters are in textfields: " , - , + , basically all char
+    //
 
     const plchldr = [
         { label: 'Cow Pie', id: 1},
@@ -72,7 +123,7 @@ const AddRecipeModal = () =>{
         { label: 'tablespoon', id: 2},
         { label: 'cup', id: 3},
         { label: 'quart', id: 4},
-        { label: 'who uses gallons to measure?!?!', id: 5}
+        { label: 'who uses gallons to measure', id: 5}
     ]
 
         // initialRenderComplete will be false on the first render and true on all following renders
@@ -108,9 +159,9 @@ const AddRecipeModal = () =>{
                         </DialogContent>
                     </Grid>
                 <DialogContent sx={{display: 'flex', justifyContent: 'flex-start', pl: 0}}>
-                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" name="ingredient" value={formData.ingredient || ''} onChange={handleChange}/>} data-testid="ingr"></Autocomplete>
-                    <Select  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} label="#"><MenuItem>you cant see me!</MenuItem></Select>
-                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.25, mr: 2, height: 55}} options={measure} renderInput={(params) => <TextField {...params} label="Measure" name="measure" value={formData.measure || ''} onChange={handleChange}/>} data-testid="msr"></Autocomplete>
+                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} freeSolo={true}  options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
+                    <TextField  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} data-testid="quant" label="#" type="text" onChange={(e) => handleChange(e)} value={num}></TextField>
+                    <Autocomplete sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.25, mr: 2, height: 55}} freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
                     <Card sx={{my: 1, width: 85, px: 0.4, py: 0.5, backgroundColor: '#023047'}}><Button sx={{backgroundColor: '#126782', color: '#8ECAE6', fontSize: 14}} data-testid="add">Add</Button></Card>
                 </DialogContent>
                     <Typography sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold'}} data-testid="display" >Ingredients displayed here:</Typography>
