@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect, useState } from 'react'
-import { Dialog, Button, Typography, Card, Autocomplete, Select, DialogTitle, DialogContent, autocompleteClasses, Container, onSubmit} from "@mui/material";
+import { Dialog, Button, Typography, Card, Autocomplete, Select, DialogTitle, DialogContent, autocompleteClasses, Container, onSubmit, onChange} from "@mui/material";
 import TextField from "@mui/material/TextField"
 import Grid from "@mui/material/Grid"
-import dynamic from 'next/dynamic';
+import dynamic from 'next/dynamic'
+import fetch from 'isomorphic-fetch'
 
 // function handleSubmit() {
 //     //const [count, setCount] = useState(0);
@@ -24,25 +25,32 @@ import dynamic from 'next/dynamic';
 
 // }
 
-const AddRecipeModal = () =>{
+function AddRecipeModal(){
 
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        name: "",
+        desc: "",
+    });
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData((formData) => ({  [name]: value }));
     };
 
     const handleSubmit = async (e) => {
             e.preventDefault();
-            const res = await fetch('/api/postToDb', {
+
+            //Serialize the form data as JSON
+            const json_data = JSON.stringify(formData);
+
+            //Send AJAX request to server-side
+            const res = await fetch('/pages/api/postToDb.js', {
                 method: 'POST',
-                body: JSON.stringify(formData),
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            const data = await res.json();
-            console.log(data);
+                body: json_data,
+            })
+                .then((res) => res.json())
+                .then((data) => console.log(data))
+                .catch((error) => console.error(error));
     };
 
     const [initialRenderComplete, setInitialRenderComplete] = React.useState(false);
@@ -65,10 +73,10 @@ const AddRecipeModal = () =>{
     const [help, setHelp] = React.useState('');
     const [help2, setHelp2] = React.useState('');
 
-    const handleChange = (e) => {
+    const handlechange = (event) => {
       const regex = /^\d*\.?\d{0,2}$/g;
-      if (e.target.value === "" || regex.test(e.target.value)) {
-        setNum(e.target.value);
+      if (event.target.value === "" || regex.test(event.target.value)) {
+        setNum(event.target.value);
       }
     //   else
     //   {
@@ -139,7 +147,7 @@ const AddRecipeModal = () =>{
             <Button data-testid="openModal" onClick={handleOpen}>Add Recipe</Button>
                 <div>
              <Dialog open={show}>
-             <form onSubmit={handleSubmit}>
+             <form onSubmit={handleSubmit} data-testid="form">
                 <DialogTitle sx={{my: 0, py: 0, backgroundColor: '#FD9E02' , display: 'flex', justifyContent: 'flex-end'}}>
                     <Card sx={{my: 0.3, mr: 3, px: 5, backgroundColor: '#126782', color: '#8ECAE6'}} data-testid="title">Add Recipe</Card>
                     <Card sx={{my: 1, mr: 2, pb: 0, px: 0.5, backgroundColor: '#023047'}}>
@@ -154,18 +162,18 @@ const AddRecipeModal = () =>{
                     <Grid sx={{pt: 2, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)'}}>
                         <Button sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 150, height: 150}} data-testid="uploadimg">upload image</Button>
                         <DialogContent sx={{py: 0}}>
-                            <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', marginBottom: 2, maxWidth: 200}} data-testid="nameentr" label="Name" name="name" value={formData.name || ''} onChange={handleChange}></TextField>
-                            <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', maxWidth: 200}} multiline value={multiline} onInput={(e => setMultiline(e.target.value))} data-testid="descr" label="Description" name="description" onChange={handleChange}></TextField>
+                            <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', marginBottom: 2, maxWidth: 200}} data-testid="nameentr" label="Name" name="name" value={formData.name} onChange={handleChange}></TextField>
+                            <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', maxWidth: 200}} multiline Value={multiline} onInput={(event => setMultiline(event.target.Value))} data-testid="descr" label="Description" name="description" onChange={handleChange} value={formData.desc}></TextField>
                         </DialogContent>
                     </Grid>
                 <DialogContent sx={{display: 'flex', justifyContent: 'flex-start', pl: 0}}>
                     <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} freeSolo={true}  options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
-                    <TextField  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} data-testid="quant" label="#" type="text" onChange={(e) => handleChange(e)} value={num}></TextField>
+                    <TextField  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} value={num}></TextField>
                     <Autocomplete sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.25, mr: 2, height: 55}} freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
                     <Card sx={{my: 1, width: 85, px: 0.4, py: 0.5, backgroundColor: '#023047'}}><Button sx={{backgroundColor: '#126782', color: '#8ECAE6', fontSize: 14}} data-testid="add">Add</Button></Card>
                 </DialogContent>
                     <Typography sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold'}} data-testid="display" >Ingredients displayed here:</Typography>
-                    <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 1, marginTop: 3}} data-testid="steps" label="Steps" name="steps" value={formData.steps || ''} onChange={handleChange}multiline values={multiline2} onInput={e => setMultiline2(e.target.values)}>Steps...</TextField>
+                    <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 1, marginTop: 3}} data-testid="steps" label="Steps" name="steps" value={formData.steps} onChange={handleChange}multiline Values={multiline2} onInput={event => setMultiline2(event.target.Values)}>Steps...</TextField>
                 </DialogContent>
                 </form>
             </Dialog>
