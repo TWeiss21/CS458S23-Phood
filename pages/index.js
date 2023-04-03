@@ -38,4 +38,5 @@ const Index = ({recipes}) => {
     
     }
 
+
 export default Index

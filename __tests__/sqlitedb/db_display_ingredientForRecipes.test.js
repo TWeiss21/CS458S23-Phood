@@ -3,7 +3,7 @@ export const log = logMsg => console.log(logMsg);
 const sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./sqlitedb/phooddb.sqlite');
 
-var ingredientsForRecipes = "SELECT ingredientId FROM ingredientsForRecipes WHERE relationId = 1";
+var ingredientsForRecipes = "SELECT relationId FROM ingredientsForRecipes WHERE ingredientId = 1";
 
 it('console log to display id of first ingredient from the ingredientsForRecipes table in database', () => {
     db.all(ingredientsForRecipes, [], (err,rows) => {
@@ -12,7 +12,7 @@ it('console log to display id of first ingredient from the ingredientsForRecipes
         }
         console.log = jest.fn();
         rows.forEach((row) => {
-            log(row.name);
+            log(row.relationId);
         })
         expect(console.log.mock.calls[0][0]).toBe('1');
     })

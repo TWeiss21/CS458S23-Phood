@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Recipes from '../mocks/Recipes.js'
+import AddRecipeModal from './AddRecipeModal'
 
 const GetRecipeNames = (props) => {
   // constructor(props){
@@ -29,9 +30,10 @@ const GetRecipeNames = (props) => {
                   ))
                 }
             </div>
-          <div className="addRecipeBtnContainer" id="addRecipeBtnContainer">
-            <button className="generalBtn addRecipeBtn" id="addRecipeBtn">Add Recipe</button>
-          </div>
+        </div>
+        <div className="addRecipeBtnContainer" id="addRecipeBtnContainer">
+        <button className="generalBtn addRecipeBtn" id="addRecipeBtn"><AddRecipeModal/></button>
+        </div>
         </div>
       )
   
