@@ -1,4 +1,3 @@
-//styles - this is where all the stylnig is connected to the app
 import '@/styles/globals.css'
 import "../styles/dashboard.css";
 import "../styles/header.css";
