@@ -5,6 +5,7 @@ import RecipeDetail from "./RecipeDetail"
 import Pantry from "./Pantry"
 import Footer from "./Footer"
 import {useState} from "react"
+import ShoppingList from "./ShoppingList"
 
 const dashboard = (props) => {
   let arr = [{"id":"1", "city":"Balt"},{"id":"2", "city":"Tokyo" }]
@@ -20,8 +21,8 @@ const dashboard = (props) => {
         <div className="recipeDetail">
           <RecipeDetail />
         </div>
-        <div className="pantry centered">
-          <Pantry />
+        <div className="shopping">
+          <ShoppingList />
         </div>
       </div>
     </React.Fragment>
