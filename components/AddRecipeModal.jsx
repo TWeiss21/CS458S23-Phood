@@ -75,13 +75,12 @@ function AddRecipeModal(){
             console.log('Steps:', steps);
 
             //Serialize the form data as JSON
-            const json_data = JSON.stringify([{name}, {desc}, {steps}]);
-
+            var json_data = JSON.stringify([{name, desc, steps}]);
             console.log(json_data);
 
             //Send AJAX request to server-side
             const req = await fetch('/api/postToDb', {
-                method: 'POST',
+                method: 'POST', 
                 body: json_data
             })
                 _req => req.json()

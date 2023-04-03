@@ -38,11 +38,15 @@ export default async function handler(_req, res) {
     //try {
       
       // Parse the JSON data from the request body
-      const json_data = JSON.parse(_req.body);
+      var json_data = JSON.parse(_req.body);
+      
+      //json_data = JSON.stringify(_req.body);
 
       db.run(
-        'INSERT INTO recipes (description, steps) VALUES (?, ?)',
-        json_data[desc, steps],
+        'INSERT INTO recipes (name, description, steps) VALUES (?, ?, ?)',
+        json_data[0].name,
+        json_data[0].desc,
+        json_data[0].steps,
         function (err) {
           if (err) {
             console.error(err);
