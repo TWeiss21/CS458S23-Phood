@@ -1,5 +1,10 @@
 import Dashboard from '../components/dashboard.jsx'
 import AddRecipeModal from '@/components/AddRecipeModal.jsx'
+//TODO: comment out how everything works currently
+//PR to main
+// dumb bug still thowing for loop, solve issue async/await
+//Testing
+
 
 /*This is the function that actually gets the data from the server.
 With react you want to pull as much state/data as far up for managment by the program so that each
@@ -17,26 +22,16 @@ export const getServerSideProps = async () => {
         props: { recipes: data}
     }
 }
-// { recipies } - put in braces
-const Index = ({recipes}) => {
-    return ( <div>
-        {/* {Straighten that data out, make it useable} */}
 
-         <Dashboard/>
-         {/* Below is a testing block, Just want to make sure data is getting to the top level index before coding lower*/}
-        {/* { recipes.map(recipe => (
-        <div key={recipe.id}>
-        {recipe.name}
+const Index = ({recipes}) => 
+{
+    console.log("The Recipes from the index: " + recipes)
+    //TESTING array let arr = [{"id":"1", "name":"Balt"},{"id":"2", "name":"Tokyo" }]
+        return ( <div>
+            <Dashboard whatever = { recipes }/>
         </div>
-        ))} */}
-        
-        {/* ADD Recipe MOdal, produes functional blue text button outside of the blockout, uncomment for testing */}
-        {/* <AddRecipeModal/> */}
-     </div>
-    )
-    // <Dashboard/>
-    
-    }
+        )
+}
 
 
 export default Index

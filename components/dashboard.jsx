@@ -2,13 +2,13 @@ import React from "react";
 import Header from "./Header"
 import RecipeList from "./RecipeList"
 import RecipeDetail from "./RecipeDetail"
-import Pantry from "./Pantry"
 import Footer from "./Footer"
 import {useState} from "react"
 import ShoppingList from "./ShoppingList"
 
 const dashboard = (props) => {
-  let arr = [{"id":"1", "city":"Balt"},{"id":"2", "city":"Tokyo" }]
+  // let arr = [{"id":"1", "city":"Balt"},{"id":"2", "city":"Tokyo" }]
+  console.log(props.whatever)
   return (
     <React.Fragment>
       <div className="layout">
@@ -16,7 +16,7 @@ const dashboard = (props) => {
           <Header />
         </div>
         <div className="recipeList">
-          <RecipeList Name = {arr} />
+          <RecipeList data = {props.whatever} />
         </div>
         <div className="recipeDetail">
           <RecipeDetail />
