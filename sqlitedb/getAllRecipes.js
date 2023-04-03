@@ -14,16 +14,18 @@ const selectAllRecipies = `SELECT * FROM  recipes`
 
 let data = []
 
-database.all(selectAllRecipies, [], (err, rows)=>{
-    if(err){throw err}
-    rows.forEach((row) => {
+
+
+    database.all(selectAllRecipies, [], (err, rows)=>{
+        if(err){throw err}
+        rows.forEach((row) => {
+            
+            data.push(row)
+        })
+        //Print the data after some amt time for initial testing
+        //printTestData(data,4000)
         
-        data.push(row)
     })
-    //Prin the data after some amt time for initial testing
-    //printTestData(data,4000)
-    
-})
 
 function printTestData(d, waitTime){
     /*TEST CODE FOR PRINTING OUT EACH ITEM IN ROW*/
