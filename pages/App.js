@@ -1,24 +1,24 @@
-// import React, {useState} from "react";
-// import './App.css';
-// import {Login} from "../components/Login";
-// import { Register } from "../components/Register";
-// function App() {
-//   const [currentForm, setCurrentForm] = useState('login');
+import React, {useState} from "react";
+import './App.css';
+import {Login} from "../components/Login";
+import { Register } from "../components/Register";
+function App() {
+  const [currentForm, setCurrentForm] = useState('login');
 
-//   const toggleForm = (formName) => {
-//     setCurrentForm(formName);
+  const toggleForm = (formName) => {
+    setCurrentForm(formName);
 
-//   }
-//   return (
-//     <div className="App">
-//       {
-//         currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register  onFormSwitch={toggleForm}/>
+  }
+  return (
+    <div className="App">
+      {
+        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register  onFormSwitch={toggleForm}/>
 
-//       }
+      }
 
-//       <login />
-//     </div>
-//   );
-// }
+      <login />
+    </div>
+  );
+}
 
-// export default App;
+export default App;

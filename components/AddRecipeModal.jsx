@@ -79,7 +79,7 @@ function AddRecipeModal(){
             console.log(json_data);
 
             //Send AJAX request to server-side
-            const req = await fetch('/api/postToDb', {
+            const req = await fetch('http://localhost:3000/api/postToDb', {
                 method: 'POST', 
                 body: json_data
             })
