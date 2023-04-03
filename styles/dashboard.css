@@ -8,6 +8,14 @@ body{
     justify-content: center;
     align-items: center;
   }
+  .verticalCentered{
+    /*outer continer needs to be position: relative*/
+    margin: 0;
+    position: relative;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
 
   /*General grid layout for mobile*/
   .layout {
@@ -16,7 +24,7 @@ body{
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: .58fr 2fr 5fr 2fr;
-    grid-template-areas: "header" "recipeList" "recipeDetail" "pantry";
+    grid-template-areas: "header" "recipeList" "recipeDetail" "shopping";
   }
 
   /*Each Grid container for each component*/
@@ -28,12 +36,15 @@ body{
   }
   .recipeList{
     grid-area: recipeList;
+    position:relative;
     background-color: #8ecae6;
     border: solid;
     border-top:0px;
     border-width: 5px;
     border-color:#219ebc;
     overflow-y:hidden;
+    height:100%;
+    width:100%;
   }
   .recipeDetail{
     grid-area: recipeDetail;
@@ -43,8 +54,9 @@ body{
     border-width: 10px;
     overflow-y:hidden;
   }
-  .pantry{
-    grid-area: pantry;
+  .shopping{
+    grid-area: shopping;
+    position:relative;
     background-color: #8ecae6;
     border: solid;
     border-width: 5px;
@@ -67,6 +79,7 @@ body{
     border-radius: 50px;
     text-align: center;
     font-size:x-large;
+    cursor:pointer;
   }
   .generalBtn:hover{
     background-color: #ffdeb2;
@@ -101,7 +114,7 @@ body{
   }
 
 /*General layout for fullscreen application*/
-@media only screen and (min-width: 768px){
+@media only screen and (min-width: 1000px){
   .layout{
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr;
@@ -111,7 +124,7 @@ body{
       'recipeList recipeDetail recipeDetail'
       'recipeList recipeDetail recipeDetail'
       'recipeList recipeDetail recipeDetail'
-      'recipeList pantry pantry';
+      'recipeList shopping shopping';
     
   }
 
