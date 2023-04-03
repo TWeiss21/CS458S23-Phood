@@ -29,10 +29,9 @@ export class GetRecipeNames extends Component {
                   ))
                 }
             </div>
-        </div>
-        <div className="addRecipeBtnContainer" id="addRecipeBtnContainer">
-        <button className="generalBtn addRecipeBtn" id="addRecipeBtn"><AddRecipeModal/></button>
-        </div>
+            <div className="addRecipeBtnContainer" id="addRecipeBtnContainer">
+              <button className="generalBtn addRecipeBtn" id="addRecipeBtn"><AddRecipeModal/></button>
+            </div>
         </div>
       )
   }
