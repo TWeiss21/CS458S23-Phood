@@ -89,6 +89,31 @@ body{
     background-color: #aa5610;
     transition:.3s;
   }
+
+  .generalBtnBlue{
+    background-color: #126782!important;
+    color: #b5e3f0!important;
+    border:solid!important;
+    border-color: #023047!important;
+    border-width: 8px!important;
+    padding:10px!important;
+    padding-left:30px!important;
+    padding-right:30px!important;
+    border-radius: 50px!important;
+    text-align: center!important;
+    font-size:x-large!important;
+    cursor:pointer!important;
+  }
+  .generalBtnBlue:hover{
+    background-color: #b5e3f0!important;
+    color:#023047!important;
+    transition:.3s!important;
+  }
+  .generalBtnBlue:active{
+    background-color: #023047!important;
+    color:#b5e3f0!important;
+    transition:.3s!important;
+  }
   
   /*Scroll bar*/
   /* width */
