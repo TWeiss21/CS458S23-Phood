@@ -28,42 +28,70 @@ import fetch from 'isomorphic-fetch'
 
 function AddRecipeModal(){
 
-    const [formData, setFormData] = useState({
-        name: "",
-        desc: "",
-        steps: ""
-    });
+    // const [formData, setFormData] = useState({
+    //     name: "",
+    //     desc: "",
+    //     steps: ""
+    // });
 
-    const handleChange = (e) => {
-        var { name, value } = e.target;
-        var { desc, value } = e.target;
-        var { steps, value } = e.target;
-        //const { desc, value2 } = e.target;
-        setFormData((_formData) => (
-            {  [name]: value }
-            // { [desc]: value },
-            // { [steps]: value }
-            ));
-        console.log(name.value);
-        //console.log(value2);
-        //console.log(value3);
+    const [name, setName] = useState('');
+    const [desc, setDesc] = useState('');
+    const [steps, setSteps] = useState('');
+
+    //Handle changes to form inputs
+    const handleNameChange = (e) => {
+        setName(e.target.value);
     };
+
+    const handleDescChange = (e) => {
+        setDesc(e.target.value);
+    };
+
+    const handleStepsChange = (e) => {
+        setSteps(e.target.value);
+    };
+
+    // const handleChange = (e) => {
+    //     var { name, value } = e.target;
+    //     var { desc, value } = e.target;
+    //     var { steps, value } = e.target;
+    //     //const { desc, value2 } = e.target;
+    //     setFormData((_formData) => (
+    //         {  [name]: value },
+    //         { [desc]: value },
+    //         { [steps]: value }
+    //         ));
+    //     console.log(name.value);
+    //     //console.log(value2);
+    //     //console.log(value3);
+    // };
 
     const handleSubmit = async (e) => {
             e.preventDefault();
             //router.use(bodyParser.json());
 
+            console.log('Name:', name);
+            console.log('Description:', desc);
+            console.log('Steps:', steps);
+
             //Serialize the form data as JSON
-            const json_data = JSON.stringify(formData);
+            const json_data = JSON.stringify([{name}, {desc}, {steps}]);
+
+            console.log(json_data);
 
             //Send AJAX request to server-side
-            const request = await fetch('/api/postToDb', {
+            const req = await fetch('/api/postToDb', {
                 method: 'POST',
                 body: json_data
             })
-                _request => request.json()
+                _req => req.json()
                 data => console.log(data)
                 console.error(err)
+            
+            // Reset the form values
+            setName('');
+            setDesc('');
+            setSteps('');
     };
 
     const [initialRenderComplete, setInitialRenderComplete] = React.useState(false);
@@ -175,8 +203,8 @@ function AddRecipeModal(){
                     <Grid sx={{pt: 2, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)'}}>
                         <Button sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 150, height: 150}} data-testid="uploadimg">upload image</Button>
                         <DialogContent sx={{py: 0}}>
-                            <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', marginBottom: 2, maxWidth: 200}} data-testid="nameentr" label="Name" name="name" value={formData.name} onChange={handleChange}></TextField>
-                            <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', maxWidth: 200}} multiline Value={multiline} onInput={(event => setMultiline(event.target.Value))} data-testid="descr" label="Description" name="description" onChange={handleChange} value2={formData.desc}></TextField>
+                            <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', marginBottom: 2, maxWidth: 200}} data-testid="nameentr" label="Name" name="name" value={name} onChange={handleNameChange}></TextField>
+                            <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', maxWidth: 200}} multiline Value={multiline} onInput={(event => setMultiline(event.target.Value))} data-testid="descr" label="Description" name="description" onChange={handleDescChange} value={desc}></TextField>
                         </DialogContent>
                     </Grid>
                 <DialogContent sx={{display: 'flex', justifyContent: 'flex-start', pl: 0}}>
@@ -186,7 +214,7 @@ function AddRecipeModal(){
                     <Card sx={{my: 1, width: 85, px: 0.4, py: 0.5, backgroundColor: '#023047'}}><Button sx={{backgroundColor: '#126782', color: '#8ECAE6', fontSize: 14}} data-testid="add">Add</Button></Card>
                 </DialogContent>
                     <Typography sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold'}} data-testid="display" >Ingredients displayed here:</Typography>
-                    <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 1, marginTop: 3}} data-testid="steps" label="Steps" name="steps" value={formData.steps} onChange={handleChange}multiline Values={multiline2} onInput={event => setMultiline2(event.target.Values)}>Steps...</TextField>
+                    <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 1, marginTop: 3}} data-testid="steps" label="Steps" name="steps" value={steps} onChange={handleStepsChange}multiline Values={multiline2} onInput={event => setMultiline2(event.target.Values)}>Steps...</TextField>
                 </DialogContent>
                 </form>
             </Dialog>
