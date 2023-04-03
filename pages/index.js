@@ -1,8 +1,9 @@
 import Dashboard from '../components/dashboard.jsx'
 import AddRecipeModal from '@/components/AddRecipeModal.jsx'
 //TODO: comment out how everything works currently
+//TODO: reformat all code for readability
 //PR to main
-// dumb bug still thowing for loop, solve issue async/await
+// dumb bug(wont populate data until repeated refresh) still thowing for loop, solve issue async/await
 //Testing
 
 
@@ -25,11 +26,11 @@ export const getServerSideProps = async () => {
 
 const Index = ({recipes}) => 
 {
-    console.log("The Recipes from the index: " + recipes)
     //TESTING array let arr = [{"id":"1", "name":"Balt"},{"id":"2", "name":"Tokyo" }]
-        return ( <div>
-            <Dashboard whatever = { recipes }/>
-        </div>
+        return ( 
+            <div>
+                <Dashboard whatever = { recipes }/>
+            </div>
         )
 }
 
