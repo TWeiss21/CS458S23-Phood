@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField"
 import Grid from "@mui/material/Grid"
 import dynamic from 'next/dynamic'
 import fetch from 'isomorphic-fetch'
+const pantry = require('../mocks/pantryData.json')
+
 //const bodyParser = require("body-parser");
 
 // function handleSubmit() {
@@ -25,6 +27,9 @@ import fetch from 'isomorphic-fetch'
     
 
 // }
+
+var pantryItems = []
+pantry.forEach(i => pantryItems.push(i.name))
 
 function AddRecipeModal(){
 
@@ -158,13 +163,6 @@ function AddRecipeModal(){
     //Validate that no special characters are in textfields: " , - , + , basically all char
     //
 
-    const plchldr = [
-        { label: 'Cow Pie', id: 1},
-        { label: 'Snot Stew', id: 2},
-        { label: 'Moist Cereal', id: 3},
-        { label: 'I am out of ideas', id: 4},
-        { label: 'Why are you still searching', id: 5}
-    ];
 
     const measure = [
         { label: 'teaspoon', id: 1},
@@ -207,7 +205,7 @@ function AddRecipeModal(){
                         </DialogContent>
                     </Grid>
                 <DialogContent sx={{display: 'flex', justifyContent: 'flex-start', pl: 0}}>
-                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} freeSolo={true}  options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
+                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} freeSolo={true}  options={pantryItems} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
                     <TextField  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} value={num}></TextField>
                     <Autocomplete sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.25, mr: 2, height: 55}} freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
                     <Card sx={{my: 1, width: 85, px: 0.4, py: 0.5, backgroundColor: '#023047'}}><Button sx={{backgroundColor: '#126782', color: '#8ECAE6', fontSize: 14}} data-testid="add">Add</Button></Card>
