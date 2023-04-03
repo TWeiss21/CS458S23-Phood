@@ -19,6 +19,7 @@ export const getServerSideProps = async () => {
     // Fetch will server side render from the http endpoint added
     const res = await fetch('http://localhost:3000/api/getData')
     const data = await res.json()
+    //console.log(data)
     return {
         props: { recipes: data}
     }
@@ -27,6 +28,7 @@ export const getServerSideProps = async () => {
 const Index = ({recipes}) => 
 {
     //TESTING array let arr = [{"id":"1", "name":"Balt"},{"id":"2", "name":"Tokyo" }]
+    //console.log(recipes)
         return ( 
             <div>
                 <Dashboard whatever = { recipes }/>

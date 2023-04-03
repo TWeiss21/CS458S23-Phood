@@ -1,16 +1,12 @@
-// describe the db client.. cant run this in pages. pages happen on client side.
-//
-
 import sqlite3 from 'sqlite3'
 // const sqlite3 = require('sqlite3').verbose()
+// TODO: add async functionality to assigning data to
 
 // open the database
 const database = new sqlite3.Database('./sqlitedb/phooddb.sqlite', sqlite3.OPEN_READWRITE)
 
 
 const selectAllRecipies = `SELECT * FROM  recipes`
-
-// add promises.. how?
 
 let data = []
 
