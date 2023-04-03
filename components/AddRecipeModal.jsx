@@ -118,10 +118,6 @@ function AddRecipeModal(){
       if (event.target.value === "" || regex.test(event.target.value)) {
         setNum(event.target.value);
       }
-    //   else
-    //   {
-    //     setNum("")
-    //   }
       
     };
 
@@ -220,6 +216,6 @@ function AddRecipeModal(){
             </div>
             </div>
     );
-    }  
+    }
 };
 export default AddRecipeModal;
