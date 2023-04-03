@@ -55,24 +55,26 @@ export default async function handler(_req, res) {
             res.status(200).json({ id: this.lastID });
           }
         }
-      );
-  
-      // Insert the JSON data into the database
-      //const sql = 'INSERT INTO recipes (json_data) VALUES (?)';
-      // db.run(sql, JSON.stringify(json_data), (err) => {
-      //   if (err) {
-      //     console.error(err);
-      //     res.status(500).end();
-      //   } else {
-      //     res.status(200).end();
-      //   }
-     // });
-    //}
-  //  catch (error) {
-  //     console.error(error);
-  //     res.status(500).end();
-  //   } finally {
-  //     db.close();
-  //   }
+      ); 
 }
-}
+};
+
+export async function handlerIngr(_req_ingr, res) {
+  if(_req_ingr === 'POST'){
+    var ingr_data = JSON.parse(_req_ingr.body);
+
+    db.run(
+      'INSERT INTO pantry (name) VALUES (?)',
+      ingr_data[0].text2,
+      function (err) {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ error: 'Something went wrong' });
+        } else {
+          res.status(200).json({ id: this.lastID });
+        }
+      }
+    )
+
+  }
+};

@@ -5,34 +5,8 @@ import TextField from "@mui/material/TextField"
 import Grid from "@mui/material/Grid"
 import dynamic from 'next/dynamic'
 import fetch from 'isomorphic-fetch'
-//const bodyParser = require("body-parser");
-
-// function handleSubmit() {
-//     //const [count, setCount] = useState(0);
-
-//     //event.preventDefault();
-
-//     const data = new FormData(document.getElementById('sample-form'));
-
-//     const value = data.get("nameentr");
-
-//     const form = document.querySelector('sample-form');
-//     if (value){
-//         value.addEventListener('SAVE', handleSubmit);
-//         console.log({ value });
-//     }
-
-    
-
-// }
 
 function AddRecipeModal(){
-
-    // const [formData, setFormData] = useState({
-    //     name: "",
-    //     desc: "",
-    //     steps: ""
-    // });
 
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
@@ -51,24 +25,27 @@ function AddRecipeModal(){
         setSteps(e.target.value);
     };
 
-    // const handleChange = (e) => {
-    //     var { name, value } = e.target;
-    //     var { desc, value } = e.target;
-    //     var { steps, value } = e.target;
-    //     //const { desc, value2 } = e.target;
-    //     setFormData((_formData) => (
-    //         {  [name]: value },
-    //         { [desc]: value },
-    //         { [steps]: value }
-    //         ));
-    //     console.log(name.value);
-    //     //console.log(value2);
-    //     //console.log(value3);
-    // };
+    const handleAdd = async (e) => {
+        e.preventDefault();
+
+        console.log('Ingredient:', text2);
+
+        //Serialize the form data as JSON
+        var ingr_data = JSON.stringify([{text2}]);
+        console.log(ingr_data);
+        const req_ingr = await fetch('http://localhost:3000/api/postToDb', {
+                method: 'POST', 
+                body: ingr_data
+            })
+                _req_ingr => req_ingr.json()
+                data_ingr => console.log(data_ingr)
+                console.error(err)
+
+                setText2('');
+    }
 
     const handleSubmit = async (e) => {
             e.preventDefault();
-            //router.use(bodyParser.json());
 
             console.log('Name:', name);
             console.log('Description:', desc);
@@ -117,12 +94,7 @@ function AddRecipeModal(){
       const regex = /^\d*\.?\d{0,2}$/g;
       if (event.target.value === "" || regex.test(event.target.value)) {
         setNum(event.target.value);
-      }
-    //   else
-    //   {
-    //     setNum("")
-    //   }
-      
+      } 
     };
 
     const handleText = (Eve) => {
@@ -210,7 +182,7 @@ function AddRecipeModal(){
                     <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} freeSolo={true}  options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
                     <TextField  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} value={num}></TextField>
                     <Autocomplete sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.25, mr: 2, height: 55}} freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
-                    <Card sx={{my: 1, width: 85, px: 0.4, py: 0.5, backgroundColor: '#023047'}}><Button sx={{backgroundColor: '#126782', color: '#8ECAE6', fontSize: 14}} data-testid="add">Add</Button></Card>
+                    <Card sx={{my: 1, width: 85, px: 0.4, py: 0.5, backgroundColor: '#023047'}}><Button sx={{backgroundColor: '#126782', color: '#8ECAE6', fontSize: 14}} data-testid="add" onClick={handleAdd}>Add</Button></Card>
                 </DialogContent>
                     <Typography sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold'}} data-testid="display" >Ingredients displayed here:</Typography>
                     <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 1, marginTop: 3}} data-testid="steps" label="Steps" name="steps" value={steps} onChange={handleStepsChange}multiline Values={multiline2} onInput={event => setMultiline2(event.target.Values)}>Steps...</TextField>
