@@ -198,18 +198,18 @@ function AddRecipeModal(){
                     <Grid className="formGridAM">
                         <Button className="upImageAM" data-testid="uploadimg">upload image</Button>
                         <DialogContent className="nameDescContainerAM">
-                            <TextField className="nameAM" data-testid="nameentr" label="Name" name="name" value={name} onChange={handleNameChange}></TextField>
-                            <TextField className="descAM" multiline Value={multiline} onInput={(event => setMultiline(event.target.Value))} data-testid="descr" label="Description" name="description" onChange={handleDescChange} value={desc}></TextField>
+                            <TextField sx={{"& label":{top:".35rem"}}}className="generalAM nameAM" data-testid="nameentr" label="Name" name="name" value={name} onChange={handleNameChange}></TextField>
+                            <TextField sx={{"& label":{top:".35rem"}}} className="generalAM descAM" multiline Value={multiline} onInput={(event => setMultiline(event.target.Value))} data-testid="descr" label="Description" name="description" onChange={handleDescChange} value={desc}></TextField>
                         </DialogContent>
                     </Grid>
                 <DialogContent className="ingredContainerAM">
-                    <Autocomplete  className="ingredAM" freeSolo={true}  options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
-                    <TextField className="qtyAM" data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} value={num}></TextField>
-                    <Autocomplete className="measurementAM" freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
-                    <Button className="generalBtnBlue addIngredAM" data-testid="add">Add</Button>
+                    <Autocomplete  sx={{"& label":{top:".35rem"}}} className="generalAM ingredAM" freeSolo={true}  options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
+                    <TextField sx={{"& label":{top:".35rem"}}} className="generalAM qtyAM" data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} value={num}></TextField>
+                    <Autocomplete sx={{"& label":{top:".35rem"}}} className="generalAM measurementAM" freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
+                    <Button sx={{"& label":{top:".35rem"}}} className="generalBtnBlue addIngredAM" data-testid="add">Add</Button>
                 </DialogContent>
-                    <Typography className="ingredBoxAM" data-testid="display" >Ingredients displayed here:</Typography>
-                    <TextField className="stepsAM" data-testid="steps" label="Steps" name="steps" value={steps} onChange={handleStepsChange}multiline Values={multiline2} onInput={event => setMultiline2(event.target.Values)}>Steps...</TextField>
+                    <Typography className="generalAM ingredBoxAM" data-testid="display" >Ingredients displayed here:</Typography>
+                    <TextField sx={{"& label":{top:".35rem"}}} className="generalAM stepsAM" data-testid="steps" label="Steps" name="steps" value={steps} onChange={handleStepsChange}multiline Values={multiline2} onInput={event => setMultiline2(event.target.Values)}>Steps...</TextField>
                 </DialogContent>
                 </form>
             </Dialog>
