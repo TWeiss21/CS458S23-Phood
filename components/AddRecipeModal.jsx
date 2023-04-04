@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField"
 import Grid from "@mui/material/Grid"
 import dynamic from 'next/dynamic'
 import fetch from 'isomorphic-fetch'
+const pantry = require('../mocks/pantryData.json')
+
 //const bodyParser = require("body-parser");
 
 // function handleSubmit() {
@@ -25,6 +27,9 @@ import fetch from 'isomorphic-fetch'
     
 
 // }
+
+var pantryItems = []
+pantry.forEach(i => pantryItems.push(i.name))
 
 function AddRecipeModal(){
 
@@ -158,13 +163,6 @@ function AddRecipeModal(){
     //Validate that no special characters are in textfields: " , - , + , basically all char
     //
 
-    const plchldr = [
-        { label: 'Cow Pie', id: 1},
-        { label: 'Snot Stew', id: 2},
-        { label: 'Moist Cereal', id: 3},
-        { label: 'I am out of ideas', id: 4},
-        { label: 'Why are you still searching', id: 5}
-    ];
 
     const measure = [
         { label: 'teaspoon', id: 1},
@@ -203,7 +201,7 @@ function AddRecipeModal(){
                         </DialogContent>
                     </Grid>
                 <DialogContent className="ingredContainerAM">
-                    <Autocomplete  sx={{"& label":{top:".35rem"}}} className="generalAM ingredAM" freeSolo={true}  options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
+                    <Autocomplete  sx={{"& label":{top:".35rem"}}} className="generalAM ingredAM" freeSolo={true}  options={pantryItems} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
                     <TextField sx={{"& label":{top:".35rem"}}} className="generalAM qtyAM" data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} value={num}></TextField>
                     <Autocomplete sx={{"& label":{top:".35rem"}}} className="generalAM measurementAM" freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
                     <Button sx={{"& label":{top:".35rem"}}} className="generalBtnBlue addIngredAM" data-testid="add">Add</Button>
