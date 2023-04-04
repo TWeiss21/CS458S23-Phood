@@ -14,48 +14,71 @@ const AddRecipeModal = () =>{
     const [text2, setText2] = React.useState('');
     const [err, setErr] = React.useState(false);
     const [err2, setErr2] = React.useState(false);
+    const [err3, setErr3] = React.useState(false);
     const [help, setHelp] = React.useState('');
     const [help2, setHelp2] = React.useState('');
+    const [help3, setHelp3] = React.useState('');
 
-    const handleChange = (e) => {
-      const regex = /^\d*\.?\d{0,2}$/g;
-      if (e.target.value === "" || regex.test(e.target.value)) {
-        setNum(e.target.value);
-      }
-    //   else
-    //   {
-    //     setNum("")
-    //   }
-      
-    };
-
-    const handleText = (Eve) => {
-        const regex = /[^a-zA-Z0-9\s]/g;
-        if (!(regex.test(Eve.target.value))) {
-            setText(Eve.target.value);
-            setErr(false);
-            setHelp("");
-          }
+    const handlechange = (event) => {
+        const regex = /^\d*\.?\d{0,2}$/g;
+        if (regex.test(event.target.value)) 
+        {  
+            setNum(event.target.value);
+            setErr3(false);
+            setHelp3("");
+            
+        }
         else
         {
+             setErr3(true);
+             setHelp3("Invalid_Character");
+        }
+      
+    };
+    const handlechangeKeyPress = (event) => {
+        const regex = /[^\d\.]$/g;
+        if (regex.test(event.key))
+        {
+            event.preventDefault();
+            setErr3(true);
+            setHelp3("Invalid_Character");
+        }
+    }
+
+    const handleText = (Eve) => {
+        setText(Eve.target.value);
+    };
+    const handleTextKeyPress = (Eve) => {   
+        const regex = /[^a-zA-Z0-9\s]/g;
+        if (regex.test(Eve.key)) 
+        {
+            Eve.preventDefault();
             setErr(true);
             setHelp("Invalid_Character");
+        } 
+        else
+        {
+            setErr(false);
+            setHelp("");
         }
-          
     };
 
     const handletext = (eve) => {
+        setText2(eve.target.value);
+    };
+    const handletextKeyPress = (eve) => {  
         const regex = /[^a-zA-Z0-9\s]/g;
-        if (!(regex.test(eve.target.value))) {
-            setText2(eve.target.value);
-            setErr2(false);
-            setHelp2("");
-          }
-        else
+        if (regex.test(eve.key))         
         {
+            eve.preventDefault();
             setErr2(true);
             setHelp2("Invalid_Character");
         }
+        else {
+            setErr2(false);
+            setHelp2("");
+        }
+
           
     };
     //
@@ -96,12 +119,12 @@ const AddRecipeModal = () =>{
                         </DialogContent>
                     </Grid>
                 <DialogContent sx={{display: 'flex', justifyContent: 'flex-start', pl: 0}}>
-                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} freeSolo={true}  options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
-                    <TextField  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} data-testid="quant" label="#" type="text" onChange={(e) => handleChange(e)} value={num}></TextField>
-                    <Autocomplete sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.25, mr: 2, height: 55}} freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
+                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} freeSolo={true}  options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} onKeyPress={(eve) => handletextKeyPress(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
+                    <TextField  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} data-testid="quant" label="#" error={err3} helperText={help3} type="text" onChange={(event) => handlechange(event)} onKeyPress={(event => handlechangeKeyPress(event))} value={num}></TextField>
+                    <Autocomplete sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.25, mr: 2, height: 55}} freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} onKeyPress={(Eve) => handleTextKeyPress(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
                     <Card sx={{my: 1, width: 85, px: 0.4, py: 0.5, backgroundColor: '#023047'}}><Button sx={{backgroundColor: '#126782', color: '#8ECAE6', fontSize: 14}} data-testid="add">Add</Button></Card>
                 </DialogContent>
-                    <Typography sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold'}} data-testid="display" >Ingredients displayed here:</Typography>
+                    <Typography sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold'}} data-testid="display">Ingredients displayed here:</Typography>
                     <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 1, marginTop: 3}} data-testid="steps" multiline value={multiline2} onChange={e => setMultiline2(e.target.value)}>Steps...</TextField>
                 </DialogContent> 
             </Dialog>
