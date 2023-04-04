@@ -1,11 +1,5 @@
 import Dashboard from '../components/dashboard.jsx'
 import AddRecipeModal from '@/components/AddRecipeModal.jsx'
-//TODO: comment out how everything works currently
-//TODO: reformat all code for readability
-//PR to main
-// dumb bug(wont populate data until repeated refresh) still thowing for loop, solve issue async/await
-//Testing
-
 
 /*This is the function that actually gets the data from the server.
 With react you want to pull as much state/data as far up for managment by the program so that each
@@ -33,6 +27,5 @@ const Index = ({recipes}) =>
             </div>
         )
 }
-
 
 export default Index

@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField"
 import Grid from "@mui/material/Grid"
 import dynamic from 'next/dynamic'
 import fetch from 'isomorphic-fetch'
+const pantry = require('../mocks/pantryData.json')
+
 //const bodyParser = require("body-parser");
 
 // function handleSubmit() {
@@ -25,6 +27,9 @@ import fetch from 'isomorphic-fetch'
     
 
 // }
+
+var pantryItems = []
+pantry.forEach(i => pantryItems.push(i.name))
 
 function AddRecipeModal(){
 
@@ -79,7 +84,7 @@ function AddRecipeModal(){
             console.log(json_data);
 
             //Send AJAX request to server-side
-            const req = await fetch('/api/postToDb', {
+            const req = await fetch('http://localhost:3000/api/postToDb', {
                 method: 'POST', 
                 body: json_data
             })
@@ -158,13 +163,6 @@ function AddRecipeModal(){
     //Validate that no special characters are in textfields: " , - , + , basically all char
     //
 
-    const plchldr = [
-        { label: 'Cow Pie', id: 1},
-        { label: 'Snot Stew', id: 2},
-        { label: 'Moist Cereal', id: 3},
-        { label: 'I am out of ideas', id: 4},
-        { label: 'Why are you still searching', id: 5}
-    ];
 
     const measure = [
         { label: 'teaspoon', id: 1},
@@ -188,32 +186,28 @@ function AddRecipeModal(){
                 <div>
              <Dialog open={show}>
              <form onSubmit={handleSubmit} data-testid="form">
-                <DialogTitle sx={{my: 0, py: 0, backgroundColor: '#FD9E02' , display: 'flex', justifyContent: 'flex-end'}}>
-                    <Card sx={{my: 0.3, mr: 3, px: 5, backgroundColor: '#126782', color: '#8ECAE6'}} data-testid="title">Add Recipe</Card>
-                    <Card sx={{my: 1, mr: 2, pb: 0, px: 0.5, backgroundColor: '#023047'}}>
-                        <Button sx={{fontSize: 10, backgroundColor: '#126782', color: '#8ECAE6'}} data-testid="savebtn" type="submit" onClick={onSubmit}>SAVE</Button>
-                        </Card>
-                    <Card sx={{my: 1, mr: 0, pb: 0.3, px: 0.5, backgroundColor: '#023047'}}>
-                        <Button onClick={handleClose} sx={{fontSize: 10, backgroundColor: '#126782', color: '#8ECAE6'}} data-testid="closebtn">Close</Button>
-                        </Card>
+                <DialogTitle className="headerAM">
+                    <Card className="titleAM" data-testid="title">Add Recipe</Card>
+                    <Button className="generalBtnBlue BtnAM" data-testid="savebtn" type="submit" onClick={onSubmit}>SAVE</Button>
+                    <Button className="generalBtnBlue BtnAM" onClick={handleClose} data-testid="closebtn">Close</Button>
                 </DialogTitle>
              
-             <DialogContent sx={{backgroundColor: '#fbd2a4'}}>
-                    <Grid sx={{pt: 2, display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)'}}>
-                        <Button sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 150, height: 150}} data-testid="uploadimg">upload image</Button>
-                        <DialogContent sx={{py: 0}}>
-                            <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', marginBottom: 2, maxWidth: 200}} data-testid="nameentr" label="Name" name="name" value={name} onChange={handleNameChange}></TextField>
-                            <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', maxWidth: 200}} multiline Value={multiline} onInput={(event => setMultiline(event.target.Value))} data-testid="descr" label="Description" name="description" onChange={handleDescChange} value={desc}></TextField>
+             <DialogContent className="formContainerAM">
+                    <Grid className="formGridAM">
+                        <Button className="upImageAM" data-testid="uploadimg">upload image</Button>
+                        <DialogContent className="nameDescContainerAM">
+                            <TextField sx={{"& label":{top:".35rem"}}}className="generalAM nameAM" data-testid="nameentr" label="Name" name="name" value={name} onChange={handleNameChange}></TextField>
+                            <TextField sx={{"& label":{top:".35rem"}}} className="generalAM descAM" multiline Value={multiline} onInput={(event => setMultiline(event.target.Value))} data-testid="descr" label="Description" name="description" onChange={handleDescChange} value={desc}></TextField>
                         </DialogContent>
                     </Grid>
-                <DialogContent sx={{display: 'flex', justifyContent: 'flex-start', pl: 0}}>
-                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} freeSolo={true}  options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
-                    <TextField  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} value={num}></TextField>
-                    <Autocomplete sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.25, mr: 2, height: 55}} freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
-                    <Card sx={{my: 1, width: 85, px: 0.4, py: 0.5, backgroundColor: '#023047'}}><Button sx={{backgroundColor: '#126782', color: '#8ECAE6', fontSize: 14}} data-testid="add">Add</Button></Card>
+                <DialogContent className="ingredContainerAM">
+                    <Autocomplete  sx={{"& label":{top:".35rem"}}} className="generalAM ingredAM" freeSolo={true}  options={pantryItems} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
+                    <TextField sx={{"& label":{top:".35rem"}}} className="generalAM qtyAM" data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} value={num}></TextField>
+                    <Autocomplete sx={{"& label":{top:".35rem"}}} className="generalAM measurementAM" freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
+                    <Button sx={{"& label":{top:".35rem"}}} className="generalBtnBlue addIngredAM" data-testid="add">Add</Button>
                 </DialogContent>
-                    <Typography sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold'}} data-testid="display" >Ingredients displayed here:</Typography>
-                    <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 1, marginTop: 3}} data-testid="steps" label="Steps" name="steps" value={steps} onChange={handleStepsChange}multiline Values={multiline2} onInput={event => setMultiline2(event.target.Values)}>Steps...</TextField>
+                    <Typography className="generalAM ingredBoxAM" data-testid="display" >Ingredients displayed here:</Typography>
+                    <TextField sx={{"& label":{top:".35rem"}}} className="generalAM stepsAM" data-testid="steps" label="Steps" name="steps" value={steps} onChange={handleStepsChange}multiline Values={multiline2} onInput={event => setMultiline2(event.target.Values)}>Steps...</TextField>
                 </DialogContent>
                 </form>
             </Dialog>
