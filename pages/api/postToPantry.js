@@ -4,9 +4,10 @@ const sqlite3 = require('sqlite3').verbose();
 
 const db = new sqlite3.Database('./sqlitedb/phooddb.sqlite');
 
-export default async function handlerIngr(_req_ingr, res) {
-  if(_req_ingr === 'POST'){
-    var ingr_data = JSON.parse(_req_ingr.body);
+export default async function handlerIngr(_req, res) {
+  if(_req.method === 'POST'){
+
+    var ingr_data = JSON.parse(_req.body);
 
     db.run(
       'INSERT INTO pantry (name) VALUES (?)',

@@ -5,7 +5,6 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('./sqlitedb/phooddb.sqlite');
 
 export default async function handler(_req, res) {
-  //const {name, desc } = req.body;
 
   if(_req.method === 'POST') {
     //try {

@@ -11,6 +11,19 @@ function AddRecipeModal(){
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
     const [steps, setSteps] = useState('');
+    const [show, setShow] = React.useState(false);
+    const handleOpen = () => setShow(true);
+    const handleClose = () => setShow(false);
+    const [multiline, setMultiline] = useState('');
+    const [multiline2, setMultiline2] = useState('');
+    const [num, setNum] = React.useState();
+    const [text, setText] = React.useState('');
+    const [text2, setText2] = React.useState('');
+    const [err, setErr] = React.useState(false);
+    const [err2, setErr2] = React.useState(false);
+    const [help, setHelp] = React.useState('');
+    const [help2, setHelp2] = React.useState('');
+    const [displayTex, setDisplayTex] = React.useState('');
 
     //Handle changes to form inputs
     const handleNameChange = (e) => {
@@ -25,22 +38,69 @@ function AddRecipeModal(){
         setSteps(e.target.value);
     };
 
-    const handleAdd = async (e) => {
-        e.preventDefault();
+    const handlechange = (event) => {
+        const regex = /^\d*\.?\d{0,2}$/g;
+        if (event.target.value === "" || regex.test(event.target.value)) {
+          setNum(event.target.value);
+        } 
+    };
 
-        console.log('Ingredient:', text2);
+    const handleText = (Eve) => {
+        const regex = /[^a-zA-Z0-9\s]/g;
+        if (!(regex.test(Eve.target.value))) {
+            setText(Eve.target.value);
+            setErr(false);
+            setHelp("");
+          }
+        else
+        {
+            setErr(true);
+            setHelp("Invalid_Character");
+        }
+          
+    };
 
-        //Serialize the form data as JSON
-        var ingr_data = JSON.stringify([{text2}]);
-        console.log(ingr_data);
-        const req_ingr = await fetch('http://localhost:3000/api/postToDb', {
+    const handletext = (eve) => {
+        const regex = /[^a-zA-Z0-9\s]/g;
+        if (!(regex.test(eve.target.value))) {
+            setText2(eve.target.value);
+            setErr2(false);
+            setHelp2("");
+          }
+        else
+        {
+            setErr2(true);
+            setHelp2("Invalid_Character");
+        }
+          
+    };
+
+    const handleAdd = async (eve) => {
+            eve.preventDefault();
+
+            var ingr = document.getElementById('ingr').value;
+            var msr = document.getElementById('msr').value;
+            var quant = document.getElementById('quant').value;
+            
+            console.log('Measure: ', msr);
+            console.log('Quantity: ', quant);
+            setDisplayTex(ingr);
+            var display = document.getElementById('display').value;
+            console.log('Display Text: ', display);
+
+            //Serialize the form data as JSON
+            var ingr_data = JSON.stringify([{ingr}]);
+            console.log(ingr_data);
+
+            const req = await fetch('http://localhost:3000/api/postToPantry', {
                 method: 'POST', 
                 body: ingr_data
             })
-                _req_ingr => req_ingr.json()
-                data_ingr => console.log(data_ingr)
+                _req => req.json()
+                data => console.log(data)
                 console.error(err)
 
+                // Reset form values
                 setText2('');
     }
 
@@ -76,56 +136,6 @@ function AddRecipeModal(){
         // Updating a state causes a re-render
         setInitialRenderComplete(true);
     }, []);
-
-    const [show, setShow] = React.useState(false);
-    const handleOpen = () => setShow(true);
-    const handleClose = () => setShow(false);
-    const [multiline, setMultiline] = useState('');
-    const [multiline2, setMultiline2] = useState('');
-    const [num, setNum] = React.useState();
-    const [text, setText] = React.useState('');
-    const [text2, setText2] = React.useState('');
-    const [err, setErr] = React.useState(false);
-    const [err2, setErr2] = React.useState(false);
-    const [help, setHelp] = React.useState('');
-    const [help2, setHelp2] = React.useState('');
-
-    const handlechange = (event) => {
-      const regex = /^\d*\.?\d{0,2}$/g;
-      if (event.target.value === "" || regex.test(event.target.value)) {
-        setNum(event.target.value);
-      } 
-    };
-
-    const handleText = (Eve) => {
-        const regex = /[^a-zA-Z0-9\s]/g;
-        if (!(regex.test(Eve.target.value))) {
-            setText(Eve.target.value);
-            setErr(false);
-            setHelp("");
-          }
-        else
-        {
-            setErr(true);
-            setHelp("Invalid_Character");
-        }
-          
-    };
-
-    const handletext = (eve) => {
-        const regex = /[^a-zA-Z0-9\s]/g;
-        if (!(regex.test(eve.target.value))) {
-            setText2(eve.target.value);
-            setErr2(false);
-            setHelp2("");
-          }
-        else
-        {
-            setErr2(true);
-            setHelp2("Invalid_Character");
-        }
-          
-    };
     //
     //Validate that no special characters are in textfields: " , - , + , basically all char
     //
@@ -179,12 +189,12 @@ function AddRecipeModal(){
                         </DialogContent>
                     </Grid>
                 <DialogContent sx={{display: 'flex', justifyContent: 'flex-start', pl: 0}}>
-                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} freeSolo={true}  options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
-                    <TextField  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} value={num}></TextField>
-                    <Autocomplete sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.25, mr: 2, height: 55}} freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
+                    <Autocomplete  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.5, mr: 2, height: 55}} freeSolo={true}  options={plchldr} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr" id="ingr"></Autocomplete>
+                    <TextField  sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.2, mr: 2, height: 55}} data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} value={num} id="quant"></TextField>
+                    <Autocomplete sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 0.25, mr: 2, height: 55}} freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} value={text}/>}data-testid="msr" id="msr"></Autocomplete>
                     <Card sx={{my: 1, width: 85, px: 0.4, py: 0.5, backgroundColor: '#023047'}}><Button sx={{backgroundColor: '#126782', color: '#8ECAE6', fontSize: 14}} data-testid="add" onClick={handleAdd}>Add</Button></Card>
                 </DialogContent>
-                    <Typography sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold'}} data-testid="display" >Ingredients displayed here:</Typography>
+                    <Typography sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold'}} data-testid="display" id="display" label="Display" name="disp" value={displayTex}>Ingredients displayed here:</Typography>
                     <TextField sx={{backgroundColor: '#ffffe7', color: '#010000', fontWeight: 'bold', width: 1, marginTop: 3}} data-testid="steps" label="Steps" name="steps" value={steps} onChange={handleStepsChange}multiline Values={multiline2} onInput={event => setMultiline2(event.target.Values)}>Steps...</TextField>
                 </DialogContent>
                 </form>
