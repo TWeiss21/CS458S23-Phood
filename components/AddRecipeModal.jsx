@@ -8,6 +8,13 @@ import fetch from 'isomorphic-fetch'
 
 function AddRecipeModal(){
 
+    const [initialRenderComplete, setInitialRenderComplete] = React.useState(false);
+    // This useEffect will only run once, during the first render
+    React.useEffect(() => {
+        // Updating a state causes a re-render
+        setInitialRenderComplete(true);
+    }, []);
+
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
     const [steps, setSteps] = useState('');
@@ -23,7 +30,11 @@ function AddRecipeModal(){
     const [err2, setErr2] = React.useState(false);
     const [help, setHelp] = React.useState('');
     const [help2, setHelp2] = React.useState('');
-    const [displayTex, setDisplayTex] = React.useState('');
+    const [displayTex, setDisplayTex] = React.useState({
+        Ingredient: '',
+        Measure: '',
+        Quantity: ''
+    });
 
     //Handle changes to form inputs
     const handleNameChange = (e) => {
@@ -84,9 +95,11 @@ function AddRecipeModal(){
             
             console.log('Measure: ', msr);
             console.log('Quantity: ', quant);
-            setDisplayTex(ingr);
-            var display = document.getElementById('display').value;
-            console.log('Display Text: ', display);
+
+            setDisplayTex({ingr,msr,quant});
+            var item = document.getElementById('display').value;
+
+            console.log('Display Text: ', item);
 
             //Serialize the form data as JSON
             var ingr_data = JSON.stringify([{ingr}]);
@@ -130,12 +143,6 @@ function AddRecipeModal(){
             setSteps('');
     };
 
-    const [initialRenderComplete, setInitialRenderComplete] = React.useState(false);
-    // This useEffect will only run once, during the first render
-    React.useEffect(() => {
-        // Updating a state causes a re-render
-        setInitialRenderComplete(true);
-    }, []);
     //
     //Validate that no special characters are in textfields: " , - , + , basically all char
     //
