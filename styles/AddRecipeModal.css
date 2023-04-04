@@ -1,0 +1,139 @@
+.generalAM{ 
+    border-radius: 5px !important;
+    background-color: #fbd2a4!important;
+}
+.headerAM{
+    margin-top: 0!important;
+    padding-top:0!important;
+    background-color: #FD9E02!important;
+    display: flex!important;
+    justify-content: flex-end!important;
+}
+
+.titleAM {
+    position: absolute !important;
+    margin-right:32% !important;
+    background-color: #126782 !important;
+    color:#8ECAE6 !important;
+    font-weight: bolder !important;
+    padding-top: 2% !important;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+    border-radius: 25px !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    height:50px !important;
+}
+
+.BtnAM{
+    margin-top: 3%!important;
+    margin-right: 1%!important;
+    width: 15%!important; 
+    font-size: x-small!important;
+    border-width: 5px!important;
+    padding-top:3px!important;
+    padding-bottom:3px!important;
+}
+
+.formContainerAM{
+    background-color: #fbd2a4!important;
+}
+
+.formGridAM{
+    display: grid;
+    grid-template-columns: .2fr 1fr;
+}
+
+.upImageAM{
+    background-color: #fff4e8!important;
+    color: black!important;
+    font-weight: bold!important;
+    margin-top: 20%!important;
+    width:100px!important;
+    height:100px!important;
+}
+
+.nameDescContainerAM{
+}
+
+.nameAM{
+    background-color: #fff4e8!important;
+    color: black!important;
+    font-weight: bold!important;
+    margin-bottom: 3%!important;
+    width:100%!important;
+    max-width:100%!important;
+}
+
+.descAM{
+    background-color: #fff4e8!important;
+    color: black!important;
+    font-weight: bold!important;
+    width:100%!important;
+    max-width:100%!important;
+    max-height:200px!important;
+    overflow-y:auto;
+    border-radius: 5px !important;
+}
+
+.ingredContainerAM{
+    display:flex!important;
+    justify-content: flex-start!important;
+    padding-left: 0!important;
+}
+
+.ingredAM{
+    background-color: #fff4e8!important;
+    color: black!important;
+    font-weight: bold!important;
+    width:50%!important;
+    margin-right:1%!important;
+}
+
+.qtyAM{
+    background-color: #fff4e8!important;
+    color: black!important;
+    font-weight: bold!important;
+    width: 20%!important;
+    margin-right: 1%!important;
+}
+
+.measurementAM{
+    background-color: #fff4e8!important;
+    color:black!important;
+    font-weight: bold!important;
+    width:30%!important;
+    margin-right: 2%!important;
+}
+
+.addIngredAM{
+   background-color: #126782!important;
+   color: #8ECAE6!important;
+   font-size: 12px!important;
+   width:20%!important;
+   margin-right: -20px !important;
+   border-width: 5px!important;
+   margin-top: 2% !important;
+   height:40px !important;
+}
+
+.ingredBoxAM{
+    background-color: #fff4e8!important;
+    color:black!important;
+    font-weight: bold!important;
+    width:100%!important;
+    max-width:100%!important;
+    max-height:150px!important;
+    overflow-y: auto;
+}
+
+.stepsAM{
+    background-color: #fff4e8!important;
+    color: black!important;
+    font-weight: bold!important;
+    width:100%!important;
+    margin-top: 3%!important;
+    max-width:100%!important;
+    max-height:400px!important;
+    overflow-y: auto;
+}
