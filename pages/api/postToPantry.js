@@ -16,6 +16,7 @@ export default async function handlerIngr(_req, res) {
     for (const row of query) {
       if (query.includes(ingr_data)) {
         console.log('Duplicate item found!');
+        return;
       } else {
         db.run(
         'INSERT INTO pantry (name) VALUES (?)',
