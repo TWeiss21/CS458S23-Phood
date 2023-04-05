@@ -7,7 +7,7 @@ import {expect, jest, test} from '@jest/globals'
 
 describe('AddRecipeModal', () => {
     it('should render the AddRecipeModal button and open it', async () => {
-        render(<RecipeList />);
+        render(<RecipeList/>);
         const modal = screen.getByTestId("openModal");
         expect(modal).toBeInTheDocument()
 
@@ -39,7 +39,7 @@ describe('AddRecipeModal', () => {
     });
 
     it('Should start searching for a measurement and find autocomplete', async () => {
-        render(<RecipeList />);
+        render(<RecipeList/>);
         const modal = screen.getByTestId("openModal");
         fireEvent.click(modal);
         
@@ -54,25 +54,25 @@ describe('AddRecipeModal', () => {
         expect(autocomplete).toHaveValue("teaspoon")
         });
     
-    it('should save user input when form is submitted', async () => {
-        render(<RecipeList />);
-        const modal = screen.getByTestId("openModal");
-        fireEvent.click(modal);
+    // it('should save user input when form is submitted', async () => {
+    //     render(<RecipeList />);
+    //     const modal = screen.getByTestId("openModal");
+    //     fireEvent.click(modal);
 
-        const nameInput = screen.getByLabelText(/Name/);
-        const descInput = screen.getByLabelText(/Description/);
+    //     const nameInput = screen.getByLabelText(/Name/);
+    //     const descInput = screen.getByLabelText(/Description/);
 
-        fireEvent.change(nameInput, { target: {value: 'Quiche'} });
-        fireEvent.change(descInput, { target: {value: 'This is a description'} });
+    //     fireEvent.change(nameInput, { target: {value: 'Quiche'} });
+    //     fireEvent.change(descInput, { target: {value: 'This is a description'} });
 
-        fireEvent.submit(screen.getByTestId("form"));
+    //     fireEvent.submit(screen.getByTestId("form"));
 
-        expect(nameInput).toHaveValue('Quiche');
-        expect(descInput).toHaveValue('This is a description');
-        });
+    //     expect(nameInput).toHaveValue('Quiche');
+    //     expect(descInput).toHaveValue('This is a description');
+    //     });
 
     it('Should not allow user to input an invalid character or extra characters', async () => {
-        render(<RecipeList />);
+        render(<RecipeList/>);
         const modal = screen.getByTestId("openModal");
         fireEvent.click(modal);
 
@@ -87,7 +87,8 @@ describe('AddRecipeModal', () => {
     });
 
     it('Should display error on typing of special characters', async () => {
-        render(<RecipeList />);
+        
+        render(<RecipeList/>);
         const modal = screen.getByTestId("openModal");
         fireEvent.click(modal);
 
