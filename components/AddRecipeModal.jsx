@@ -114,7 +114,7 @@ function AddRecipeModal(){
     const handleAdd = async (eve) => {
             eve.preventDefault();
 
-            var ingr = document.getElementById('ingr').value;
+            var name = document.getElementById('ingr').value;
             var msr = document.getElementById('msr').value;
             var quant = document.getElementById('quant').value;
             
@@ -127,7 +127,7 @@ function AddRecipeModal(){
             console.log('Display Text: ', item);
 
             //Serialize the form data as JSON
-            var ingr_data = JSON.stringify([{ingr}]);
+            var ingr_data = JSON.stringify([{name}]);
             console.log(ingr_data);
 
                     const req = await fetch('http://localhost:3000/api/postToPantry', {
@@ -141,7 +141,7 @@ function AddRecipeModal(){
                     // Reset form values
                     setText2('');
                 
-    }
+    };
 
     const handleSubmit = async (e) => {
             e.preventDefault();
