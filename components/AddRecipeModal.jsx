@@ -6,7 +6,6 @@ import Grid from "@mui/material/Grid"
 import dynamic from 'next/dynamic'
 import fetch from 'isomorphic-fetch'
 const pantry = require('../mocks/pantryData.json')
-const sqlite3 = require('sqlite3').verbose();
 
 //const bodyParser = require("body-parser");
 
@@ -131,16 +130,17 @@ function AddRecipeModal(){
             var ingr_data = JSON.stringify([{ingr}]);
             console.log(ingr_data);
 
-            const req = await fetch('http://localhost:3000/api/postToPantry', {
-                method: 'POST', 
-                body: ingr_data
-            })
-                _req => req.json()
-                data => console.log(data)
-                console.error(err)
+                    const req = await fetch('http://localhost:3000/api/postToPantry', {
+                    method: 'POST', 
+                    body: ingr_data
+                    })
+                    _req => req.json()
+                    data => console.log(data)
+                    console.error(err)
 
-                // Reset form values
-                setText2('');
+                    // Reset form values
+                    setText2('');
+                
     }
 
     const handleSubmit = async (e) => {

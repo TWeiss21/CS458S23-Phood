@@ -13,7 +13,6 @@ export default async function handler(_req, res) {
       var json_data = JSON.parse(_req.body);
       
       //json_data = JSON.stringify(_req.body);
-
       db.run(
         'INSERT INTO recipes (name, description, steps) VALUES (?, ?, ?)',
         json_data[0].name,
@@ -28,5 +27,5 @@ export default async function handler(_req, res) {
           }
         }
       ); 
-}
+  }
 };
