@@ -7,7 +7,7 @@ import {expect, jest, test} from '@jest/globals'
 
 describe('AddRecipeModal', () => {
     it('should render the AddRecipeModal button and open it', async () => {
-        render(<RecipeList />);
+        render(<RecipeList/>);
         const modal = screen.getByTestId("openModal");
         expect(modal).toBeInTheDocument()
 
@@ -39,7 +39,7 @@ describe('AddRecipeModal', () => {
     });
 
     it('Should start searching for a measurement and find autocomplete', async () => {
-        render(<RecipeList />);
+        render(<RecipeList/>);
         const modal = screen.getByTestId("openModal");
         fireEvent.click(modal);
         
@@ -72,7 +72,7 @@ describe('AddRecipeModal', () => {
     //     });
 
     it('Should not allow user to input an invalid character or extra characters', async () => {
-        render(<RecipeList />);
+        render(<RecipeList/>);
         const modal = screen.getByTestId("openModal");
         fireEvent.click(modal);
 
@@ -87,7 +87,8 @@ describe('AddRecipeModal', () => {
     });
 
     it('Should display error on typing of special characters', async () => {
-        render(<RecipeList />);
+        
+        render(<RecipeList/>);
         const modal = screen.getByTestId("openModal");
         fireEvent.click(modal);
 
