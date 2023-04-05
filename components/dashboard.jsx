@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header"
 import RecipeList from "./RecipeList"
 import RecipeDetail from "./RecipeDetail"
-import Pantry from "./Pantry"
+import ShoppingList from "./ShoppingList"
 
 const dashboard = () => {
   return (
@@ -17,8 +17,8 @@ const dashboard = () => {
         <div className="recipeDetail">
           <RecipeDetail />
         </div>
-        <div className="pantry centered">
-          <Pantry />
+        <div className="shopping">
+          <ShoppingList />
         </div>
       </div>
     </React.Fragment>
