@@ -9,8 +9,9 @@ const GetRecipeNames = (props) =>{
 //https://stackoverflow.com/questions/54257985/type-error-cannot-read-property-map-of-undefined
 
       //const {Recipes} = this.state;
-      console.log(props.data)
-      console.log("The data in props of recipelist")
+      // console.log(props.data)
+      // console.log("The data in props of recipelist")
+      
       return(
         <div className="container">
             <div className="recipeListHeader" id="recipeListHeader"> &#8205; Recipe Book</div>

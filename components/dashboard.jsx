@@ -4,9 +4,10 @@ import RecipeList from "./RecipeList"
 import RecipeDetail from "./RecipeDetail"
 import ShoppingList from "./ShoppingList"
 
+//Parse click event of recipe list item to deliver id from the db then pas into the variable
+
 const dashboard = (props) => {
-  // let arr = [{"id":"1", "city":"Balt"},{"id":"2", "city":"Tokyo" }]
-  // console.log(props.whatever)
+  let idFromRecipeList = "temp"
   return (
     <React.Fragment>
       <div className="layout">
@@ -17,7 +18,7 @@ const dashboard = (props) => {
           <RecipeList data = { props.whatever }/>
         </div>
         <div className="recipeDetail">
-          <RecipeDetail />
+          <RecipeDetail data = {props.whatever} id = {idFromRecipeList}/>
         </div>
         <div className="shopping">
           <ShoppingList />
