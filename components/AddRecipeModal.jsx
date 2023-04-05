@@ -115,48 +115,76 @@ function AddRecipeModal(){
     const [text2, setText2] = React.useState('');
     const [err, setErr] = React.useState(false);
     const [err2, setErr2] = React.useState(false);
+    const [err3, setErr3] = React.useState(false);
     const [help, setHelp] = React.useState('');
     const [help2, setHelp2] = React.useState('');
+    const [help3, setHelp3] = React.useState('');
 
     const handlechange = (event) => {
-      const regex = /^\d*\.?\d{0,2}$/g;
-      if (event.target.value === "" || regex.test(event.target.value)) {
-        setNum(event.target.value);
-      }
-    //   else
-    //   {
-    //     setNum("")
-    //   }
-      
-    };
-
-    const handleText = (Eve) => {
-        const regex = /[^a-zA-Z0-9\s]/g;
-        if (!(regex.test(Eve.target.value))) {
-            setText(Eve.target.value);
-            setErr(false);
-            setHelp("");
-          }
+        const regex = /^\d*\.?\d{0,2}$/g;
+        if (regex.test(event.target.value)) 
+        {  
+            setNum(event.target.value);
+            setErr3(false);
+            setHelp3("");
+            
+        }
         else
         {
+             setErr3(true);
+             setHelp3("Invalid_Character");
+        }
+        //check text2 against regex values in the
+        //case of copy/paste injections
+    };
+    const handlechangeKeyPress = (event) => {
+        const regex = /[^\d\.]$/g;
+        if (regex.test(event.key))
+        {
+            event.preventDefault();
+            setErr3(true);
+            setHelp3("Invalid_Character");
+        }
+    }
+
+    const handleText = (Eve) => {
+        setText(Eve.target.value);
+        //check text2 against regex values in the
+        //case of copy/paste injections
+    };
+    const handleTextKeyPress = (Eve) => {   
+        const regex = /[^a-zA-Z0-9\s]/g;
+        if (regex.test(Eve.key)) 
+        {
+            Eve.preventDefault();
             setErr(true);
             setHelp("Invalid_Character");
+        } 
+        else
+        {
+            setErr(false);
+            setHelp("");
         }
-          
     };
 
     const handletext = (eve) => {
+        setText2(eve.target.value);
+        //check text2 against regex values in the
+        //case of copy/paste injections
+    };
+    const handletextKeyPress = (eve) => {  
         const regex = /[^a-zA-Z0-9\s]/g;
-        if (!(regex.test(eve.target.value))) {
-            setText2(eve.target.value);
-            setErr2(false);
-            setHelp2("");
-          }
-        else
+        if (regex.test(eve.key))         
         {
+            eve.preventDefault();
             setErr2(true);
             setHelp2("Invalid_Character");
         }
+        else {
+            setErr2(false);
+            setHelp2("");
+        }
+
           
     };
     //
@@ -201,9 +229,9 @@ function AddRecipeModal(){
                         </DialogContent>
                     </Grid>
                 <DialogContent className="ingredContainerAM">
-                    <Autocomplete  sx={{"& label":{top:".35rem"}}} className="generalAM ingredAM" freeSolo={true}  options={pantryItems} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
-                    <TextField sx={{"& label":{top:".35rem"}}} className="generalAM qtyAM" data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} value={num}></TextField>
-                    <Autocomplete sx={{"& label":{top:".35rem"}}} className="generalAM measurementAM" freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
+                    <Autocomplete  sx={{"& label":{top:".35rem"}}} className="generalAM ingredAM" freeSolo={true}  options={pantryItems} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} onKeyPress={(eve) => handletextKeyPress(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
+                    <TextField sx={{"& label":{top:".35rem"}}} className="generalAM qtyAM" data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} onKeyPress={(event => handlechangeKeyPress(event))} value={num}></TextField>
+                    <Autocomplete sx={{"& label":{top:".35rem"}}} className="generalAM measurementAM" freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} onKeyPress={(Eve) => handleTextKeyPress(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
                     <Button sx={{"& label":{top:".35rem"}}} className="generalBtnBlue addIngredAM" data-testid="add">Add</Button>
                 </DialogContent>
                     <Typography className="generalAM ingredBoxAM" data-testid="display" >Ingredients displayed here:</Typography>
