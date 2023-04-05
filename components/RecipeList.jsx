@@ -5,6 +5,9 @@ import AddRecipeModal from './AddRecipeModal'
 const GetRecipeNames = (props) =>{
 //const RecipeList = () =>{
 
+// PASSING TESTS BECAUSE OF THIS using the fallback option for .map()
+//https://stackoverflow.com/questions/54257985/type-error-cannot-read-property-map-of-undefined
+
       //const {Recipes} = this.state;
       console.log(props.data)
       console.log("The data in props of recipelist")
@@ -13,7 +16,7 @@ const GetRecipeNames = (props) =>{
             <div className="recipeListHeader" id="recipeListHeader"> &#8205; Recipe Book</div>
             <div className="listContainer"id="listContainer">
                 {
-                  props.data.map(list => (
+                  (props.data || []).map(list => (
                     <>
                     <div className="outerRecipeContainer"id="outerRecipeContainer">
                       <button key={list.id} className="recipeContainer" id="recipeContainer">
