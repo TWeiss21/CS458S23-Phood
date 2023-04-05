@@ -229,7 +229,7 @@ function AddRecipeModal(){
                         </DialogContent>
                     </Grid>
                 <DialogContent className="ingredContainerAM">
-                    <Autocomplete  sx={{"& label":{top:".35rem"}}} className="generalAM ingredAM" freeSolo={true}  options={pantryItems} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} onKeyPress={(eve) => handletextKeyPress(eve)} value={text2} value={text2}/>} data-testid="ingr"></Autocomplete>
+                    <Autocomplete  sx={{"& label":{top:".35rem"}}} className="generalAM ingredAM" freeSolo={true}  options={pantryItems} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} onKeyPress={(eve) => handletextKeyPress(eve)} value={text2}/>} data-testid="ingr"></Autocomplete>
                     <TextField sx={{"& label":{top:".35rem"}}} className="generalAM qtyAM" data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} onKeyPress={(event => handlechangeKeyPress(event))} value={num}></TextField>
                     <Autocomplete sx={{"& label":{top:".35rem"}}} className="generalAM measurementAM" freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} onKeyPress={(Eve) => handleTextKeyPress(Eve)} value={text}/>}data-testid="msr" ></Autocomplete>
                     <Button sx={{"& label":{top:".35rem"}}} className="generalBtnBlue addIngredAM" data-testid="add">Add</Button>
