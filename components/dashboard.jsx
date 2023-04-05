@@ -6,7 +6,7 @@ import ShoppingList from "./ShoppingList"
 
 const dashboard = (props) => {
   // let arr = [{"id":"1", "city":"Balt"},{"id":"2", "city":"Tokyo" }]
-  console.log(props.whatever)
+  // console.log(props.whatever)
   return (
     <React.Fragment>
       <div className="layout">
@@ -14,7 +14,7 @@ const dashboard = (props) => {
           <Header />
         </div>
         <div className="recipeList">
-          <RecipeList />
+          <RecipeList data = { props.whatever }/>
         </div>
         <div className="recipeDetail">
           <RecipeDetail />
