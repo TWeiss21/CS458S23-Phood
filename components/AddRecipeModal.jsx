@@ -7,27 +7,6 @@ import dynamic from 'next/dynamic'
 import fetch from 'isomorphic-fetch'
 const pantry = require('../mocks/pantryData.json')
 
-//const bodyParser = require("body-parser");
-
-// function handleSubmit() {
-//     //const [count, setCount] = useState(0);
-
-//     //event.preventDefault();
-
-//     const data = new FormData(document.getElementById('sample-form'));
-
-//     const value = data.get("nameentr");
-
-//     const form = document.querySelector('sample-form');
-//     if (value){
-//         value.addEventListener('SAVE', handleSubmit);
-//         console.log({ value });
-//     }
-
-    
-
-// }
-
 var pantryItems = []
 pantry.forEach(i => pantryItems.push(i.name))
 
@@ -53,6 +32,7 @@ function AddRecipeModal(){
     const [text2, setText2] = React.useState('');
     const [err, setErr] = React.useState(false);
     const [err2, setErr2] = React.useState(false);
+    const [err3, setErr3] = React.useState(false);
     const [help, setHelp] = React.useState('');
     const [help2, setHelp2] = React.useState('');
     const [help3, setHelp3] = React.useState('');
@@ -74,21 +54,6 @@ function AddRecipeModal(){
     const handleStepsChange = (e) => {
         setSteps(e.target.value);
     };
-
-    // const handleChange = (e) => {
-    //     var { name, value } = e.target;
-    //     var { desc, value } = e.target;
-    //     var { steps, value } = e.target;
-    //     //const { desc, value2 } = e.target;
-    //     setFormData((_formData) => (
-    //         {  [name]: value },
-    //         { [desc]: value },
-    //         { [steps]: value }
-    //         ));
-    //     console.log(name.value);
-    //     //console.log(value2);
-    //     //console.log(value3);
-    // };
 
     const handlechange = (event) => {
         const regex = /^\d*\.?\d{0,2}$/g;
@@ -122,14 +87,14 @@ function AddRecipeModal(){
         //check text2 against regex values in the
         //case of copy/paste injections
     };
-    const handleTextKeyPress = (Eve) => {   
+    const handleTextKeyPress = (Eve) => {
         const regex = /[^a-zA-Z0-9\s]/g;
-        if (regex.test(Eve.key)) 
+        if (regex.test(Eve.key))
         {
             Eve.preventDefault();
             setErr(true);
             setHelp("Invalid_Character");
-        } 
+        }
         else
         {
             setErr(false);
@@ -142,9 +107,9 @@ function AddRecipeModal(){
         //check text2 against regex values in the
         //case of copy/paste injections
     };
-    const handletextKeyPress = (eve) => {  
+    const handletextKeyPress = (eve) => {
         const regex = /[^a-zA-Z0-9\s]/g;
-        if (regex.test(eve.key))         
+        if (regex.test(eve.key))
         {
             eve.preventDefault();
             setErr2(true);
@@ -259,7 +224,7 @@ function AddRecipeModal(){
                     </Grid>
                 <DialogContent className="ingredContainerAM">
                     <Autocomplete  sx={{"& label":{top:".35rem"}}} className="generalAM ingredAM" freeSolo={true}  options={pantryItems} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} onKeyPress={(eve) => handletextKeyPress(eve)} value={text2}/>} data-testid="ingr" id="ingr"></Autocomplete>
-                    <TextField sx={{"& label":{top:".35rem"}}} className="generalAM qtyAM" data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} onKeyPress={(event => hanglechangeKeyPress(event))} value={num} id="quant"></TextField>
+                    <TextField sx={{"& label":{top:".35rem"}}} className="generalAM qtyAM" data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} onKeyPress={(event => handlechangeKeyPress(event))} value={num} id="quant"></TextField>
                     <Autocomplete sx={{"& label":{top:".35rem"}}} className="generalAM measurementAM" freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} onKeyPress={(Eve) => handleTextKeyPress(Eve)} value={text}/>}data-testid="msr" id="msr"></Autocomplete>
                     <Button sx={{"& label":{top:".35rem"}}} className="generalBtnBlue addIngredAM" data-testid="add" onClick={handleAdd}>Add</Button>
                 </DialogContent>
