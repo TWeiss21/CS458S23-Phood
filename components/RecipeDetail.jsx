@@ -8,7 +8,7 @@ const RecipeDetail = (props) =>{
   // let DataArray = props.data
   // console.log(DataArray.findIndex(0))
   // console.log("The data in props of RecipeDetail")
-  console.log(props.id)
+  // console.log(props.id)
   return(
     <React.Fragment>
       <div className="recipeDetailContainer">

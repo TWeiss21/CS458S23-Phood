@@ -20,7 +20,7 @@ const GetRecipeNames = (props) =>{
                   (props.data || []).map(list => (
                     <>
                     <div className="outerRecipeContainer"id="outerRecipeContainer">
-                      <button key={list.id} className="recipeContainer" id="recipeContainer" onClick={props.onClick}>
+                      <button key={list.name} className="recipeContainer" id="recipeContainer" onClick={props.onClick}>
                         <div className="recipeListName" id="recipeListName">{list.name}</div>
                         <div className="recipeListLine" id="recipeListLine"></div>
                       </button><button className="listPlus" id="listPlus">&#43;</button>

@@ -13,7 +13,7 @@ const Dashboard = (props) => {
   //Functions
   function handleClick(){
     setData('updated data')
-    console.log('data set')
+    console.log(props.allRecipes)
   }
 
   let idFromRecipeList = "temp"
@@ -24,10 +24,10 @@ const Dashboard = (props) => {
           <Header />
         </div>
         <div className="recipeList">
-          <RecipeList data = { props.whatever } onClick={handleClick}/>
+          <RecipeList data = { props.allRecipes } onClick={handleClick}/>
         </div>
         <div className="recipeDetail">
-          <RecipeDetail data = {props.whatever} id = {idFromRecipeList} RecipeData={RecipeDetailsData}/>
+          <RecipeDetail data = {props.allRecipes} id = {idFromRecipeList} RecipeData={RecipeDetailsData}/>
         </div>
         <div className="shopping">
           <ShoppingList />
