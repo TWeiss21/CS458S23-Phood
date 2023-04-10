@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect, useState } from 'react'
-import {Button, Dialog, Card, DialogTitle, DialogContent, Container, onSubmit, onChange, formData} from "@mui/material";
+import React, { Component, useEffect, useState } from 'react'
+import { Dialog, Button, Typography, Card, Autocomplete, Select, DialogTitle, DialogContent, autocompleteClasses, Container, onSubmit, onChange, formData} from "@mui/material";
+import TextField from "@mui/material/TextField"
+import Grid from "@mui/material/Grid"
 
 const NewApiModal = (props) =>{
 
@@ -28,23 +30,21 @@ const NewApiModal = (props) =>{
             <Button data-testid="openModal" onClick={handleOpen}>Add Premade Recipe</Button>
                 <div>
                 <Dialog open={show}>
-                    <div className="container">
-                        <div className="recipeListHeader" id="recipeListHeader"> &#8205; Recipe Book</div>
-                        <div className="listContainer"id="listContainer">
-                            {
-                            (props.data || []).map(list => (
-                                <>
-                                <div className="outerRecipeContainer"id="outerRecipeContainer">
-                                <button key={list.id} className="recipeContainer" id="recipeContainer">
-                                    <div className="recipeListName" id="recipeListName">{list.name}</div>
-                                    <div className="recipeListLine" id="recipeListLine"></div>
-                                </button><button className="listPlus" id="listPlus">&#43;</button>
-                                </div>
-                                </>
-                            ))
-                            }
-                        </div>
-                    </div>
+                    <DialogContent className="container">
+                        <DialogTitle className="headerAM">
+                            <Card data-testid="title">Add Premade Recipe</Card>
+                            <Button className="generalBtnBlue BtnAM" onClick={handleClose} data-testid="closebtn">Close</Button>
+                        </DialogTitle>
+                        <DialogContent className="formContainerAM">
+                            <DialogContent>
+                                <Button>
+                                    <Card >Food</Card>
+                                    <Card>line</Card>
+                                </Button>
+                                <Button className="listPlus" id="listPlus">&#43;</Button>
+                            </DialogContent>
+                        </DialogContent>
+                    </DialogContent> 
                 </Dialog>
                 </div>
             </div>
