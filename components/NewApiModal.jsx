@@ -25,7 +25,7 @@ const NewApiModal = (props) =>{
     } else {
     return (
             <div>
-            <Button className="generalBtn addRecipeBtn moveright" data-testid="openModal" onClick={handleOpen}>Quick Add</Button>
+            <Button className="generalBtn addRecipeBtn moveright" data-testid="openModalNew" onClick={handleOpen}>Quick Add</Button>
                 <div>
                 <Dialog open={show} fullWidth={true} maxWidth={"md"}>
                         <DialogTitle className="headerNAM">
