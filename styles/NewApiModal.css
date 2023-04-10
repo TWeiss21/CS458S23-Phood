@@ -1,0 +1,118 @@
+.generalNAM{ 
+    border-radius: 5px !important;
+    background-color: #fbd2a4!important;
+}
+.headerNAM{
+    width:100%;
+    left:0;
+    margin-top: 0!important;
+    padding-top:0!important;
+    background-color: #FD9E02!important;
+    display: flex!important;
+    justify-content: flex-end!important;
+}
+
+.titleNAM {
+    position: absolute !important;
+    margin-right:32% !important;
+    background-color: #126782 !important;
+    color:#8ECAE6 !important;
+    font-weight: bolder !important;
+    padding-top: 2% !important;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+    border-radius: 25px !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    height:50px !important;
+}
+
+.BtnNAM{
+    margin-top: 3%!important;
+    margin-right: 1%!important;
+    width: 15%!important; 
+    font-size: x-small!important;
+    border-width: 5px!important;
+    padding-top:3px!important;
+    padding-bottom:3px!important;
+}
+
+.formContainerNAM{
+    background-color: #fbd2a4!important;
+}
+
+.listPlusNAM { /*causing list to be super seperated*/
+    float: right!important;
+    position: relative!important;
+    display: flex!important;
+    justify-content: flex-start!important;
+    bottom:80px!important;
+    width: 30px!important;
+    height: 30px!important;
+    margin-right: 8%!important;
+    top: -80px!important;
+    background-color: transparent!important;
+    border:none!important;
+    font-size:50px!important;
+    font-weight: bolder!important;
+    cursor:pointer!important;
+    color:#023047!important;
+  }
+  .listPlusNAM:hover{
+    color: #ffac3d!important;
+    transition:.3s!important;
+  }
+  .listPlusNAM:active{
+    color: #ffdeb2!important;
+    transform: .3s!important;
+  } 
+
+  .recipeListLineNAM {
+    background-color:#023047!important;
+    width:60%!important;
+    height:0px!important;
+    border: solid!important;
+    border-radius: 50px!important;
+    border-color: #023047!important;
+  }
+
+  /*Individual container that holed each recipe*/
+  .outerRecipeContainerNAM{
+    padding-left:20px!important;
+    padding-right:20px!important;
+    padding-bottom:10px!important;
+    background-color: transparent!important;
+  }
+  .recipeContainerNAM {
+    background-color: #b5e3f0!important;
+    border: solid!important;
+    border-color: #023047!important;
+    border-radius: 10px!important;
+    width: 100%!important;
+    min-height: 70px!important;
+    padding: 8px!important;
+    padding-bottom: 40px!important;
+    /* cursor:pointer!important; */
+  }
+    /**CSS for if the recipe needs to be turned into a button**/
+  /* .recipeContainerNAM:hover{
+    background-color: #219ebc!important;
+    transition:.3s!important;
+  }
+  .recipeContainerNAM:focus{
+    background-color: #ffdeb2!important;
+    transform: .3s!important;
+  }
+  .recipeContainerNAM:active{
+    background-color: #ffac3d!important;
+    transform: .3s!important;
+  } */
+
+    /*Individual elements that display the recipe*/
+    .recipeListNameNAM {
+        text-align: left!important;
+        background-color: transparent!important;
+        overflow-x: hidden!important;
+        width: 80%!important;
+        font-size: 25px!important;
+      }

@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { Component, useEffect, useState } from 'react'
 import { Dialog, Button, Typography, Card, Autocomplete, Select, DialogTitle, DialogContent, autocompleteClasses, Container, onSubmit, onChange, formData} from "@mui/material";
-import TextField from "@mui/material/TextField"
-import Grid from "@mui/material/Grid"
 
 const NewApiModal = (props) =>{
 
@@ -29,22 +27,24 @@ const NewApiModal = (props) =>{
             <div>
             <Button data-testid="openModal" onClick={handleOpen}>Add Premade Recipe</Button>
                 <div>
-                <Dialog open={show}>
-                    <DialogContent className="container">
-                        <DialogTitle className="headerAM">
-                            <Card data-testid="title">Add Premade Recipe</Card>
-                            <Button className="generalBtnBlue BtnAM" onClick={handleClose} data-testid="closebtn">Close</Button>
+                <Dialog open={show} fullWidth={true} maxWidth={"md"}>
+                        <DialogTitle className="headerNAM">
+                            <Card className="titleNAM" data-testid="title">Add Premade Recipe</Card>
+                            <Button className="generalBtnBlue BtnNAM" onClick={handleClose} data-testid="closebtn">Close</Button>
                         </DialogTitle>
-                        <DialogContent className="formContainerAM">
+                        <DialogContent className="formContainerNAM">
+                            {/*Loop recipes in the Dialog Content below*/}
                             <DialogContent>
-                                <Button>
-                                    <Card >Food</Card>
-                                    <Card>line</Card>
-                                </Button>
-                                <Button className="listPlus" id="listPlus">&#43;</Button>
+                                {/*the individual recipe container*/}
+                                <div className="outerRecipeContainerNAM">
+                                    <div className="recipeContainerNAM">
+                                        <div className="recipeListNameNAM">Food</div>
+                                        <div className = "recipeListLineNAM"></div>
+                                    </div>
+                                    <button className="listPlusNAM">&#43;</button>
+                                </div>
                             </DialogContent>
                         </DialogContent>
-                    </DialogContent> 
                 </Dialog>
                 </div>
             </div>
