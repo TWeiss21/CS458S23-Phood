@@ -210,7 +210,7 @@ function AddRecipeModal(){
     
     return (
             <div>
-            <Button data-testid="openModal" onClick={handleOpen}>Add Recipe</Button>
+            <Button className="generalBtn addRecipeBtn"  data-testid="openModal" onClick={handleOpen}>Add Recipe</Button>
                 <div>
              <Dialog open={show}>
              <form onSubmit={handleSubmit} data-testid="form">

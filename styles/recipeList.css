@@ -1,3 +1,7 @@
+.moveright{
+  left: 50% !important;
+}
+
 .container{
   position:relative;
   height:100%;
@@ -35,9 +39,9 @@
 
   /*Individual container that holed each recipe*/
   .outerRecipeContainer{
+    position: relative;
     padding-left:20px;
     padding-right:20px;
-    padding-bottom:3px;
     background-color: transparent;
   }
   .recipeContainer {
@@ -116,9 +120,12 @@
   }
 
   .addRecipeBtn{
-    position:absolute;
-    top: 85%;
-    padding-left: 80px;
-    padding-right: 80px;
+    position:absolute !important;
+    top: 85%!important;
+    margin-left: 0 !important;
+    padding-left: 80px!important;
+    padding-right: 80px!important;
+    font-size: small !important;
+    width:40% !important;
   }
   
