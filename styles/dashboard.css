@@ -3,6 +3,9 @@ body{
     font-family: DejaVu Sans Mono, monospace;
     font-weight: 900;
   }
+  div{
+    color:#023047;
+  }
   .centered{
     display: flex;
     justify-content: center;
@@ -69,25 +72,28 @@ body{
   create additional classes to tweak size of button
   This is the general format that all btns should have*/
   .generalBtn{
-    background-color: #fd9e02;
-    border:solid;
-    border-color: #023047;
-    border-width: 8px;
-    padding:10px;
-    padding-left:30px;
-    padding-right:30px;
-    border-radius: 50px;
-    text-align: center;
-    font-size:x-large;
-    cursor:pointer;
+    background-color: #fd9e02!important;
+    border:solid!important;
+    border-color: #023047!important;
+    border-width: 8px!important;
+    padding:10px!important;
+    padding-left:30px!important;
+    padding-right:30px!important;
+    border-radius: 50px!important;
+    text-align: center!important;
+    font-size:x-large!important;
+    cursor:pointer!important;
+    color:#023047 !important;
+    font-family: DejaVu Sans Mono, monospace !important;
+    font-weight: 900 !important;
   }
   .generalBtn:hover{
-    background-color: #ffdeb2;
-    transition:.3s;
+    background-color: #ffdeb2!important;
+    transition:.3s!important;
   }
   .generalBtn:active{
-    background-color: #aa5610;
-    transition:.3s;
+    background-color: #aa5610!important;
+    transition:.3s!important;
   }
 
   .generalBtnBlue{
@@ -102,7 +108,10 @@ body{
     border-radius: 50px!important;
     text-align: center!important;
     font-size:x-large!important;
-    cursor:pointer!important;
+    cursor:pointer!important;    
+    color:#023047 !important;
+    font-family: DejaVu Sans Mono, monospace !important;
+    font-weight: 900 !important;
   }
   .generalBtnBlue:hover{
     background-color: #b5e3f0!important;
