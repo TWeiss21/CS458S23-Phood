@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Header from "./Header"
 import RecipeList from "./RecipeList"
 import RecipeDetail from "./RecipeDetail"
@@ -6,7 +6,16 @@ import ShoppingList from "./ShoppingList"
 
 //Parse click event of recipe list item to deliver id from the db then pas into the variable
 
-const dashboard = (props) => {
+const Dashboard = (props) => {
+  
+  //Componenet state
+  const [RecipeDetailsData, setData] = useState("RecipeDetails should be blank until something is clicked")
+  //Functions
+  function handleClick(){
+    setData('updated data')
+    console.log('data set')
+  }
+
   let idFromRecipeList = "temp"
   return (
     <React.Fragment>
@@ -15,10 +24,10 @@ const dashboard = (props) => {
           <Header />
         </div>
         <div className="recipeList">
-          <RecipeList data = { props.whatever }/>
+          <RecipeList data = { props.whatever } onClick={handleClick}/>
         </div>
         <div className="recipeDetail">
-          <RecipeDetail data = {props.whatever} id = {idFromRecipeList}/>
+          <RecipeDetail data = {props.whatever} id = {idFromRecipeList} RecipeData={RecipeDetailsData}/>
         </div>
         <div className="shopping">
           <ShoppingList />
@@ -28,4 +37,4 @@ const dashboard = (props) => {
   );
 }
 
-export default dashboard;
+export default Dashboard;
