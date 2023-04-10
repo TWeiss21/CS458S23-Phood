@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Recipes from '../mocks/Recipes.js'
 import AddRecipeModal from './AddRecipeModal'
+import Nugget from './TheNugget'
 
 const GetRecipeNames = (props) =>{
 //const RecipeList = () =>{
@@ -17,16 +18,17 @@ const GetRecipeNames = (props) =>{
             <div className="recipeListHeader" id="recipeListHeader"> &#8205; Recipe Book</div>
             <div className="listContainer"id="listContainer">
                 {
-                  (props.data || []).map(list => (
+                  (props.data || []).map(list => ( 
                     <>
-                    <div className="outerRecipeContainer"id="outerRecipeContainer">
-                      <button key={list.name} className="recipeContainer" id="recipeContainer" onClick={props.onClick}>
+                    <Nugget/>
+                    {/* <div key={list.name} className="outerRecipeContainer"id="outerRecipeContainer">
+                      <button className="recipeContainer" id="recipeContainer" onClick={props.onClick}>
                         <div className="recipeListName" id="recipeListName">{list.name}</div>
                         <div className="recipeListLine" id="recipeListLine"></div>
                       </button><button className="listPlus" id="listPlus">&#43;</button>
-                    </div>
+                    </div> */}
                     </>
-                  ))
+                  ), props.name)
                 }
             </div>
             <div className="addRecipeBtnContainer" id="addRecipeBtnContainer">
