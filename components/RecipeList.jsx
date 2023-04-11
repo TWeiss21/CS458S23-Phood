@@ -17,6 +17,7 @@ const GetRecipeNames = (props) =>{
             <div className="recipeListHeader" id="recipeListHeader"> &#8205; Recipe Book</div>
             <div className="listContainer"id="listContainer">
                 {
+                  //loops through each recipe that is in the db
                   (props.data || []).map(list => (
                     <>
                     <div className="outerRecipeContainer"id="outerRecipeContainer">

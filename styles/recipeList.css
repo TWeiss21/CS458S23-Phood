@@ -7,7 +7,7 @@
   height:100%;
   width:100%;
 }
-
+/*The box that holds the header*/
 .recipeListHeader{
     background-color:#219ebc;
     display: inline-block;
@@ -77,6 +77,7 @@
     font-size: 25px;
   }
   
+  /*Plus sign that addeds the recipe and ingredients to the shopping list*/
   .listPlus { /*causing list to be super seperated*/
     float: right;
     position: relative;
@@ -101,7 +102,6 @@
     color: #ffdeb2;
     transform: .3s;
   }
-
   .recipeListLine {
     background-color:#023047;
     width:60%;
@@ -118,7 +118,6 @@
     margin-left: 5%;
     margin-top: 8%;
   }
-
   .addRecipeBtn{
     position:absolute !important;
     top: 85%!important;

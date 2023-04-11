@@ -1,7 +1,10 @@
+/*Modal background container*/
 .generalNAM{ 
     border-radius: 5px !important;
     background-color: #fbd2a4!important;
 }
+
+/*Modal header container*/
 .headerNAM{
     width:100%;
     left:0;
@@ -11,7 +14,6 @@
     display: flex!important;
     justify-content: flex-end!important;
 }
-
 .titleNAM {
     position: absolute !important;
     margin-right:32% !important;
@@ -27,6 +29,7 @@
     height:50px !important;
 }
 
+/*Close btn*/
 .BtnNAM{
     margin-top: 3%!important;
     margin-right: 1%!important;
@@ -37,10 +40,12 @@
     padding-bottom:3px!important;
 }
 
+/*Background container for the rest of the modal*/
 .formContainerNAM{
     background-color: #fbd2a4!important;
 }
 
+/*Plus sign that allows recipe to be added to recipe list on dashboard*/
 .listPlusNAM { /*causing list to be super seperated*/
     float: right!important;
     position: relative!important;
@@ -66,7 +71,6 @@
     color: #ffdeb2!important;
     transform: .3s!important;
   } 
-
   .recipeListLineNAM {
     background-color:#023047!important;
     width:60%!important;
