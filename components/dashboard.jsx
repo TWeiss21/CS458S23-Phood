@@ -13,8 +13,12 @@ const Dashboard = (props) => {
   //Functions
   function handleClick(id){
     //TODO lock down array
-    setData(props.allRecipes[id-1].name)
-    console.log(props.allRecipes[id].name)
+    let RecipesDataArr = []
+    RecipesDataArr.push(props.allRecipes[id-1].name)
+    RecipesDataArr.push(props.allRecipes[id-1].description)
+    RecipesDataArr.push(props.allRecipes[id-1].steps)
+    setData(RecipesDataArr)
+    // console.log(props.allRecipes[id].name)
   }
 
   let idFromRecipeList = "temp"
