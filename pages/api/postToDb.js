@@ -14,7 +14,8 @@ export default async function handler(_req, res) {
       
       //json_data = JSON.stringify(_req.body);
       db.run(
-        'INSERT INTO recipes (name, description, steps) VALUES (?, ?, ?)',
+        'INSERT INTO recipes (userId, name, description, steps) VALUES (?, ?, ?, ?)',
+        1,
         json_data[0].name,
         json_data[0].desc,
         json_data[0].steps,

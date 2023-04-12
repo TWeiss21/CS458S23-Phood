@@ -4,6 +4,15 @@ import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import RecipeList from '@/components/dashboard'
 import {expect, jest, test} from '@jest/globals'
+//const sqlite3 = require('sqlite3');
+//const sqlite3Mem = require('sqlite3-mem');
+//const fetchMock = require('jest-fetch-mock');
+//const myModule = require('/components/AddRecipeModal');
+
+//fetchMock.enableMocks();
+
+// const db = new sqlite3.Database(':memory:');
+// sqlite3Mem.patchDatabase(db);
 
 describe('AddRecipeModal', () => {
     it('should render the AddRecipeModal button and open it', async () => {
@@ -52,24 +61,8 @@ describe('AddRecipeModal', () => {
         await userEvent.type(autocomplete, '{enter}');
         // check the new value of the input field
         expect(autocomplete).toHaveValue("teaspoon")
-        });
-    
-    // it('should save user input when form is submitted', async () => {
-    //     render(<RecipeList />);
-    //     const modal = screen.getByTestId("openModal");
-    //     fireEvent.click(modal);
-
-    //     const nameInput = screen.getByLabelText(/Name/);
-    //     const descInput = screen.getByLabelText(/Description/);
-
-    //     fireEvent.change(nameInput, { target: {value: 'Quiche'} });
-    //     fireEvent.change(descInput, { target: {value: 'This is a description'} });
-
-    //     fireEvent.submit(screen.getByTestId("form"));
-
-    //     expect(nameInput).toHaveValue('Quiche');
-    //     expect(descInput).toHaveValue('This is a description');
-    //     });
+        autocomplete.clear;
+    });
 
     it('Should not allow user to input an invalid character or extra characters', async () => {
         render(<RecipeList/>);
@@ -84,6 +77,7 @@ describe('AddRecipeModal', () => {
         await userEvent.type(quants, '-3132..')
         quants.focus;
         expect(quants).toHaveValue('3132.')
+        quants.clear;
     });
 
     it('Should display error on typing of special characters', async () => {
@@ -102,5 +96,63 @@ describe('AddRecipeModal', () => {
         ingreds.focus;
         expect(ingreds).toBeInvalid(true);
 
+        measured.clear;
+        ingreds.clear;
+
     });
+
+    it('Should return an error if fields are null', async () => {
+
+        render(<RecipeList/>);
+        const modal = screen.getByTestId("openModal");
+        fireEvent.click(modal);
+
+        const measured = screen.getByLabelText(/Measure/);
+        const ingreds = screen.getByLabelText(/Ingredient/);
+        const num = screen.getByLabelText(/#/);
+        const Name = screen.getByTestId("nameentr");
+        const Save = screen.getByTestId("savebtn");
+        const Description = screen.getByTestId("descr");
+        const Steps = screen.getByTestId("steps");
+        const add = screen.getByTestId("add");
+
+        measured.value = null;
+        ingreds.value = null;
+        num.value = null;
+        Name.value = null;
+        Description.value = null;
+        Steps.value = null;
+
+        fireEvent.click(add);
+        fireEvent.click(Save);
+
+        expect(() => {
+            handleAdd(null);
+        }).toThrow();
+
+    });
+
+    // it('Should post user input successfully', async () => {
+    //     //Mock request
+    //     const requestData = {
+    //         name: 'turnips'
+    //     };
+
+    //     // Mock AJAX response
+    //     fetchMock.mockOnce(JSON.stringify({ success: true}), {
+    //         status: 200,
+    //         headers: { 'Content-Type': 'application/json' }
+    //     });
+
+    //     //Call the function that makes AJAX POST
+    //     const response = await myModule.makeAjaxPostRequest(requestData);
+
+    //     //Assert response status
+    //     expect(fetchMock.mock.calls.length).toBe(1);
+    //     expect(fetchMock.mock.calls[0][0]).toBe('http://localhost:3000/api/postToPantry');
+    //     expect(fetchMock.mock.calls[0][1].method).toBe('POST');
+    //     expect(fetchMock.mock.calls[0][1].headers['Content-Type']).toBe('application/json');
+    //     expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual(requestData);
+    //     expect(response).toEqual({ success: true });
+    // });
 });

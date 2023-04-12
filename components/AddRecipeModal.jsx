@@ -12,6 +12,8 @@ pantry.forEach(i => pantryItems.push(i.name))
 
 function AddRecipeModal(){
 
+    //string myscript = " <script> function DupAlert() { alert('Cannot add. Item already exists.');}</script>";
+    //const [errorMessage, setErrorMessage] = useState("");
     const [initialRenderComplete, setInitialRenderComplete] = React.useState(false);
     // This useEffect will only run once, during the first render
     React.useEffect(() => {
@@ -19,6 +21,7 @@ function AddRecipeModal(){
         setInitialRenderComplete(true);
     }, []);
 
+    const [message, setMessage] = useState("");
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
     const [steps, setSteps] = useState('');
@@ -30,6 +33,9 @@ function AddRecipeModal(){
     const [num, setNum] = React.useState();
     const [text, setText] = React.useState('');
     const [text2, setText2] = React.useState('');
+    const [nameErr, setNameErr] = React.useState(false);
+    const [descErr, setDescErr] = React.useState(false);
+    const [stepErr, setStepErr] = React.useState(false);
     const [err, setErr] = React.useState(false);
     const [err2, setErr2] = React.useState(false);
     const [err3, setErr3] = React.useState(false);
@@ -123,18 +129,32 @@ function AddRecipeModal(){
           
     };
 
-    const handleAdd = async (eve) => {
-            eve.preventDefault();
+    const handleAdd = async () => {
 
             var name = document.getElementById('ingr').value;
             var msr = document.getElementById('msr').value;
             var quant = document.getElementById('quant').value;
+
+            if(!name)
+            {
+                setErr2(true);
+            }
+            if(!msr)
+            {
+                setErr(true);
+            }
+            if(!quant)
+            {
+                setErr3(true);
+            }
+            else{
+
             
             console.log('Measure: ', msr);
             console.log('Quantity: ', quant);
 
-            setDisplayTex({ingr,msr,quant});
-            var item = document.getElementById('display').value;
+            setDisplayTex(JSON.stringify[{ingr,msr,quant}]);
+            var item = JSON.stringify[{ingr,msr,quant}];
 
             console.log('Display Text: ', item);
 
@@ -142,17 +162,42 @@ function AddRecipeModal(){
             var ingr_data = JSON.stringify([{name}]);
             console.log(ingr_data);
 
+                try{
                     const req = await fetch('http://localhost:3000/api/postToPantry', {
                     method: 'POST', 
                     body: ingr_data
-                    })
-                    _req => req.json()
-                    data => console.log(data)
-                    console.error(err)
-
+                })
+                if (req.ok) {
+                    setMessage("Post request successful");
+                } else {
+                    setMessage("Cannot add. Duplicate item.");
+                }
+                } catch (err) {
+                    console.error(err);
+                    console.log("This is an error");
+                    setMessage("Cannot add.");
+                }  
+                // try{
+                //     const req2 = await fetch('http://localhost:3000/api/postToIngr', {
+                //         method: 'POST',
+                //         body: item
+                //     })
+                //     if(req2.ok) {
+                //         setMessage("Post request successful");
+                //     } } catch (err) {
+                //         console.error(err);
+                //         console.log("This is an error");
+                //     }
+                    
                     // Reset form values
+                    setText('');
                     setText2('');
-                
+                    setNum();
+                    //setMessage('');
+                    // setErr(false);
+                    // setErr2(false);
+                    // setErr3(false);
+            }
     };
 
     const handleSubmit = async (e) => {
@@ -162,7 +207,21 @@ function AddRecipeModal(){
             console.log('Description:', desc);
             console.log('Steps:', steps);
 
-            //Serialize the form data as JSON
+            if(!name)
+            {
+                setNameErr(true);
+            }
+            if(!desc)
+            {
+                setDescErr(true);
+            }
+            if(!steps)
+            {
+                setStepErr(true);
+            }
+            else
+            {
+                //Serialize the form data as JSON
             var json_data = JSON.stringify([{name, desc, steps}]);
             console.log(json_data);
 
@@ -179,7 +238,8 @@ function AddRecipeModal(){
             setName('');
             setDesc('');
             setSteps('');
-    };
+            };
+}
 
     //
     //Validate that no special characters are in textfields: " , - , + , basically all char
@@ -218,18 +278,19 @@ function AddRecipeModal(){
                     <Grid className="formGridAM">
                         <Button className="upImageAM" data-testid="uploadimg">upload image</Button>
                         <DialogContent className="nameDescContainerAM">
-                            <TextField sx={{"& label":{top:".35rem"}}}className="generalAM nameAM" data-testid="nameentr" label="Name" name="name" value={name} onChange={handleNameChange}></TextField>
-                            <TextField sx={{"& label":{top:".35rem"}}} className="generalAM descAM" multiline Value={multiline} onInput={(event => setMultiline(event.target.Value))} data-testid="descr" label="Description" name="description" onChange={handleDescChange} value={desc}></TextField>
+                            <TextField sx={{"& label":{top:".35rem"}}}className="generalAM nameAM" data-testid="nameentr" label="Name" name="name" value={name} error={nameErr} onChange={handleNameChange}></TextField>
+                            <TextField sx={{"& label":{top:".35rem"}}} className="generalAM descAM" multiline Value={multiline} onInput={(event => setMultiline(event.target.Value))} data-testid="descr" label="Description" name="description" error={descErr} onChange={handleDescChange} value={desc}></TextField>
                         </DialogContent>
                     </Grid>
                 <DialogContent className="ingredContainerAM">
                     <Autocomplete  sx={{"& label":{top:".35rem"}}} className="generalAM ingredAM" freeSolo={true}  options={pantryItems} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} onKeyPress={(eve) => handletextKeyPress(eve)} value={text2}/>} data-testid="ingr" id="ingr"></Autocomplete>
+                    {message && <div>{message}</div>}
                     <TextField sx={{"& label":{top:".35rem"}}} className="generalAM qtyAM" data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} onKeyPress={(event => handlechangeKeyPress(event))} value={num} id="quant"></TextField>
                     <Autocomplete sx={{"& label":{top:".35rem"}}} className="generalAM measurementAM" freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} onKeyPress={(Eve) => handleTextKeyPress(Eve)} value={text}/>}data-testid="msr" id="msr"></Autocomplete>
                     <Button sx={{"& label":{top:".35rem"}}} className="generalBtnBlue addIngredAM" data-testid="add" onClick={handleAdd}>Add</Button>
                 </DialogContent>
                     <Typography className="generalAM ingredBoxAM" data-testid="display" id="display" label="Display" name="disp" value={displayTex}>Ingredients displayed here:</Typography>
-                    <TextField sx={{"& label":{top:".35rem"}}} className="generalAM stepsAM" data-testid="steps" label="Steps" name="steps" value={steps} onChange={handleStepsChange}multiline Values={multiline2} onInput={event => setMultiline2(event.target.Values)}>Steps...</TextField>
+                    <TextField sx={{"& label":{top:".35rem"}}} className="generalAM stepsAM" data-testid="steps" label="Steps" name="steps" value={steps} error={stepErr} onChange={handleStepsChange}multiline Values={multiline2} onInput={event => setMultiline2(event.target.Values)}>Steps...</TextField>
                 </DialogContent>
                 </form>
             </Dialog>
