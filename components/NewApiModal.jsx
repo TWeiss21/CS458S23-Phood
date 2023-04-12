@@ -40,6 +40,11 @@ const NewApiModal = (props) =>{
                                     <div className="recipeContainerNAM">
                                         <div className="recipeListNameNAM">Food</div>
                                         <div className = "recipeListLineNAM"></div>
+                                        <div className = "descNAM">Default</div>
+                                        <div className = "smDivLineNAM"></div>
+                                        <div className="ingredNAM">ingred</div>
+                                        <div className = "smDivLineNAM"></div>
+                                        <div className="stepsNAM">steps</div>
                                     </div>
                                     <button className="listPlusNAM">&#43;</button>
                                 </div>
