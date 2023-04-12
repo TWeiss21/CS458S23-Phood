@@ -11,9 +11,10 @@ const Dashboard = (props) => {
   //Componenet state
   const [RecipeDetailsData, setData] = useState("RecipeDetails should be blank until something is clicked")
   //Functions
-  function handleClick(){
-    setData('updated data')
-    console.log(props.allRecipes)
+  function handleClick(id){
+    //TODO lock down array
+    setData(props.allRecipes[id-1].name)
+    console.log(props.allRecipes[id].name)
   }
 
   let idFromRecipeList = "temp"

@@ -20,7 +20,7 @@ const GetRecipeNames = (props) =>{
                 {
                   (props.data || []).map(list => ( 
                     <>
-                    <Nugget recipeName={list.name} onClick={props.onClick}/>
+                    <Nugget id={list.id} recipeName={list.name} onClick={props.onClick}/>
                     {/* <div key={list.name} className="outerRecipeContainer"id="outerRecipeContainer">
                       <button className="recipeContainer" id="recipeContainer" onClick={props.onClick}>
                         <div className="recipeListName" id="recipeListName">{list.name}</div>
