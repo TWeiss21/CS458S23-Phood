@@ -1,5 +1,5 @@
 import React from 'react'
-// import Image from 'next/Image'
+//import Image from 'next/Image'
 // import ChickenNug from '../Images/ChickenNugs.jpg'
 
 

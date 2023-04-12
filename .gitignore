@@ -33,4 +33,4 @@ yarn-error.log*
 
 #ignore phooddb.sqlite
 /sqlitedb
-/sqlitedb/phooddb.sqlite
+/sqlitedb/phooddb.phood
