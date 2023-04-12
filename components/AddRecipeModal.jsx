@@ -168,7 +168,7 @@ function AddRecipeModal(){
                     body: ingr_data
                 })
                 if (req.ok) {
-                    setMessage("Post request successful");
+                    setMessage("");
                 } else {
                     setMessage("Cannot add. Duplicate item.");
                 }
