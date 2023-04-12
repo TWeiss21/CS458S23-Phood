@@ -1,6 +1,7 @@
 import React from 'react'
 //import Image from 'next/Image'
 // import ChickenNug from '../Images/ChickenNugs.jpg'
+import Nugget from "./TheNugget.jsx"
 
 
 const RecipeDetail = (props) =>{
