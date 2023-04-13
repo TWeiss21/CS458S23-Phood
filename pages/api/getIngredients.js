@@ -13,7 +13,7 @@ export default async function getAllRecipes(req,res){
         })
 
         //get the recipe info
-        const recipes = await db.all("SELECT * FROM recipes")
+        const recipes = await db.all("SELECT * FROM ingredients")
 
         //close the database
         await db.close()
