@@ -18,5 +18,7 @@ export default async function getAllRecipes(req,res){
         //close the database
         await db.close()
 
+
+        res.setHeader('Content-Type', 'application/json')
         res.status(200).json(recipes)
 }
