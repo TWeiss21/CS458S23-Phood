@@ -52,24 +52,8 @@ describe('AddRecipeModal', () => {
         await userEvent.type(autocomplete, '{enter}');
         // check the new value of the input field
         expect(autocomplete).toHaveValue("teaspoon")
-        });
-    
-    // it('should save user input when form is submitted', async () => {
-    //     render(<RecipeList />);
-    //     const modal = screen.getByTestId("openModal");
-    //     fireEvent.click(modal);
-
-    //     const nameInput = screen.getByLabelText(/Name/);
-    //     const descInput = screen.getByLabelText(/Description/);
-
-    //     fireEvent.change(nameInput, { target: {value: 'Quiche'} });
-    //     fireEvent.change(descInput, { target: {value: 'This is a description'} });
-
-    //     fireEvent.submit(screen.getByTestId("form"));
-
-    //     expect(nameInput).toHaveValue('Quiche');
-    //     expect(descInput).toHaveValue('This is a description');
-    //     });
+        autocomplete.clear;
+    });
 
     it('Should not allow user to input an invalid character or extra characters', async () => {
         render(<RecipeList/>);
@@ -84,6 +68,7 @@ describe('AddRecipeModal', () => {
         await userEvent.type(quants, '-3132..')
         quants.focus;
         expect(quants).toHaveValue('3132.')
+        quants.clear;
     });
 
     it('Should display error on typing of special characters', async () => {
@@ -101,6 +86,40 @@ describe('AddRecipeModal', () => {
         await userEvent.type(ingreds, 'as/');
         ingreds.focus;
         expect(ingreds).toBeInvalid(true);
+
+        measured.clear;
+        ingreds.clear;
+
+    });
+
+    it('Should return an error if fields are null', async () => {
+
+        render(<RecipeList/>);
+        const modal = screen.getByTestId("openModal");
+        fireEvent.click(modal);
+
+        const measured = screen.getByLabelText(/Measure/);
+        const ingreds = screen.getByLabelText(/Ingredient/);
+        const num = screen.getByLabelText(/#/);
+        const Name = screen.getByTestId("nameentr");
+        const Save = screen.getByTestId("savebtn");
+        const Description = screen.getByTestId("descr");
+        const Steps = screen.getByTestId("steps");
+        const add = screen.getByTestId("add");
+
+        measured.value = null;
+        ingreds.value = null;
+        num.value = null;
+        Name.value = null;
+        Description.value = null;
+        Steps.value = null;
+
+        fireEvent.click(add);
+        fireEvent.click(Save);
+
+        expect(() => {
+            handleAdd(null);
+        }).toThrow();
 
     });
 

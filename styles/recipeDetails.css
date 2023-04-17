@@ -1,3 +1,4 @@
+/*Detail container*/
 .recipeDetailContainer{
     overflow-y: scroll;
     height: 100%;
@@ -5,6 +6,8 @@
     padding:1%;
     margin-left:3%
 }
+
+/*Btn container that hold all btn at top*/
 .btnHolder{
     position:sticky;
     background-color: aqua;
@@ -42,6 +45,7 @@
     }
 }
 
+/*Grid that holds each field in the details*/
 .nameGrid{
     grid-area: name;
     background-color: transparent;
@@ -51,6 +55,7 @@
 .recipeDetailLineHeader{
     border-color:#fb8500;
 }
+/*image css*/
 .imageGrid{
     padding:20px;
     padding-left: 0px;
@@ -66,6 +71,7 @@
     border-width: 15px;
     border-color: #fb8500;
 }
+/*description css*/
 .descGrid{
     grid-area:desc;
     background-color: transparent;
@@ -85,7 +91,7 @@
     border-width:5px;
     border-color:#fb8500;
 }
-
+/*lays out ingre in 3 columns*/
 @media only screen and (min-width: 768px){
     .ingredientLayout{
       display: grid;
@@ -94,6 +100,7 @@
         'sec1 sec2 sec3';
     }
 }
+/*ingred css*/
 .ingredsec{
     padding:20px;
     text-align: center;
@@ -108,6 +115,7 @@
     grid-area:sec3;
 }
 
+/*steps css*/
 .stepGrid{
     grid-area:step;
     padding: 5%;

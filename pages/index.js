@@ -1,5 +1,5 @@
 import Dashboard from '../components/dashboard.jsx'
-import AddRecipeModal from '@/components/AddRecipeModal.jsx'
+// import AddRecipeModal from '@/components/AddRecipeModal.jsx'
 
 /*This is the function that actually gets the data from the server.
 With react you want to pull as much state/data as far up for managment by the program so that each
@@ -11,7 +11,7 @@ With react you want to pull as much state/data as far up for managment by the pr
 export const getServerSideProps = async () => {
 
     // Fetch will server side render from the http endpoint added
-    const res = await fetch('http://localhost:3000/api/getData')
+    const res = await fetch('http://localhost:3000/api/getRecipes')
     const data = await res.json()
     return {
         props: { recipes: data}
@@ -22,9 +22,9 @@ const Index = ({recipes}) =>
 {
     //TESTING array let arr = [{"id":"1", "name":"Balt"},{"id":"2", "name":"Tokyo" }]
         return ( 
-            <div>
-                <Dashboard whatever = { recipes }/>
-            </div>
+            
+                <Dashboard allRecipes = { recipes }/>
+            
         )
 }
 
