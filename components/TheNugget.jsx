@@ -5,28 +5,24 @@ const Nugget = (props)=>{
       props.onClick(id)
     }
 
-    /*const handleAddSL = async () => {
+    const handleAddSL = async () => {
       //get recipe info from btn
       let id = props.id;
+      let ingredients;
       //Get ingred from recipe
-      let query = 'http://localhost:3000/api/ingredientForSpecificRecipe?id=' + id;
+      let query = 'http://localhost:3000/api/getIngredientsForRecipes?id=' + id;
+
       try{
-        const req = await fetch(query, {
-        method: 'GET'
-      })
-      if (req.ok) {
-        setMessage("");
-      } else {
-          setMessage("Cannot get ingredients");
-      }
+        const res = await fetch(query,{method: 'POST'})
+        ingredients = await res.json()
       } catch (err) {
           console.error(err);
           console.log("This is an error");
-          setMessage("Cannot add.");
-      }  
-        //Post every ingred to db
+      }
+      console.log(ingredients)  
+      //Post every ingred to db
        //Serialize the form data as JSON
-       var item = JSON.stringify([{id, name, qty, measurement}]);
+       /*var item = JSON.stringify([{id, name, qty, measurement}]);
        console.log(item);
 
         try{
@@ -43,8 +39,8 @@ const Nugget = (props)=>{
             console.error(err);
             console.log("This is an error");
             setMessage("Cannot add.");
-        }  
-    }*/
+        }  */
+    }
 
   return(
   <div className="outerRecipeContainer"id="outerRecipeContainer">
