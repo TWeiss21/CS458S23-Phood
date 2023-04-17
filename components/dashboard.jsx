@@ -29,7 +29,7 @@ const Dashboard = (props) => {
           <Header />
         </div>
         <div className="recipeList">
-          <RecipeList data = { props.allRecipes } onClick={handleClick}/>
+          <RecipeList key={"item"} data = { props.allRecipes } onClick={handleClick}/>
         </div>
         <div className="recipeDetail">
           <RecipeDetail data = {props.allRecipes} id = {idFromRecipeList} RecipeData={RecipeDetailsData}/>
