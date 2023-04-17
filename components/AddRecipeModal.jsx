@@ -10,7 +10,7 @@ const pantry = require('../mocks/pantryData.json')
 var pantryItems = []
 pantry.forEach(i => pantryItems.push(i.name))
 
-function AddRecipeModal(){
+function AddRecipeModal(props){
 
     //string myscript = " <script> function DupAlert() { alert('Cannot add. Item already exists.');}</script>";
     //const [errorMessage, setErrorMessage] = useState("");
@@ -133,7 +133,10 @@ function AddRecipeModal(){
 
             var name = document.getElementById('ingr').value;
             var msr = document.getElementById('msr').value;
-            var quant = document.getElementById('quant').value;
+            var quant = document.getElementById('quant').value.toString();
+            //console.log(name, msr, quant);
+            let jsonString = `{"name": "${name}", "quant": "${quant}", "msr": "${msr}"}`
+            console.log("The JSON string: " + jsonString)
 
             if(!name)
             {
@@ -149,19 +152,23 @@ function AddRecipeModal(){
             }
             else{
 
-            
-            console.log('Measure: ', msr);
-            console.log('Quantity: ', quant);
+            // var msr_data = JSON.stringify[{msr}];
+            // console.log('Measure: '+ msr);
 
-            setDisplayTex(JSON.stringify[{ingr,msr,quant}]);
-            var item = JSON.stringify[{ingr,msr,quant}];
+            // var quant_data = JSON.stringify[{quant}];
+            // console.log('Quantity: '+ quant);
 
-            console.log('Display Text: ', item);
+
+            //setDisplayTex(JSON.stringify[{ingr,msr,quant}]);
 
             //Serialize the form data as JSON
-            var ingr_data = JSON.stringify([{name}]);
-            console.log(ingr_data);
+            // var ingr_data = JSON.stringify([{name}]);
+            // console.log('Ingredient: ', ingr);
 
+            // var item_data = ingr + quant + msr;
+            var item_data = JSON.parse(jsonString)
+            console.log('Display Text: ', item_data);
+            
                 try{
                     const req = await fetch('http://localhost:3000/api/postToPantry', {
                     method: 'POST', 
@@ -289,7 +296,20 @@ function AddRecipeModal(){
                     <Autocomplete sx={{"& label":{top:".35rem"}}} className="generalAM measurementAM" freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} onKeyPress={(Eve) => handleTextKeyPress(Eve)} value={text}/>}data-testid="msr" id="msr"></Autocomplete>
                     <Button sx={{"& label":{top:".35rem"}}} className="generalBtnBlue addIngredAM" data-testid="add" onClick={handleAdd}>Add</Button>
                 </DialogContent>
-                    <Typography className="generalAM ingredBoxAM" data-testid="display" id="display" label="Display" name="disp" value={displayTex}>Ingredients displayed here:</Typography>
+                    <Typography className="generalAM ingredBoxAM" data-testid="display" id="display" label="Display" name="disp" value={displayTex}>
+                        {
+                    (props.items || []).map(list => (
+                    <>
+                    <div className="outerRecipeContainer"id="outerRecipeContainer">
+                      <button key={list.id} className="recipeContainer" id="recipeContainer">
+                        <div className="recipeListName" id="recipeListName">{list.name}</div>
+                        <div className="recipeListLine" id="recipeListLine"></div>
+                      </button><button className="listPlus" id="listPlus">&#43;</button>
+                    </div>
+                    </>
+                  ))
+                    }
+                    </Typography>
                     <TextField sx={{"& label":{top:".35rem"}}} className="generalAM stepsAM" data-testid="steps" label="Steps" name="steps" value={steps} error={stepErr} onChange={handleStepsChange}multiline Values={multiline2} onInput={event => setMultiline2(event.target.Values)}>Steps...</TextField>
                 </DialogContent>
                 </form>

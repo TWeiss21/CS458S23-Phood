@@ -30,7 +30,7 @@ const GetRecipeNames = (props) =>{
                 }
             </div>
             <div className="addRecipeBtnContainer" id="addRecipeBtnContainer">
-              <AddRecipeModal/>
+              <AddRecipeModal items = {ingPlusQuant}/>
               <NewApiModal/>
             </div>
         </div>
