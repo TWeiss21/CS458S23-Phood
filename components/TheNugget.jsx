@@ -10,7 +10,7 @@ const Nugget = (props)=>{
       let id = props.id;
       let ingredients;
       //Get ingred from recipe
-      let query = 'http://localhost:3000/api/getIngredientsForRecipes?id=' + id;
+      let query = 'http://localhost:3000/api/getIngredientsForSpecificRecipe?id=' + id;
 
       try{
         const res = await fetch(query,{method: 'POST'})
