@@ -4,7 +4,7 @@ import AddRecipeModal from './AddRecipeModal'
 import Nugget from './TheNugget'
 import NewApiModal from './NewApiModal'
 
-const GetRecipeNames = (props) =>{
+const RecipeList = (props) =>{
 //const RecipeList = () =>{
 
 // PASSING TESTS BECAUSE OF THIS using the fallback option for .map()
@@ -21,15 +21,9 @@ const GetRecipeNames = (props) =>{
                 {
                   //loops through each recipe that is in the db
                   (props.data || []).map(list => (
-                    <>
-                    <Nugget id={list.id} recipeName={list.name} onClick={props.onClick}/>
-                    {/* <div key={list.name} className="outerRecipeContainer"id="outerRecipeContainer">
-                      <button className="recipeContainer" id="recipeContainer" onClick={props.onClick}>
-                        <div className="recipeListName" id="recipeListName">{list.name}</div>
-                        <div className="recipeListLine" id="recipeListLine"></div>
-                      </button><button className="listPlus" id="listPlus">&#43;</button>
-                    </div> */}
-                    </>
+                    
+                    <Nugget key={list.name} id={list.id} recipeName={list.name} onClick={props.onClick}/>
+                    
                   ), props.name)
                 }
             </div>
@@ -41,4 +35,4 @@ const GetRecipeNames = (props) =>{
       )
 }
 
-export default GetRecipeNames;
+export default RecipeList;
