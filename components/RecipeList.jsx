@@ -28,7 +28,7 @@ const RecipeList = (props) =>{
                 }
             </div>
             <div className="addRecipeBtnContainer" id="addRecipeBtnContainer">
-              <AddRecipeModal items = {ingPlusQuant}/>
+              <AddRecipeModal/>
               <NewApiModal/>
             </div>
         </div>
