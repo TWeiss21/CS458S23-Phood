@@ -103,4 +103,58 @@ describe('AddRecipeModal', () => {
         expect(ingreds).toBeInvalid(true);
 
     });
+
+    const original = window.location;
+
+  const reloadFn = () => {
+    window.location.reload();
+  };
+
+  beforeAll(() => {
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: { reload: jest.fn() },
+    });
+  });
+
+  afterAll(() => {
+    Object.defineProperty(window, 'location', { configurable: true, value: original });
+  });
+
+const sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('./sqlitedb/phooddb.sqlite');
+
+var recipe = "SELECT name FROM recipes"
+    it('Should refresh the page and show when a new recipe is added', async () => {
+            
+            db.all(recipe, [], (err,rows) => {
+                if(err){
+                    throw err;
+                }
+                    render(<RecipeList/>);
+            recipeNum = 0;
+            recipeNum2 = 0;
+                    rows.forEach(() => {
+                        recipeNum++;
+                    });
+            const modal = screen.getByTestId("openModal");
+            fireEvent.click(modal);
+    
+            const nm = screen.getByLabelText(/Name/);
+            nm.focus;
+            fireEvent.change(nm, {target: {value: 'Quiche'}});
+            
+            fireEvent.submit(screen.getByTestId("savebtn"));
+            
+            fireEvent.click(screen.getByTestId("closebtn"));
+
+            expect(window.location.reload).toHaveBeenCalledTimes(2);
+                
+            rows.forEach(() => {
+                recipeNum2++;
+            });
+                    expect(recipeNum2).toEqual(recipeNum + 1);
+                });
+            
+    });
 });

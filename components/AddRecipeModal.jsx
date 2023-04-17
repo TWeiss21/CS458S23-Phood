@@ -107,7 +107,11 @@ function AddRecipeModal(){
 
     const [show, setShow] = React.useState(false);
     const handleOpen = () => setShow(true);
-    const handleClose = () => setShow(false);
+    const handleClose = async () => {
+        setShow(false);
+        window.location.reload();
+        window.location.reload();
+    }
     const [multiline, setMultiline] = useState('');
     const [multiline2, setMultiline2] = useState('');
     const [num, setNum] = React.useState();
