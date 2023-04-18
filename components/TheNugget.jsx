@@ -8,38 +8,39 @@ const Nugget = (props)=>{
     const handleAddSL = async () => {
       //get recipe info from btn
       let id = props.id;
-      let ingredients;
       //Get ingred from recipe
       let query = 'http://localhost:3000/api/getIngredientsForSpecificRecipe?id=' + id;
 
-      try{
-        const res = await fetch(query,{method: 'POST'})
-        ingredients = await res.json()
-      } catch (err) {
-          console.error(err);
-          console.log("This is an error");
-      }
-      console.log(ingredients)  
+      const ingredients = await getIngredFromRec(query);
+      //console.log(ingredients) 
+      /**TESTING POST CAPABILITIES */
+      const test = JSON.stringify([{"id":1,"pantryId":1,"name":"panko","measurementValue":0.33,"measurementUnit":1}]) 
+      console.log(test);
       //Post every ingred to db
-       //Serialize the form data as JSON
-       /*var item = JSON.stringify([{id, name, qty, measurement}]);
-       console.log(item);
+      //await postIngredToSL(test);
+    }
 
-        try{
-            const req = await fetch('http://localhost:3000/api/postToShoppingList', {
-            method: 'POST', 
-            body: item
-        })
-        if (req.ok) {
-          setMessage("");
-        } else {
-            setMessage("Cannot add. Recipe.");
-        }
+    const getIngredFromRec = async (query) =>{
+      try{
+          const res = await fetch(query,{method: 'GET'})
+          const results = await res.json()
+          return results;
         } catch (err) {
             console.error(err);
-            console.log("This is an error");
-            setMessage("Cannot add.");
-        }  */
+            console.log("Error getting recipe ingredients");
+        }
+    }
+
+    const postIngredToSL = async (ingreds) =>{
+      try{
+        const req = await fetch('http://localhost:3000/api/postToShoppingList', {
+        method: 'POST', 
+        body: ingreds
+        })
+      }catch (err) {
+            console.error(err);
+            console.log("Error getting recipe ingredients");
+      }
     }
 
   return(
