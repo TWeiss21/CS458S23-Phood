@@ -2,19 +2,19 @@ const sqlite3 = require('sqlite3').verbose();
 
 const db = new sqlite3.Database('./sqlitedb/phooddb.sqlite');
 
-export default async function handlerIngr(_req, res) {
-    console.log("enter POST");
+export default async function handleAddSL(_req, res) {
     if(_req.method === 'POST'){
-
-        var item = JSON.parse(_req.body);
-
-        console.log("POST to SL: "+item);
-
-        db.run('INSERT INTO shoppingList (pantryId, name, measurementValue, measurementUnit) VALUES (?, ?, ?, ?)',
+console.log(_req.body);
+        
+        var item = JSON.parse(_req.body)
+        // var count = 0;
+        // if(JSON.stringify(item[9].name)!="undefined")
+        //     console.log("NULL");
+        db.run('INSERT INTO shoppingList (pantryId, name, measurementValue, measurementUnit ) VALUES (?, ?, ?, ?)',
         1,
         item[0].name,
-        item[0].quant,
-        item[0].msr,
+        item[0].measurementValue,
+        item[0].measurementUnit,
         function (err) {
             if (err) {
                 console.error(err);
