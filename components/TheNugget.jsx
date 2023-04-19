@@ -13,10 +13,10 @@ const Nugget = (props)=>{
 
       const ingredients = await getIngredFromRec(query);
       //console.log(ingredients) 
-      /**TESTING POST CAPABILITIES */
-      //const test = JSON.stringify([{"id":1,"pantryId":1,"name":"panko","measurementValue":0.33,"measurementUnit":1}])
+      var count = Object.keys(ingredients).length;
+      //console.log(count);
       //Post every ingred to db
-      await postIngredToSL(ingredients);
+      await postIngredToSL(ingredients, count);
     }
 
     const getIngredFromRec = async (query) =>{
@@ -30,11 +30,13 @@ const Nugget = (props)=>{
         }
     }
 
-    const postIngredToSL = async (ingreds) =>{
+    const postIngredToSL = async (ingreds, total) =>{
       try{
-        const req = await fetch('http://localhost:3000/api/postToShoppingList', {
+        var query = 'http://localhost:3000/api/postToShoppingList?total=' + total;
+        const req = await fetch(query, {
         method: 'POST', 
-        body: JSON.stringify(ingreds) //stringify if not using test
+        body: JSON.stringify(ingreds), //stringify if not using test
+        
         })
       }catch (err) {
             console.error(err);
