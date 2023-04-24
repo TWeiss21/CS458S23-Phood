@@ -71,6 +71,26 @@ describe('AddRecipeModal', () => {
         quants.clear;
     });
 
+    it('should update the text fields when users enter information', async () => {
+        render(<RecipeList/>);
+        const modal = screen.getByTestId("openModal");
+        fireEvent.click(modal);
+
+        const Name = screen.getByTestId("nameentr");
+        await userEvent.type(Name, 'blah');
+        Name.focus();
+        expect(Name).toHaveValue("blah");
+        const Desc = screen.getByTestId("descr");
+        await userEvent.type(Desc, 'blahblah');
+        Desc.focus();
+        expect(Desc).toHaveValue('blahblah');
+        const Steps = screen.getByTestId("steps");
+        await userEvent.type(Steps, 'blahblahblah');
+        Steps.focus();
+        expect(Steps).toHaveValue('blahblahblah');
+
+    });
+
     it('Should display error on typing of special characters', async () => {
         
         render(<RecipeList/>);

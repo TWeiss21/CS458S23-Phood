@@ -2,6 +2,7 @@
 
 import { render, screen } from '@testing-library/react'
 import RecipeList from '../../components/RecipeList'
+import Nugget from '@/components/TheNugget'
 import '@testing-library/jest-dom'
 
 
@@ -19,6 +20,7 @@ describe('Tests for RecipeList', () => {
     render(
         // <RecipeList {...props}/>
         <RecipeList/>
+        //<Nugget/>
         )
     })
 })

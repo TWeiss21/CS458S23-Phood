@@ -14,7 +14,7 @@ return(
 
     {/* Here is the button we see on the "RecipeList right now.
     Once we have the Add recipe and any other decision point we can just call this component to reuse the 'are your sure functionality.'" */}
-    <Button onClick={() => setOpen(true)}>{props.name}</Button>
+    <Button onClick={() => setOpen(true)} datat-testid="wrnBtn">{props.name}</Button>
     
     {/* Dialog open state is set to the current val of open.. in this case open is currentlly false so when the Dialog Renders it is not open. */}
     <Dialog 
@@ -23,7 +23,7 @@ return(
     aria-labelledby='dialogTitle' aria-describedby='dialogText'>
         <DialogTitle
         sx={{bgcolor: '#ff8500', color: 'red', align: 'right'}}
-        id='dialogTitle'>
+        id='dialogTitle' data-testid="title">
             <h1>
             Warning!
             </h1>
@@ -37,10 +37,10 @@ return(
             <DialogActions>
                 {/* We will need to change these onclick functions later to standardize which button was clicked and respond accordingly */}
                 <Button 
-                sx={{ bgcolor: '#126782', color: '#8ecae6' }}
+                sx={{ bgcolor: '#126782', color: '#8ecae6' }} data-testid="cncl"
                 autoFocus onClick={()=> setOpen(false)}>Cancel</Button>
                 <Button 
-                sx={{ bgcolor: '#126782', color: '#8ecae6' }}
+                sx={{ bgcolor: '#126782', color: '#8ecae6' }} data-testid="sbmt"
                 onClick={()=> setOpen(false)}>Submit</Button>
             </DialogActions>
         </DialogContent>
@@ -48,3 +48,4 @@ return(
     </React.Fragment>
 )
 }
+export default WarnMode;

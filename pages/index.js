@@ -23,7 +23,7 @@ const Index = ({recipes}) =>
     //TESTING array let arr = [{"id":"1", "name":"Balt"},{"id":"2", "name":"Tokyo" }]
         return ( 
             
-                <Dashboard allRecipes = { recipes }/>
+                <Dashboard allRecipes = { recipes } data-testid="indx"/>
             
         )
 }
