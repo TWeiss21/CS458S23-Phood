@@ -5,6 +5,7 @@ const Nugget = (props)=>{
       props.onClick(id)
     }
 
+    /*GET ingredients from recipe and POST to SL db*/
     const handleAddSL = async () => {
       //get recipe info from btn
       let id = props.id;
@@ -12,13 +13,12 @@ const Nugget = (props)=>{
       let query = 'http://localhost:3000/api/getIngredientsForSpecificRecipe?id=' + id;
 
       const ingredients = await getIngredFromRec(query);
-      //console.log(ingredients) 
       var count = Object.keys(ingredients).length;
-      //console.log(count);
       //Post every ingred to db
       await postIngredToSL(ingredients, count);
     }
 
+    /*GET ingredients from Recipe*/
     const getIngredFromRec = async (query) =>{
       try{
           const res = await fetch(query,{method: 'GET'})
@@ -30,12 +30,13 @@ const Nugget = (props)=>{
         }
     }
 
+    /*POST ingredients to SL db */
     const postIngredToSL = async (ingreds, total) =>{
       try{
         var query = 'http://localhost:3000/api/postToShoppingList?total=' + total;
         const req = await fetch(query, {
         method: 'POST', 
-        body: JSON.stringify(ingreds), //stringify if not using test
+        body: JSON.stringify(ingreds),
         
         })
       }catch (err) {
