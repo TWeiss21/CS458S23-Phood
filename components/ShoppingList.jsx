@@ -24,7 +24,7 @@ const ShoppingList = (props) =>{
         { console.log(props.listOfIngredients)}
 
         {
-          (props.listOfIngredients).map(list=>(
+          (props.listOfIngredients || []).map(list=>(
             <div key={list.name} className="ingredItem">
         <div className="verticalCentered">
           <div className="ingredName" id="ingredName">{list.name}</div>
