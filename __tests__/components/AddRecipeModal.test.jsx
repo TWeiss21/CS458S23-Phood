@@ -4,15 +4,6 @@ import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import RecipeList from '@/components/dashboard'
 import {expect, jest, test} from '@jest/globals'
-//const sqlite3 = require('sqlite3');
-//const sqlite3Mem = require('sqlite3-mem');
-//const fetchMock = require('jest-fetch-mock');
-//const myModule = require('/components/AddRecipeModal');
-
-//fetchMock.enableMocks();
-
-// const db = new sqlite3.Database(':memory:');
-// sqlite3Mem.patchDatabase(db);
 
 describe('AddRecipeModal', () => {
     it('should render the AddRecipeModal button and open it', async () => {
@@ -132,27 +123,57 @@ describe('AddRecipeModal', () => {
 
     });
 
-    // it('Should post user input successfully', async () => {
-    //     //Mock request
-    //     const requestData = {
-    //         name: 'turnips'
-    //     };
+    const original = window.location;
 
-    //     // Mock AJAX response
-    //     fetchMock.mockOnce(JSON.stringify({ success: true}), {
-    //         status: 200,
-    //         headers: { 'Content-Type': 'application/json' }
-    //     });
+  const reloadFn = () => {
+    window.location.reload();
+  };
 
-    //     //Call the function that makes AJAX POST
-    //     const response = await myModule.makeAjaxPostRequest(requestData);
+  beforeAll(() => {
+    Object.defineProperty(window, 'location', {
+      configurable: true,
+      value: { reload: jest.fn() },
+    });
+  });
 
-    //     //Assert response status
-    //     expect(fetchMock.mock.calls.length).toBe(1);
-    //     expect(fetchMock.mock.calls[0][0]).toBe('http://localhost:3000/api/postToPantry');
-    //     expect(fetchMock.mock.calls[0][1].method).toBe('POST');
-    //     expect(fetchMock.mock.calls[0][1].headers['Content-Type']).toBe('application/json');
-    //     expect(JSON.parse(fetchMock.mock.calls[0][1].body)).toEqual(requestData);
-    //     expect(response).toEqual({ success: true });
-    // });
+  afterAll(() => {
+    Object.defineProperty(window, 'location', { configurable: true, value: original });
+  });
+
+const sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database('./sqlitedb/phooddb.sqlite');
+
+var recipe = "SELECT name FROM recipes"
+    it('Should refresh the page and show when a new recipe is added', async () => {
+            
+            db.all(recipe, [], (err,rows) => {
+                if(err){
+                    throw err;
+                }
+                    render(<RecipeList/>);
+            recipeNum = 0;
+            recipeNum2 = 0;
+                    rows.forEach(() => {
+                        recipeNum++;
+                    });
+            const modal = screen.getByTestId("openModal");
+            fireEvent.click(modal);
+    
+            const nm = screen.getByLabelText(/Name/);
+            nm.focus;
+            fireEvent.change(nm, {target: {value: 'Quiche'}});
+            
+            fireEvent.submit(screen.getByTestId("savebtn"));
+            
+            fireEvent.click(screen.getByTestId("closebtn"));
+
+            expect(window.location.reload).toHaveBeenCalledTimes(2);
+                
+            rows.forEach(() => {
+                recipeNum2++;
+            });
+                    expect(recipeNum2).toEqual(recipeNum + 1);
+                });
+            
+    });
 });
