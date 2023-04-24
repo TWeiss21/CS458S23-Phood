@@ -13,7 +13,9 @@ const NewApiModal = (props) =>{
 
 
     const [show, setShow] = React.useState(false);
-    const handleOpen = () => setShow(true);
+    const handleOpen = () => {
+        setShow(true)
+    };
     const handleClose = () => setShow(false);
 
     // initialRenderComplete will be false on the first render and true on all following renders
