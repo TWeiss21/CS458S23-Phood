@@ -35,7 +35,8 @@ const Dashboard = (props) => {
           <RecipeDetail data = {props.allRecipes} id = {idFromRecipeList} RecipeData={RecipeDetailsData}/>
         </div>
         <div className="shopping">
-          <ShoppingList />
+          
+          <ShoppingList listOfIngredients = { props.allingredients }/>
         </div>
       </div>
     </React.Fragment>

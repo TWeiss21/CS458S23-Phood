@@ -11,20 +11,35 @@ With react you want to pull as much state/data as far up for managment by the pr
 export const getServerSideProps = async () => {
 
     // Fetch will server side render from the http endpoint added
-    const res = await fetch('http://localhost:3000/api/getRecipes')
+    const res = await fetch('http://localhost:3000/api/getRecipes', {
+        headers:{
+            Accept: 'application/json'
+        }
+    })
+    const second = await fetch('http://localhost:3000/api/getIngredients', {
+        headers:{
+            Accept: 'application/json'
+        }
+    })
+  
+    const ings = await second.json()
     const data = await res.json()
+
+    console.log("ings : ",ings)
+    console.log("data : ", data)
     return {
-        props: { recipes: data}
+        props: { recipes: data, 
+            ingredients: ings}
     }
 }
 
-const Index = ({recipes}) => 
+const Index = ({recipes, ingredients}) => 
 {
     //TESTING array let arr = [{"id":"1", "name":"Balt"},{"id":"2", "name":"Tokyo" }]
         return ( 
-            
-                <Dashboard allRecipes = { recipes } data-testid="indx"/>
-            
+            <div>
+                <Dashboard allRecipes = { recipes } allingredients = { ingredients }/>
+            </div>
         )
 }
 
