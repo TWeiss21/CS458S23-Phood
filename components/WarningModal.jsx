@@ -14,7 +14,7 @@ return(
 
     {/* Here is the button we see on the "RecipeList right now.
     Once we have the Add recipe and any other decision point we can just call this component to reuse the 'are your sure functionality.'" */}
-    <Button onClick={() => setOpen(true)} datat-testid="wrnBtn">{props.name}</Button>
+    <Button onClick={() => setOpen(true)} data-testid="wrnBtn">{props.name}</Button>
     
     {/* Dialog open state is set to the current val of open.. in this case open is currentlly false so when the Dialog Renders it is not open. */}
     <Dialog 
