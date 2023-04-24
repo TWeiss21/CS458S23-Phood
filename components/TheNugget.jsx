@@ -49,7 +49,7 @@ const Nugget = (props)=>{
   <button className="recipeContainer" id="recipeContainer" onClick={handleID}>
     <div className="recipeListName" id="recipeListName">{props.recipeName}</div>
     <div className="recipeListLine" id="recipeListLine"></div>
-  </button><button className="listPlus" id="listPlus" onClick={handleAddSL}>&#43;</button>
+  </button><button className="listPlus" data-testid="listPlus" id="listPlus" onClick={handleAddSL}>&#43;</button>
 </div>
 )
 }
