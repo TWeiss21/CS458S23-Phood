@@ -6,9 +6,10 @@ export default async function handlerIngr(_req, res) {
     if(_req.method === 'POST'){
 
         var item_data = JSON.parse(_req.body);
+        console.log(_req.body);
 
-        console.log("Random shit");
-        console.log(item_data);
+        //console.log("Random shit");
+        //console.log(item_data);
 
         db.run('INSERT INTO ingredients (pantryId, name, measurementValue, measurementUnit) VALUES (?, ?, ?, ?)',
         1,
