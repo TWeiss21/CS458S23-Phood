@@ -25,8 +25,8 @@ export const getServerSideProps = async () => {
     const ings = await second.json()
     const data = await res.json()
 
-    console.log("ings : ",ings)
-    console.log("data : ", data)
+    // console.log("ings : ",ings)
+    // console.log("data : ", data)
     return {
         props: { recipes: data, 
             ingredients: ings}

@@ -1,16 +1,5 @@
 import React from 'react'
 
-// export const getServerSideProps = async () => {
-
-//   // Fetch will server side render from the http endpoint added
-//   const res = await fetch('http://localhost:3000/api/getIngredents')
-//   const data = await res.json()
-//   console.log(data)
-//   return {
-//       props: { recipes: data}
-//   }
-// }
-
 const ShoppingList = (props) =>{
   return(
   <div className="shopGrid">
@@ -21,7 +10,7 @@ const ShoppingList = (props) =>{
       <div className="shopListContainer">
 
         {/* This is the first ingredient item. TODO: make an ingredient components so we don't have to look at 100 lines of html */}
-        { console.log(props.listOfIngredients)}
+        {/* { console.log(props.listOfIngredients)} */}
 
         {
           (props.listOfIngredients || []).map(list=>(
