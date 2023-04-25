@@ -1,3 +1,10 @@
+/**
+ * RecipeDetailsButtons Row is the component handeling the alignment of the "Add to List", "Edit", "Delete" buttons
+ * 
+ * 
+ * TODO: verify each button is required
+ * TODO: if required make each button functional
+ */
 import React from 'react'
 
 

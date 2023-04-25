@@ -9,7 +9,7 @@ import ShoppingList from "./ShoppingList"
 const Dashboard = (props) => {
   
   //Componenet state
-  const [RecipeDetailsData, setData] = useState("RecipeDetails should be blank until something is clicked")
+  const [RecipeDetailsData, setData] = useState("")
   //Functions
   function handleClick(id){
     //TODO lock down array
@@ -26,18 +26,29 @@ const Dashboard = (props) => {
     <React.Fragment>
       <div className="layout">
         <div className="header">
-          <Header />
+          <Header/>
         </div>
+
         <div className="recipeList">
-          <RecipeList key={"item"} data = { props.allRecipes } onClick={handleClick}/>
+          <RecipeList 
+            key={"item"} 
+            data = { props.allRecipes } 
+            onClick={handleClick}/>
         </div>
+
         <div className="recipeDetail">
-          <RecipeDetail data = {props.allRecipes} id = {idFromRecipeList} RecipeData={RecipeDetailsData}/>
+          <RecipeDetail 
+            // data = {props.allRecipes} 
+            id = {idFromRecipeList} 
+            RecipeData={RecipeDetailsData} 
+            listOfIngredients = {props.allingredients}/>
         </div>
-        <div className="shopping">
-          
-          <ShoppingList listOfIngredients = { props.allingredients }/>
+
+        <div className="shopping"> 
+          <ShoppingList 
+            listOfIngredients = { props.allingredients }/>
         </div>
+
       </div>
     </React.Fragment>
   );
