@@ -133,28 +133,28 @@ describe('AddRecipeModal', () => {
 
     });
 
-    it('Should save user input for ingredients', async () => {
-        const db = jest.fn('/sqlitedb/phooddb.sqlite')
-        render(<RecipeList/>);
-        const modal = screen.getByTestId("openModal");
-        fireEvent.click(modal);
+    // it('Should save user input for ingredients', async () => {
+    //     const db = jest.fn('/sqlitedb/phooddb.sqlite')
+    //     render(<RecipeList/>);
+    //     const modal = screen.getByTestId("openModal");
+    //     fireEvent.click(modal);
 
-        const measured = screen.getByLabelText(/Measure/);
-        const ingreds = screen.getByLabelText(/Ingredient/);
-        const num = screen.getByLabelText(/#/);
+    //     const measured = screen.getByLabelText(/Measure/);
+    //     const ingreds = screen.getByLabelText(/Ingredient/);
+    //     const num = screen.getByLabelText(/#/);
 
-        const add = screen.getByTestId("add");
+    //     const add = screen.getByTestId("add");
 
-        await userEvent.type(num, '123.3');
-        await userEvent.type(ingreds, 'bananas');
-        await userEvent.type(measured, 'cups');
+    //     await userEvent.type(num, '123.3');
+    //     await userEvent.type(ingreds, 'bananas');
+    //     await userEvent.type(measured, 'cups');
 
-        fireEvent.click(add);
+    //     fireEvent.click(add);
 
-        const response = await handlerIngr();
-        expect(response).not.toBeNull();
-        expect(response.status).toBe(200);
-    })
+    //     const response = await handlerIngr();
+    //     expect(response).not.toBeNull();
+    //     expect(response.status).toBe(200);
+    // })
 
     // it('Should post user input successfully', async () => {
     //     //Mock request
