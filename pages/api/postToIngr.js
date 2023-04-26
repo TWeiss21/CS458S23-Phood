@@ -5,15 +5,15 @@ const db = new sqlite3.Database('./sqlitedb/phooddb.sqlite');
 export default async function handlerIngr(_req, res) {
     if(_req.method === 'POST'){
 
-        var item = JSON.parse(_req.body);
+        var item_data = JSON.parse(_req.body);
 
-        console.log(item);
+        console.log(_req.body);
 
         db.run('INSERT INTO ingredients (pantryId, name, measurementValue, measurementUnit) VALUES (?, ?, ?, ?)',
         1,
-        item[0].name,
-        item[0].quant,
-        item[0].msr,
+        item_data.name,
+        item_data.quant,
+        item_data.msr,
         function (err) {
             if (err) {
                 console.error(err);
