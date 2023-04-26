@@ -76,15 +76,15 @@ describe('AddRecipeModal', () => {
         const modal = screen.getByTestId("openModal");
         fireEvent.click(modal);
 
-        const Name = screen.getByTestId("nameentr");
+        const Name = screen.getByLabelText(/Name/);
         await userEvent.type(Name, 'blah');
         Name.focus();
         expect(Name).toHaveValue("blah");
-        const Desc = screen.getByTestId("descr");
+        const Desc = screen.getByLabelText(/Description/);
         await userEvent.type(Desc, 'blahblah');
         Desc.focus();
         expect(Desc).toHaveValue('blahblah');
-        const Steps = screen.getByTestId("steps");
+        const Steps = screen.getByLabelText(/Steps/);
         await userEvent.type(Steps, 'blahblahblah');
         Steps.focus();
         expect(Steps).toHaveValue('blahblahblah');
@@ -145,10 +145,6 @@ describe('AddRecipeModal', () => {
 
     const original = window.location;
 
-  const reloadFn = () => {
-    window.location.reload();
-  };
-
   beforeAll(() => {
     Object.defineProperty(window, 'location', {
       configurable: true,
@@ -179,6 +175,7 @@ var recipe = "SELECT name FROM recipes"
             const modal = screen.getByTestId("openModal");
             fireEvent.click(modal);
     
+            const MainModal = screen.getByTestId("mdlOtln");
             const nm = screen.getByLabelText(/Name/);
             nm.focus;
             fireEvent.change(nm, {target: {value: 'Quiche'}});
@@ -186,9 +183,9 @@ var recipe = "SELECT name FROM recipes"
             fireEvent.submit(screen.getByTestId("savebtn"));
             
             fireEvent.click(screen.getByTestId("closebtn"));
-
+            expect(MainModal).toBeInTheDocument(false);
             expect(window.location.reload).toHaveBeenCalledTimes(2);
-                
+            
             rows.forEach(() => {
                 recipeNum2++;
             });
