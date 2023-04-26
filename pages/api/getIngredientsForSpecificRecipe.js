@@ -11,7 +11,10 @@ export default async function getAllRecipes(req,res,id){
     id = url.substring(url.lastIndexOf('=') + 1);
     //console.log(id);
 
-    let query = `SELECT ingredients.* FROM ingredientsForRecipes JOIN ingredients ON ingredients.id=ingredientsForRecipes.ingredientId JOIN recipes ON recipes.id=ingredientsForRecipes.recipeId WHERE recipes.id= ${id}`;
+    let query = `SELECT ingredients.* FROM ingredientsForRecipes 
+    JOIN ingredients ON ingredients.id=ingredientsForRecipes.ingredientId 
+    JOIN recipes ON recipes.id=ingredientsForRecipes.recipeId WHERE recipes.id= ${id}`;
+    
     const db = await open(
         {
             filename: './sqlitedb/phooddb.sqlite',
