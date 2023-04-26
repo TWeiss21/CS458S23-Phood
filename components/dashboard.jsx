@@ -8,7 +8,7 @@
  * TODO: Click event should also adjust the state of the RecipeDetails for id of recipe.
  */
 
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Header from "./Header"
 import RecipeList from "./RecipeList"
 import RecipeDetail from "./RecipeDetail"
@@ -21,6 +21,41 @@ const Dashboard = (props) => {
   //Componenet state
   const [RecipeDetailsData, setData] = useState("")
   const [uniqueIngredients, setUniqueIngredients] = useState([])
+
+  /**
+   * Filter out all duplicate ingredients, currently O(n)^2, not using a hash table.
+   */
+  useEffect(()=>{
+    function filterDuplicateIngredients(){
+      let uniqueItems  = []
+      const map = new Map()
+      props.allingredients.filter((item)=>{
+        const name = item.name
+        // if the map does not have the name of the next item in it already
+          if(!map.has(name)){
+          //put the name in the map
+          map.set(name, true)
+          uniqueItems.push(item)
+          return true
+        }
+        // the case that the item is not already in the map
+        // console.log(name + " found in the hash, NOT added to the hash table")
+        return false
+      })
+  
+      setUniqueIngredients(uniqueItems)
+  
+    }
+    filterDuplicateIngredients()
+  },[props.allingredients, setUniqueIngredients])
+
+  let allCount = 0
+  props.allingredients.forEach(element => {
+    allCount++
+  });
+  //Testing array length for ingredinets.
+  // console.log(allCount + ' Total Ings.')
+  // console.log(uniqueIngredients.length+' unique ingredients.')
   
   //Functions
   function handleClick(id){
@@ -32,33 +67,6 @@ const Dashboard = (props) => {
     setData(RecipesDataArr)
     // console.log(props.allRecipes[id].name)
   }
-
-  /**
-   * Filter out all duplicate ingredients
-   */
-  function filterDuplicateIngredients(){
-    let uniqueItems  = []
-    const hash = {}
-    props.allingredients.filter((item)=>{
-      const name = item.name
-      //console.log("Current name of filter itorator: " + name)
-      if(!hash[name]){
-        // console.log(name +  " is UNIQUE, added to hash table")
-        hash[name] = true
-        uniqueItems.push(item)
-        return true
-      }
-      // console.log(name + " found in the hash, NOT added to the hash table")
-      return false
-    })
-
-    // console.log("Unique Items: "+ uniqueItems[0].name)
-    uniqueItems.forEach(element => console.log(element.name))
-    return uniqueItems
-
-  }
-  // shows a list of not duplicate entries filterDuplicateIngredients()
-
   //EO Functions
 
   let idFromRecipeList = "temp"
@@ -81,13 +89,13 @@ const Dashboard = (props) => {
             // data = {props.allRecipes} 
             id = {idFromRecipeList} 
             RecipeData={RecipeDetailsData} 
-          listOfIngredients = {props.allingredients}
+          listOfIngredients = {uniqueIngredients}
             />
         </div>
 
         <div className="shopping"> 
           <ShoppingList 
-            listOfIngredients = { props.allingredients }/>
+            listOfIngredients = { uniqueIngredients }/>
         </div>
 
       </div>
