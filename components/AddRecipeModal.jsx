@@ -10,6 +10,7 @@ const pantry = require('../mocks/pantryData.json')
 var pantryItems = []
 pantry.forEach(i => pantryItems.push(i.name))
 
+/***will render the modal the user requests by clicking the add recipe button on dashboard*/
 function AddRecipeModal(props){
 
     //string myscript = " <script> function DupAlert() { alert('Cannot add. Item already exists.');}</script>";
@@ -136,6 +137,7 @@ function AddRecipeModal(props){
           
     };
 
+    /**will attempt to create a post request for the ingredients, measurements, quantity */
     const handleAdd = async () => {
 
             //will handle adding the ingredients information to the ingredients table when add button is clicked in modal
