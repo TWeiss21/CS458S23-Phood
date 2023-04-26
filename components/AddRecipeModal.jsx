@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, setState} from 'react'
 import { Dialog, Button, Typography, Card, Autocomplete, Select, DialogTitle, DialogContent, autocompleteClasses, Container, onSubmit, onChange, formData} from "@mui/material";
 import TextField from "@mui/material/TextField"
 import Grid from "@mui/material/Grid"
@@ -10,7 +10,8 @@ const pantry = require('../mocks/pantryData.json')
 var pantryItems = []
 pantry.forEach(i => pantryItems.push(i.name))
 
-function AddRecipeModal(){
+/***will render the modal the user requests by clicking the add recipe button on dashboard*/
+function AddRecipeModal(props){
 
     //string myscript = " <script> function DupAlert() { alert('Cannot add. Item already exists.');}</script>";
     //const [errorMessage, setErrorMessage] = useState("");
@@ -21,6 +22,9 @@ function AddRecipeModal(){
         setInitialRenderComplete(true);
     }, []);
 
+    const [ingr, setIngr] = useState("");
+    const [ingr2, setIngr2] = useState("");
+    const [br, setBr] = useState(1);
     const [message, setMessage] = useState("");
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
@@ -46,11 +50,11 @@ function AddRecipeModal(){
     const [help, setHelp] = React.useState('');
     const [help2, setHelp2] = React.useState('');
     const [help3, setHelp3] = React.useState('');
-    const [displayTex, setDisplayTex] = React.useState({
-        Ingredient: '',
-        Measure: '',
-        Quantity: ''
-    });
+    // const [displayTex, setDisplayTex] = React.useState({
+    //     Ingredient: '',
+    //     Measure: '',
+    //     Quantity: ''
+    // });
 
     //Handle changes to form inputs
     const handleNameChange = (e) => {
@@ -133,11 +137,17 @@ function AddRecipeModal(){
           
     };
 
+    /**will attempt to create a post request for the ingredients, measurements, quantity */
     const handleAdd = async () => {
 
+            //will handle adding the ingredients information to the ingredients table when add button is clicked in modal
             var name = document.getElementById('ingr').value;
             var msr = document.getElementById('msr').value;
-            var quant = document.getElementById('quant').value;
+            var quant = document.getElementById('quant').value.toString();
+
+            let item_data = `{"name": "${name}", "quant": "${quant}", "msr": "${msr}"}`
+            let data = JSON.parse(item_data);
+            let string_data = name+", "+quant+", "+msr;
 
             if(!name)
             {
@@ -152,24 +162,17 @@ function AddRecipeModal(){
                 setErr3(true);
             }
             else{
+                //executes adding ingredient info to string
+                let upIngr = ingr + string_data;
 
-            
-            console.log('Measure: ', msr);
-            console.log('Quantity: ', quant);
+                setIngr(upIngr+'\n');
 
-            setDisplayTex(JSON.stringify[{ingr,msr,quant}]);
-            var item = JSON.stringify[{ingr,msr,quant}];
-
-            console.log('Display Text: ', item);
-
-            //Serialize the form data as JSON
-            var ingr_data = JSON.stringify([{name}]);
-            console.log(ingr_data);
+                //starts the try catch for executing the fetch for posting to db
 
                 try{
-                    const req = await fetch('http://localhost:3000/api/postToPantry', {
+                    const req = await fetch('http://localhost:3000/api/postToIngr', {
                     method: 'POST', 
-                    body: ingr_data
+                    body: item_data
                 })
                 if (req.ok) {
                     setMessage("");
@@ -204,6 +207,7 @@ function AddRecipeModal(){
             }
     };
 
+    //handles adding the recipe name, description, and steps to db once the save button is clicked in modal
     const handleSubmit = async (e) => {
             e.preventDefault();
 
@@ -211,6 +215,7 @@ function AddRecipeModal(){
             console.log('Description:', desc);
             console.log('Steps:', steps);
 
+            //checking if any of the fields are null
             if(!name)
             {
                 setNameErr(true);
@@ -223,6 +228,7 @@ function AddRecipeModal(){
             {
                 setStepErr(true);
             }
+            //executes stringifying the data so that it can be read by post
             else
             {
                 //Serialize the form data as JSON
@@ -242,6 +248,7 @@ function AddRecipeModal(){
             setName('');
             setDesc('');
             setSteps('');
+            setIngr('');
             };
 }
 
@@ -288,12 +295,11 @@ function AddRecipeModal(){
                     </Grid>
                 <DialogContent className="ingredContainerAM">
                     <Autocomplete  sx={{"& label":{top:".35rem"}}} className="generalAM ingredAM" freeSolo={true}  options={pantryItems} renderInput={(params) => <TextField {...params} label="Ingredient" error={err2} helperText={help2} type="text" onChange={(eve) => handletext(eve)} onKeyPress={(eve) => handletextKeyPress(eve)} value={text2}/>} data-testid="ingr" id="ingr"></Autocomplete>
-                    {message && <div>{message}</div>}
                     <TextField sx={{"& label":{top:".35rem"}}} className="generalAM qtyAM" data-testid="quant" label="#" type="text" onChange={(event) => handlechange(event)} onKeyPress={(event => handlechangeKeyPress(event))} value={num} id="quant"></TextField>
                     <Autocomplete sx={{"& label":{top:".35rem"}}} className="generalAM measurementAM" freeSolo={true}  options={measure} renderInput={(params) => <TextField {...params} label="Measure" error={err} helperText={help} type="text" onChange={(Eve) => handleText(Eve)} onKeyPress={(Eve) => handleTextKeyPress(Eve)} value={text}/>}data-testid="msr" id="msr"></Autocomplete>
                     <Button sx={{"& label":{top:".35rem"}}} className="generalBtnBlue addIngredAM" data-testid="add" onClick={handleAdd}>Add</Button>
                 </DialogContent>
-                    <Typography className="generalAM ingredBoxAM" data-testid="display" id="display" label="Display" name="disp" value={displayTex}>Ingredients displayed here:</Typography>
+                    <Typography className="generalAM ingredBoxAM" data-testid="display" id="display" label="Display" name="disp">{ingr}</Typography>
                     <TextField sx={{"& label":{top:".35rem"}}} className="generalAM stepsAM" data-testid="steps" label="Steps" name="steps" value={steps} error={stepErr} onChange={handleStepsChange}multiline Values={multiline2} onInput={event => setMultiline2(event.target.Values)}>Steps...</TextField>
                 </DialogContent>
                 </form>
