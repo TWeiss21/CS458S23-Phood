@@ -2,7 +2,6 @@
 
 import { fireEvent, render, screen } from '@testing-library/react'
 import RecipeList from '../../components/RecipeList'
-import Nugget from '@/components/TheNugget'
 import '@testing-library/jest-dom'
 import Nugget from '@/components/TheNugget'
 
