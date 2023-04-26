@@ -5,7 +5,9 @@
 */
 const SingleIngredient = (props) =>{
     return(
-        <div>{props.IngredientName}</div>
+        <div>
+            <div>{props.ID + ". " + props.IName}</div>
+        </div>
     )
 }
 

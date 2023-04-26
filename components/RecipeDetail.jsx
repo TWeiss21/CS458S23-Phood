@@ -33,7 +33,7 @@ const RecipeDetail = (props) =>{
           <RecipeImage/>
           <RecipeTitle title = {props.RecipeData[0]}/>
           <RecipeDescription description = {props.RecipeData[1]}/>
-            <Ingredients recipeIngredients = {ingredentsArray} />
+            <Ingredients recipeIngredients = {props.listOfIngredients} />
            <div className='stepGrid'>
             <div className="recipeListLine recipeDetailLineSteps" id="recipeDetailLineSteps"></div>
               <div className="step">{props.RecipeData[2]}</div>
