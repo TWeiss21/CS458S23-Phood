@@ -4,7 +4,6 @@ import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import RecipeList from '@/components/dashboard'
 import {expect, jest, test} from '@jest/globals'
-import handlerIngr from '/pages/api/postToIngr'
 
 describe('AddRecipeModal', () => {
     it('should render the AddRecipeModal button and open it', async () => {
