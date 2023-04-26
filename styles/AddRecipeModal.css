@@ -130,6 +130,7 @@
     max-width:100%!important;
     max-height:150px!important;
     overflow-y: auto;
+    white-space: pre-wrap;
 }
 
 /*Step field*/
