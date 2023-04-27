@@ -95,7 +95,7 @@ const Dashboard = (props) => {
 
         <div className="shopping"> 
           <ShoppingList 
-            listOfIngredients = { uniqueIngredients }/>
+            listOfIngredients = { props.shoppingList }/>
         </div>
 
       </div>
