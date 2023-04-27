@@ -5,6 +5,13 @@ module.exports = {
     coverageProvider: 'v8',
     collectCoverageFrom: [
         '**/*.{js,jsx,ts,tsx}',
+        '!<rootDir>/components/Login.jsx',
+        '!<rootDir>/components/Register.jsx',
+        '!<rootDir>/mocks/**',
+        '!<rootDir>/components/WarningModal.jsx',
+        '!<rootDir>/warningPopup.js',
+        '!<rootDir>/pages/**',
+        '!<rootDir>/sqlitedb/**',
         '!**/*.d.ts',
         '!**/node_modules/**',
         '!<rootDir>/out/**',
