@@ -16,7 +16,7 @@ const postRecipe = async (recipe) => {
   return response.json();
 };
 
-
+    //Array of recipes used for displaying and posting
     const [recipes, setRecipes] = useState([]);
 
     const [initialRenderComplete, setInitialRenderComplete] = React.useState(false);
@@ -43,6 +43,7 @@ fetch('https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/rando
 .then(response => {return response.json()})
 .then(data => {
     const newRecipes = data.recipes.map(recipe => {
+        //setting each part of the recipes in the returned json to an element in our map recipes
         return {
             title: recipe.title,
             summary: recipe.summary,
@@ -62,7 +63,6 @@ setInitialRenderComplete(true);
     // initialRenderComplete will be false on the first render and true on all following renders
     if (!initialRenderComplete) {
         // Returning null will prevent the component from rendering, so the content will simply be missing from
-
         // the server HTML and also wont render during the first client-side render.
         return null;
     } else {
@@ -78,7 +78,9 @@ setInitialRenderComplete(true);
                         <DialogContent className="formContainerNAM">
                             {/*Loop recipes in the Dialog Content below*/}
                             <DialogContent>
-                            {recipes.map(recipe => (
+                            
+                            {//Looping over each recipe in returned json array and displaying them within the tiles of the modal
+                            recipes.map(recipe => (
                             <div className="outerRecipeContainerNAM" key={recipe.title}>
                                 {/*the individual recipe container*/}
                                 <div className="recipeContainerNAM">
