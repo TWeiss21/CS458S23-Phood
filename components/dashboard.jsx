@@ -73,7 +73,7 @@ const Dashboard = (props) => {
   }
 
   function handleGetIngredients(ingredients){
-    console.log(ingredients)
+    // console.log(ingredients)
     setIngredients(ingredients)
   }
   //EO Functions

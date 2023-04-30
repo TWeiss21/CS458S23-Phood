@@ -3,7 +3,19 @@ const Nugget = (props)=>{
     function handleID(){
       let id = props.id
       props.onClick(id)
+      
+      handleGetIngredientsForRecipe(id)
     }
+    /**
+     * handle getIngredients for recipe
+     */
+    const handleGetIngredientsForRecipe = async (id) => {
+      let query = 'http://localhost:3000/api/getIngredientsForSpecificRecipe?id=' + id;
+      const ingredients = await getIngredFromRec(query);
+      //update the shopping list component pass to callback
+      props.onGetIngredients(ingredients)
+    }
+
 
     /*GET ingredients from recipe and POST to SL db*/
     const handleAddSL = async () => {
@@ -17,8 +29,6 @@ const Nugget = (props)=>{
       //Post every ingred to db
       await postIngredToSL(ingredients, count);
 
-      //update the shopping list component pass to callback
-      props.onGetIngredients(ingredients)
     }
 
     /*GET ingredients from Recipe*/
