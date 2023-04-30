@@ -26,6 +26,7 @@ export const getServerSideProps = async () => {
             Accept: 'application/json'
         }
     })
+    //also fetch from the http://localhost:3000/api/getIngredientsForSpecificRecipe?id={id that was clicked}
   
     const ings = await second.json()
     const data = await res.json()
@@ -43,6 +44,8 @@ export const getServerSideProps = async () => {
 
 const Index = ({recipes, ingredients, SL}) => 
 {
+
+    
     //TESTING array let arr = [{"id":"1", "name":"Balt"},{"id":"2", "name":"Tokyo" }]
         return ( 
             <div>

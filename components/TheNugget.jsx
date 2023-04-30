@@ -16,6 +16,9 @@ const Nugget = (props)=>{
       var count = Object.keys(ingredients).length;
       //Post every ingred to db
       await postIngredToSL(ingredients, count);
+
+      //update the shopping list component pass to callback
+      props.onGetIngredients(ingredients)
     }
 
     /*GET ingredients from Recipe*/

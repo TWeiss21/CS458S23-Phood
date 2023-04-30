@@ -21,6 +21,7 @@ const Dashboard = (props) => {
   //Componenet state
   const [RecipeDetailsData, setData] = useState("")
   const [uniqueIngredients, setUniqueIngredients] = useState([])
+  const [RecipeDetailIngredients, setIngredients] = useState([])
 
   /**
    * Filter out all duplicate ingredients, currently O(n)^2, not using a hash table.
@@ -58,14 +59,22 @@ const Dashboard = (props) => {
   // console.log(uniqueIngredients.length+' unique ingredients.')
   
   //Functions
-  function handleClick(id){
+  function handleDetailsClick(id){
     //TODO lock down array
     let RecipesDataArr = []
     RecipesDataArr.push(props.allRecipes[id-1].name)
     RecipesDataArr.push(props.allRecipes[id-1].description)
     RecipesDataArr.push(props.allRecipes[id-1].steps)
+
+
+    RecipesDataArr.push("The (placeholder for) ingredients")
     setData(RecipesDataArr)
     // console.log(props.allRecipes[id].name)
+  }
+
+  function handleGetIngredients(ingredients){
+    console.log(ingredients)
+    setIngredients(ingredients)
   }
   //EO Functions
 
@@ -81,7 +90,9 @@ const Dashboard = (props) => {
           <RecipeList 
             key={"item"} 
             data = { props.allRecipes } 
-            onClick={handleClick}/>
+            onClick={handleDetailsClick}
+            onGetIngredients={handleGetIngredients} // purpose is to pass a callback down to -> RecipeList -> Nugget to fish the result of the nugget fetch back up to this dashboard
+            />
         </div>
 
         <div className="recipeDetail">
@@ -89,7 +100,7 @@ const Dashboard = (props) => {
             // data = {props.allRecipes} 
             id = {idFromRecipeList} 
             RecipeData={RecipeDetailsData} 
-          listOfIngredients = {uniqueIngredients}
+            listOfIngredients = {RecipeDetailIngredients}
             />
         </div>
 

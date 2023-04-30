@@ -22,7 +22,13 @@ const RecipeList = (props) =>{
                   //loops through each recipe that is in the db
                   (props.data || []).map(list => (
                     
-                    <Nugget key={list.name} id={list.id} recipeName={list.name} onClick={props.onClick}/>
+                    <Nugget 
+                      key={list.name} 
+                      id={list.id} 
+                      recipeName={list.name} 
+                      onClick={props.onClick}
+                      onGetIngredients={props.onGetIngredients}
+                    />
                     
                   ), props.name)
                 }
