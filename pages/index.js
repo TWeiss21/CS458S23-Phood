@@ -46,7 +46,7 @@ const Index = ({recipes, ingredients, SL}) =>
 {
 //INDEX FUNCTIONS
 
-    console.log(recipes)
+    // console.log(recipes)
     //TESTING array let arr = [{"id":"1", "name":"Balt"},{"id":"2", "name":"Tokyo" }]
         return ( 
             <div>
