@@ -28,7 +28,11 @@ const RecipeDetail = (props) =>{
   return(
     <React.Fragment>
       <div className="recipeDetailContainer">
-        <RecipeButtons id="recipeButtons"/>
+        {/*TEMP FOR NOW - NOT sure if any of these buttons are needed and they are getting in the way
+         <RecipeButtons id="recipeButtons"
+          recipeID = {props.RecipeData[3]}
+          deleteRecipe = {props.deleteRecipe}
+          /> */}
         <div className="recipeDetailLayout">
           <RecipeImage/>
           <RecipeTitle title = {props.RecipeData[0]}/>

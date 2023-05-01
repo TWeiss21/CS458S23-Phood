@@ -24,7 +24,7 @@ const Dashboard = (props) => {
   const [RecipeDetailIngredients, setIngredients] = useState([])
 
   /**
-   * Filter out all duplicate ingredients, currently O(n)^2, not using a hash table.
+   * Filter out all duplicate ingredients O(n)(linear) using hash table, but all ingredients is an array.
    */
   useEffect(()=>{
     function filterDuplicateIngredients(){
@@ -54,29 +54,38 @@ const Dashboard = (props) => {
   props.allingredients.forEach(element => {
     allCount++
   });
-  //Testing array length for ingredinets.
-  // console.log(allCount + ' Total Ings.')
-  // console.log(uniqueIngredients.length+' unique ingredients.')
-  
-  //Functions
+
+  //FUNCTIONS
+  /** 
+   * handleDetailsClick takes the id of the clicked recipe from the recipe list.
+   * It uses that id to find the correct recipe info to display in the Recipe details pane
+   * 
+   * Intended to pass this function down through props to the clicked component TheNugget
+   * this way it activates on the nugget but we only have to fetch data and manage state from the dashboard
+  */
   function handleDetailsClick(id){
-    //TODO lock down array
     let RecipesDataArr = []
+    // console.log("recipe ID: "+ (id - 1))
     RecipesDataArr.push(props.allRecipes[id-1].name)
     RecipesDataArr.push(props.allRecipes[id-1].description)
     RecipesDataArr.push(props.allRecipes[id-1].steps)
-
-
-    RecipesDataArr.push("The (placeholder for) ingredients")
+    RecipesDataArr.push(props.allRecipes[id-1].id) 
     setData(RecipesDataArr)
     // console.log(props.allRecipes[id].name)
   }
 
+  /** 
+   * handleGetIngredients takes an array of ingredents and passes it to the state variable RecipeDetailIngredients
+   * Intendet to passed eventually into the nugget. 
+   * Since the fetch for the joined data recipe <-> recipe-ingredient <-> ingredients is already defined in the nugget
+   * 
+   * considering pulling the fetch up into the dashboard to simplify code, but it is not part of the RecipeDetail Story
+  */
   function handleGetIngredients(ingredients){
     // console.log(ingredients)
     setIngredients(ingredients)
   }
-  //EO Functions
+  //EO FUNCTIONS
 
   let idFromRecipeList = "temp"
   return (
@@ -91,7 +100,8 @@ const Dashboard = (props) => {
             key={"item"} 
             data = { props.allRecipes } 
             onClick={handleDetailsClick}
-            onGetIngredients={handleGetIngredients} // purpose is to pass a callback down to -> RecipeList -> Nugget to fish the result of the nugget fetch back up to this dashboard
+            onGetIngredients={handleGetIngredients}
+            
             />
         </div>
 

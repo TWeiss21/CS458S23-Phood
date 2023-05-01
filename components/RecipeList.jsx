@@ -28,6 +28,7 @@ const RecipeList = (props) =>{
                       recipeName={list.name} 
                       onClick={props.onClick}
                       onGetIngredients={props.onGetIngredients}
+                      
                     />
                     
                   ), props.name)

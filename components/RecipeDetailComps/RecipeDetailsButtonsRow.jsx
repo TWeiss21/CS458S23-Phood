@@ -9,12 +9,16 @@ import React from 'react'
 
 
 const RecipeButtons = (props) =>{
+    // function deleteRecipe(){
+    //     let id = props.recipeID
+    //     props.deleteRecipe(id)
+    // }
 return(
 <div className="btnHolder">
-    <button className="generalBtn recipeBtn" id="recipeBtn">Add to List</button>
+    {/* TEMP FOR NOW - reduce clutter <button className="generalBtn recipeBtn" id="recipeBtn">Add to List</button> */}
     <div className="rightAlign">
-    <button className="generalBtn recipeBtn recipeDeleteBtn" id="recipeDeleteBtn">Delete</button>
-    <button className="generalBtn recipeBtn recipeEditBtn" id="recipeEditBtn">Edit</button>
+    {/* TEMP FOR NOW - <button className="generalBtn recipeBtn recipeDeleteBtn" id="recipeDeleteBtn" onClick={deleteRecipe}>Delete</button> */}
+    {/* TEMP FOR NOW - reduce clutter <button className="generalBtn recipeBtn recipeEditBtn" id="recipeEditBtn">Edit</button> */}
     </div>
 </div> 
 )

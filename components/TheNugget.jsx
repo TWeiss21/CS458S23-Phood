@@ -1,5 +1,12 @@
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { WarningModal } from './WarningModal'
+import { useState } from 'react'
 
 const Nugget = (props)=>{
+  //This state variable Controls if the warning Modal is shown or not, by default it is false
+  const [showWarning, setShowWarning] = useState(false);
+
     function handleID(){
       let id = props.id
       props.onClick(id)
@@ -58,12 +65,37 @@ const Nugget = (props)=>{
       }
     }
 
+    /** DELETE recipe and ingredients in the db 
+     * logic for deleting the recipe from the database
+    */
+    const deleteRecipe = async () =>{
+      let RecipeID = props.id - 1
+      try{
+        
+        var query = ""
+        console.log(RecipeID)
+        setShowWarning(true)
+      }
+      catch(err){}
+    }
+
   return(
   <div className="outerRecipeContainer"id="outerRecipeContainer">
-  <button className="recipeContainer" id="recipeContainer" onClick={handleID}>
+  <button data-testid ='recipeContainer' className="recipeContainer" id="recipeContainer" onClick={handleID}>
     <div className="recipeListName" id="recipeListName">{props.recipeName}</div>
     <div className="recipeListLine" id="recipeListLine"></div>
-  </button><button className="listPlus" data-testid="listPlus" id="listPlus" onClick={handleAddSL}>&#43;</button>
+  </button>
+  <button className="listPlus" data-testid="listPlus" id="listPlus" onClick={handleAddSL}>&#43;</button>
+  <button className="listTrash" data-testid="listTrash" id="listTrash" onClick={deleteRecipe}>
+    <FontAwesomeIcon icon={faTrash}/>
+  </button>
+    
+  {/* {showWarning && 
+  <WarningModal
+    name={"DELETE RECIPE"}
+    message={"Deleting Recipes is permanent"}
+    id = {props.id -1}
+  />} */}
 </div>
 )
 }
