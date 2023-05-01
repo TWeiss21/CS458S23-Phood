@@ -1,16 +1,5 @@
 import React from 'react'
 
-// export const getServerSideProps = async () => {
-
-//   // Fetch will server side render from the http endpoint added
-//   const res = await fetch('http://localhost:3000/api/getIngredents')
-//   const data = await res.json()
-//   console.log(data)
-//   return {
-//       props: { recipes: data}
-//   }
-// }
-
 const ShoppingList = (props) =>{
   return(
   <div className="shopGrid">
@@ -20,22 +9,21 @@ const ShoppingList = (props) =>{
       <div className="shopHeader">Shopping List</div>
       <div className="shopListContainer">
 
-        {/* This is the first ingredient item. TODO: make an ingredient components so we don't have to look at 100 lines of html */}
-        { console.log(props.listOfIngredients)}
+        {/* Map each item in list of ingredients to this div accordian representing a single ingredent */}
 
         {
           (props.listOfIngredients || []).map(list=>(
-            <div key={list.name} className="ingredItem">
-        <div className="verticalCentered">
-          <div className="ingredName" id="ingredName">{list.name}</div>
-          <div className="qtyContainer">
-            <button className="incDecQty" id="incQty">&minus;</button>
-            <p className="numQty centered" id="numQty">10</p>
-            <button className="incDecQty" id="decQty">+</button>
-          </div>
-          <button className="remove" id="remove">x</button>
-        </div>
-      </div>
+            <div key={list.id} className="ingredItem">
+              <div className="verticalCentered">
+                <div className="ingredName" id="ingredName">{list.name}</div>
+                <div className="qtyContainer">
+                  <button className="incDecQty" id="incQty">&minus;</button>
+                  <p className="numQty centered" id="numQty">10</p>
+                  <button className="incDecQty" id="decQty">+</button>
+                </div>
+                <button className="remove" id="remove">x</button>
+              </div>
+            </div>
           ))
         }
                     
