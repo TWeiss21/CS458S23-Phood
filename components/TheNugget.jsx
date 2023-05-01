@@ -1,7 +1,9 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { WarningModal } from './WarningModal'
+import { WarnMode } from './WarnMode'
 import { useState } from 'react'
+import TestComp from './TestComp'
+
 
 const Nugget = (props)=>{
   //This state variable Controls if the warning Modal is shown or not, by default it is false
@@ -89,13 +91,9 @@ const Nugget = (props)=>{
   <button className="listTrash" data-testid="listTrash" id="listTrash" onClick={deleteRecipe}>
     <FontAwesomeIcon icon={faTrash}/>
   </button>
-    
-  {/* {showWarning && 
-  <WarningModal
-    name={"DELETE RECIPE"}
-    message={"Deleting Recipes is permanent"}
-    id = {props.id -1}
-  />} */}
+
+  {/* <WarnMode name="Delete" message="message"/> */}
+  {/* <WarnMode/> */}
 </div>
 )
 }
