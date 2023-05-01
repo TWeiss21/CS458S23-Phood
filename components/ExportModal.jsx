@@ -13,7 +13,7 @@ function AddRecipeModal(){
     
     return (
             <div>
-            <Button className="generalBtn shopInteractiveBtns" data-testid="openModal" onClick={handleOpen}>Export</Button>
+            <Button className="generalBtn shopInteractiveBtns exportLong" data-testid="openModal" onClick={handleOpen}>Export</Button>
                 <div>
                     <Dialog open={show}>
                         <DialogTitle className="headerNAM">

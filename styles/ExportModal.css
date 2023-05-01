@@ -8,3 +8,8 @@
 .btnPaddingLeft{
     left:3% !important;
 }
+
+.exportLong{
+    width: 140% !important;
+    left: -30px !important;
+}
