@@ -1,6 +1,7 @@
 import React from 'react'
+import ExportModal from './ExportModal'
 import ExportToCSV from './ExportToCSV'
-import EcportButton from './ExportButton'
+//port ExportButton from './ExportButton'
 // export const getServerSideProps = async () => {
 
 //   // Fetch will server side render from the http endpoint added
@@ -55,8 +56,9 @@ const ShoppingList = (props) =>{
       <div className="verticalCentered">
         <div className="btnSpace centered"><button className="generalBtn shopInteractiveBtns">Clear</button></div>
         <div className="btnSpace centered"><button className="generalBtn shopInteractiveBtns">Undo</button></div>
+        <div className="btnSpace centered"><ExportModal/></div>
         {/* <div className="btnSpace centered"><button className="generalBtn shopInteractiveBtns" onClick={ExportToCSV.download}>Export</button></div> */}
-        <ExportButton  onClick={ExportToCSV.download}/>
+        {/* <ExportButton  onClick={ExportToCSV.download}/> */}
       </div>
     </div>
     {/* TODO: 
