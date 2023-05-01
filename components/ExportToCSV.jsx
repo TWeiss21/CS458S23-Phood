@@ -23,7 +23,7 @@ const columns = [
   }
 ];
 
-class AllPostPage extends React.Component {
+class ExportToCSV extends ShoppingList {
   constructor(props) {
     super(props);
     this.download = this.download.bind(this);
@@ -57,12 +57,12 @@ class AllPostPage extends React.Component {
       this.csvLink.link.click();
     });
   }
-
+//this next button needs to be changed,will look into the botton  in Shopping list
   render() {
     return (
       <div>
         <div>
-          <button onClick={this.download}>Download</button>
+          <button onClick={this.download}>Download</button> 
         </div>
         <div>
           <CSVLink
@@ -89,6 +89,6 @@ class AllPostPage extends React.Component {
       </div>
     );
   }
-}
+};
 
 export default ExportToCSV;
