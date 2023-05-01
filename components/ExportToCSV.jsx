@@ -1,10 +1,16 @@
 import {CSVLink, CSVDownload} from 'react-csv';
-
-const csvData =[
-  ['Ingredient', 'Amount'],
-  ['Chimken', '10lbs' ] ,
-  ['Steak', '10lbs' ]
+import ShoppingList from './ShoppingList';
+const headers = [
+  { label: "Name", key: "name" },
+  { label: "Amount", key: "amount" },
+  { label: "Metric", key: "metric" }
 ];
-<><CSVLink data={csvData}>Download CSV</CSVLink>
-    // or
-    <CSVDownload data={csvData} target="_blank" /></>
+const csvReport = {
+  data: data,
+  headers: headers,
+  filename: 'Shopping_List.csv'
+};
+<> 
+<csvlink {...csvreport}>Export to CSV</csvlink>
+  </>
+export default ExportToCSV;
