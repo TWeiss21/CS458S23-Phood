@@ -1,6 +1,6 @@
-import {CSVLink, CSVDownload} from 'react-csv';
+/*import {CSVLink, CSVDownload} from 'react-csv';
 import ReactTable from "react-table";
-import ShoppingList from './ShoppingList';
+import {ShoppingList, listOfIngredients} from './ShoppingList';
 
 //Code was heavily inspired from https://stackoverflow.com/questions/48760815/export-to-csv-button-in-react-table
 //usede a different format to place the data.
@@ -23,7 +23,7 @@ const columns = [
   }
 ];
 
-class ExportToCSV extends ShoppingList {
+class ExportToCSV extends listOfIngredients {
   constructor(props) {
     super(props);
     this.download = this.download.bind(this);
@@ -91,4 +91,4 @@ class ExportToCSV extends ShoppingList {
   }
 };
 
-export default ExportToCSV;
+export default ExportToCSV; */
