@@ -4,7 +4,7 @@ import { Dialog, Button, Typography, Card, Autocomplete, Select, DialogTitle, Di
 
 
 const NewApiModal = (props) =>{
-
+//Function from postToRecipes.js, being called through a fetch request
 const postRecipe = async (recipe) => {
   const response = await fetch('http://localhost:3000/api/postToRecipes', {
     method: 'POST',
