@@ -102,6 +102,28 @@
     color: #ffdeb2;
     transform: .3s;
   }
+  .listTrash { /*causing list to be super seperated*/
+    float: right;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    bottom:80px;
+    margin-right: 10%;
+    background-color: red;
+    border:2px solid pink;
+    font-size:25px;
+    font-weight: bolder;
+    cursor:pointer;
+    color:#023047;
+  }
+  .listTrash:hover{
+    color: #ffac3d;
+    transition:.3s;
+  }
+  .listTrash:active{
+    color: #ffdeb2;
+    transform: .3s;
+  }
   .recipeListLine {
     background-color:#023047;
     width:60%;

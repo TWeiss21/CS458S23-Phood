@@ -21,24 +21,40 @@ export const getServerSideProps = async () => {
             Accept: 'application/json'
         }
     })
+    const returnedFromShoppingList = await fetch('http://localhost:3000/api/getShoppingList', {
+        headers:{
+            Accept: 'application/json'
+        }
+    })
+    //also fetch from the http://localhost:3000/api/getIngredientsForSpecificRecipe?id={id that was clicked}
   
     const ings = await second.json()
     const data = await res.json()
+    const shoppingList = await returnedFromShoppingList.json()
 
-    console.log("ings : ",ings)
-    console.log("data : ", data)
+    // console.log("ings : ",ings)
+    // console.log("data : ", data)
     return {
         props: { recipes: data, 
-            ingredients: ings}
+            ingredients: ings,
+            SL: shoppingList,
+        }
     }
 }
 
-const Index = ({recipes, ingredients}) => 
+const Index = ({recipes, ingredients, SL}) => 
 {
+//INDEX FUNCTIONS
+
+    // console.log(recipes)
     //TESTING array let arr = [{"id":"1", "name":"Balt"},{"id":"2", "name":"Tokyo" }]
         return ( 
             <div>
-                <Dashboard allRecipes = { recipes } allingredients = { ingredients }/>
+                <Dashboard 
+                allRecipes = { recipes } 
+                allingredients = { ingredients } 
+                shoppingList = {SL} 
+                />
             </div>
         )
 }
