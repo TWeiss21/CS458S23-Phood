@@ -20,7 +20,8 @@ describe('RecipeDetailButtonRow component', () =>{
     })
 
     it('Testing - Delete Button',()=>{
-
+        const onClickMock = jest.fn()
+        const { getByTestId }  render( )
     })
 
 })

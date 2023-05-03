@@ -115,7 +115,7 @@ describe('AddRecipeModal', () => {
     it('Should return an error if fields are null', async () => {
             const props={
             key:"item1",
-            data : ['recipe1', 'recipe2', 'recipe3'],
+            shoppingList : ['recipe1', 'recipe2', 'recipe3'],
             onClick: jest.fn(),
             onGetIngredients: jest.fn()
             }

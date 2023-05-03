@@ -17,7 +17,7 @@ return(
 <div className="btnHolder">
     <button className="generalBtn recipeBtn" id="recipeBtn">Add to List</button>
     <div className="rightAlign">
-    <button className="generalBtn recipeBtn recipeDeleteBtn" id="recipeDeleteBtn" onClick={deleteRecipe}>Delete</button>
+    <button testid className="generalBtn recipeBtn recipeDeleteBtn" id="recipeDeleteBtn" onClick={deleteRecipe}>Delete</button>
     <button className="generalBtn recipeBtn recipeEditBtn" id="recipeEditBtn">Edit</button>
     </div>
 </div> 
