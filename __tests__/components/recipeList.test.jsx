@@ -21,7 +21,6 @@ describe('Tests for RecipeList', () => {
     render(
         // <RecipeList {...props}/>
         <RecipeList/>
-        //<Nugget/>
         )
     })
 

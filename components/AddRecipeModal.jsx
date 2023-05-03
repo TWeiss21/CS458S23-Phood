@@ -31,7 +31,7 @@ function AddRecipeModal(props){
     const [steps, setSteps] = useState('');
     const [show, setShow] = React.useState(false);
     const handleOpen = () => setShow(true);
-    const handleClose = () => {
+    const handleClose = async () => {
         setShow(false);
         window.location.reload();
         window.location.reload();
@@ -277,7 +277,7 @@ function AddRecipeModal(props){
             <div>
             <Button className="generalBtn addRecipeBtn"  data-testid="openModal" onClick={handleOpen}>Add Recipe</Button>
                 <div>
-             <Dialog open={show} data-testid="mdlOtln">
+             <Dialog open={show}>
              <form onSubmit={handleSubmit} data-testid="form">
                 <DialogTitle className="headerAM">
                     <Card className="titleAM" data-testid="title">Add Recipe</Card>
