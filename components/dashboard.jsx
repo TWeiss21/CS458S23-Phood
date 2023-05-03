@@ -50,10 +50,10 @@ const Dashboard = (props) => {
     filterDuplicateIngredients()
   },[props.shoppingList, setUniqueIngredients])
 
-  let allCount = 0
-  props.allingredients.forEach(element => {
-    allCount++
-  });
+  // let allCount = 0
+  // props.allingredients.forEach(element => {
+  //   allCount++
+  // });
 
   //FUNCTIONS
   /** 
