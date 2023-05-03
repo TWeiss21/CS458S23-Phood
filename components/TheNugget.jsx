@@ -1,8 +1,8 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { WarnMode } from './WarnMode'
+// import { WarnMode } from './WarnMode'
 import { useState } from 'react'
-import TestComp from './TestComp'
+
 
 
 const Nugget = (props)=>{

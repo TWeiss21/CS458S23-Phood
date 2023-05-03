@@ -113,8 +113,13 @@ describe('AddRecipeModal', () => {
     });
 
     it('Should return an error if fields are null', async () => {
-
-        render(<RecipeList/>);
+            const props={
+            key:"item1",
+            data : ['recipe1', 'recipe2', 'recipe3'],
+            onClick: jest.fn(),
+            onGetIngredients: jest.fn()
+            }
+        render(<RecipeList {...props}/>);
         const modal = screen.getByTestId("openModal");
         fireEvent.click(modal);
 
