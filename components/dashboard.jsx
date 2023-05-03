@@ -20,17 +20,17 @@ const Dashboard = (props) => {
   
   //Componenet state
   const [RecipeDetailsData, setData] = useState("")
-  const [uniqueSLIngredients, setUniqueIngredients] = useState([])
+  const [uniqueIngredients, setUniqueIngredients] = useState([])
   const [RecipeDetailIngredients, setIngredients] = useState([])
 
   /**
-   * Filter out all duplicate ingredients in the shopping list O(n)(linear) because using hash table, but all ingredients is an array.
+   * Filter out all duplicate ingredients O(n)(linear) using hash table, but all ingredients is an array.
    */
   useEffect(()=>{
     function filterDuplicateIngredients(){
       let uniqueItems  = []
       const map = new Map()
-      props.shoppingList.filter((item)=>{
+      props.allingredients.filter((item)=>{
         const name = item.name
         // if the map does not have the name of the next item in it already
           if(!map.has(name)){
@@ -48,7 +48,7 @@ const Dashboard = (props) => {
   
     }
     filterDuplicateIngredients()
-  },[props.shoppingList, setUniqueIngredients])
+  },[props.allingredients, setUniqueIngredients])
 
   let allCount = 0
   props.allingredients.forEach(element => {
