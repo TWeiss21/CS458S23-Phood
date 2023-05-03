@@ -1,6 +1,30 @@
 import React from 'react'
 
 const ShoppingList = (props) =>{
+  function clearAllIngs(){
+    
+    //This works to delete item 29
+    // fetch('http://localhost:3000/api/deleteSLItem',{
+    //   method:'POST',
+    //   headers:{
+    //     'Content-Type':'application/json'
+    //   },
+    //   body: JSON.stringify({id:29})
+    // })
+    
+    props.listOfIngredients.map(list=>{
+      console.log(list)
+      
+      fetch('http://localhost:3000/api/deleteSLItem',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({id:list.id})
+    })
+      // if an item already exists in the shopping list, it should not be added in duplicate in the first place.
+    })
+  }
   return(
   <div className="shopGrid">
 
@@ -40,7 +64,7 @@ const ShoppingList = (props) =>{
     {/* These are the buttons Clear, Undo, Export from the top down */}
     <div className="shopBtns">
       <div className="verticalCentered">
-        <div className="btnSpace centered"><button className="generalBtn shopInteractiveBtns">Clear</button></div>
+        <div className="btnSpace centered"><button className="generalBtn shopInteractiveBtns" onClick={clearAllIngs}>Clear</button></div>
         <div className="btnSpace centered"><button className="generalBtn shopInteractiveBtns">Undo</button></div>
         <div className="btnSpace centered"><button className="generalBtn shopInteractiveBtns">Export</button></div>
       </div>
