@@ -7,7 +7,13 @@ import {expect, jest, test} from '@jest/globals'
 
 describe('AddRecipeModal', () => {
     it('should render the AddRecipeModal button and open it', async () => {
-        render(<RecipeList/>);
+        const props={
+            key:"item1",
+            shoppingList : ['recipe1', 'recipe2', 'recipe3'],
+            onClick: jest.fn(),
+            onGetIngredients: jest.fn()
+            }
+        render(<RecipeList {...props}/>);
         const modal = screen.getByTestId("openModal");
         expect(modal).toBeInTheDocument()
 
@@ -39,7 +45,13 @@ describe('AddRecipeModal', () => {
     });
 
     it('Should start searching for a measurement and find autocomplete', async () => {
-        render(<RecipeList/>);
+        const props={
+            key:"item1",
+            shoppingList : ['recipe1', 'recipe2', 'recipe3'],
+            onClick: jest.fn(),
+            onGetIngredients: jest.fn()
+            }
+        render(<RecipeList {...props}/>);
         const modal = screen.getByTestId("openModal");
         fireEvent.click(modal);
         
@@ -56,7 +68,13 @@ describe('AddRecipeModal', () => {
     });
 
     it('Should not allow user to input an invalid character or extra characters', async () => {
-        render(<RecipeList/>);
+        const props={
+            key:"item1",
+            shoppingList : ['recipe1', 'recipe2', 'recipe3'],
+            onClick: jest.fn(),
+            onGetIngredients: jest.fn()
+            }
+        render(<RecipeList {...props}/>);
         const modal = screen.getByTestId("openModal");
         fireEvent.click(modal);
 
@@ -72,7 +90,13 @@ describe('AddRecipeModal', () => {
     });
 
     it('should update the text fields when users enter information', async () => {
-        render(<RecipeList/>);
+        const props={
+            key:"item1",
+            shoppingList : ['recipe1', 'recipe2', 'recipe3'],
+            onClick: jest.fn(),
+            onGetIngredients: jest.fn()
+            }
+        render(<RecipeList {...props}/>);
         const modal = screen.getByTestId("openModal");
         fireEvent.click(modal);
 
@@ -92,8 +116,15 @@ describe('AddRecipeModal', () => {
     });
 
     it('Should display error on typing of special characters', async () => {
+
+        const props={
+            key:"item1",
+            shoppingList : ['recipe1', 'recipe2', 'recipe3'],
+            onClick: jest.fn(),
+            onGetIngredients: jest.fn()
+            }
         
-        render(<RecipeList/>);
+        render(<RecipeList {...props}/>);
         const modal = screen.getByTestId("openModal");
         fireEvent.click(modal);
 
